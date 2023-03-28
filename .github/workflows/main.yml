@@ -20,5 +20,5 @@ jobs:
           AWS_DEFAULT_REGION: 'ap-northeast-2'
         run : | 
           ls -al
-          aws s3 sync README.md s3://just-say.net
+          aws s3 sync ./* s3://just-say.net
 
