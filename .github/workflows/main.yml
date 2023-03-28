@@ -1,5 +1,5 @@
 # main.yml
-name: main
+name: deploy_client
 
 on:
   push:
@@ -10,12 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source code
+      - name: git clone
         uses: actions/checkout@main
+      - name: Echo
+        run : | 
+          echo print Test Text
 
-      - name: Deploy 
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws s3 sync ./ s3://just-say.net
