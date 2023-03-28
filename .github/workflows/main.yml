@@ -12,14 +12,6 @@ jobs:
     steps:
       - name: git clone
         uses: actions/checkout@v2
-
-      - name: Install AWS CLI v2
-        run : |
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
-          unzip -q /tmp/awscliv2.zip -d /tmp
-          rm /tmp/awscliv2.zip
-          sudo /tmp/aws/install --update
-          rm -rf /tmp/aws/
           
       - name: Deploy
         env:
@@ -27,5 +19,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: 'ap-northeast-2'
         run : | 
-          aws s3 sync ./build s3://just-say.net
+          aws s3 ls s3://just-say.net
 
