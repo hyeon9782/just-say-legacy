@@ -19,5 +19,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: 'ap-northeast-2'
         run : | 
-          aws s3 sync ./README.md s3://just-say.net
+          ls -al \
+          aws s3 sync README.md s3://just-say.net
 
