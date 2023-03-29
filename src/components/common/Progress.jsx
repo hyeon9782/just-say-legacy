@@ -5,9 +5,10 @@ import { progressAtom } from "../../atom/atom"
 const Progress = () => {
     const location = useLocation();
     const { language, city, category } = useAtomValue(progressAtom);
+    const newLanguage = language === 'ko-KR' ? "한국어" : "영어"
     return (
         <ProgressBlock>
-            <div><span className={location.pathname === "/language" ? "current" : "item"}>{language}</span>ㅣ</div>
+            <div><span className={location.pathname === "/language" ? "current" : "item"}>{newLanguage}</span>ㅣ</div>
             <div><span className={location.pathname === "/city" ? "current" : "item"}>{city}</span>ㅣ</div>
             <div><span className={location.pathname === "/category" ? "current" : "item"}>{category}</span></div>
         </ProgressBlock>

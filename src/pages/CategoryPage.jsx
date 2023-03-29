@@ -22,7 +22,7 @@ const CategoryPage = () => {
     return (
         <Container>
             <CategoryPageBlock>
-                <TextBlock>유럽 도착! 어디로 가볼까요?</TextBlock>
+                <TextBlock>{progress.city} 도착! 어디로 가볼까요?</TextBlock>
                 <SelectBlock>
                     {categorys.map((category, index) => <div key={index} className="category-item" onClick={() => handleClick(category)}>{category}</div>)}
                 </SelectBlock>
