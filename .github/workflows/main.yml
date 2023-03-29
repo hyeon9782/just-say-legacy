@@ -10,9 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: git clone
+      - name: checkout code
         uses: actions/checkout@v2
-          
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+      - name: install dependencies
+        run: npm install
+      - name: build
+        run: npm run install
       - name: Deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
