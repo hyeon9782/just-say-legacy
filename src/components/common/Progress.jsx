@@ -1,11 +1,10 @@
 import { useAtomValue } from "jotai";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components"
-import { currentAtom, progressAtom } from "../../atom/atom"
+import { progressAtom } from "../../atom/atom"
 const Progress = () => {
     const location = useLocation();
     const { language, city, category } = useAtomValue(progressAtom);
-    const current = useAtomValue(currentAtom);
     return (
         <ProgressBlock>
             <div><span className={location.pathname === "/language" ? "current" : "item"}>{language}</span>ㅣ</div>

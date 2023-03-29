@@ -5,5 +5,3 @@ export const progressAtom = atom({
   city: "도시",
   category: "카테고리"
 });
-
-export const currentAtom = atom("");

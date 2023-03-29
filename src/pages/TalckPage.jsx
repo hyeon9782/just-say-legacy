@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import Container from '../components/common/Container'
+import TalkButton from "../components/TalkButton"
 const TalkPage = () => {
     return (
         <Container>
@@ -32,20 +33,7 @@ const ImageBlock = styled.div`
     font-size: 4rem;
 `
 
-const TalkButton = styled.div`
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 1px solid wheat;
-    margin: 20px 0px;
-    cursor: pointer;
-    // 이미지 들어오면 삭제
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.2rem;
-`
+
 
 const Help = styled.div`
     font-weight: bold;
