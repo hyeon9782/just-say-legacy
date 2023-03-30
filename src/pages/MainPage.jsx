@@ -1,61 +1,72 @@
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
-import Container from '../components/common/Container'
-import { useNavigate } from 'react-router-dom';
-import { useAtomValue } from "jotai";
-import { progressAtom } from "../atom/atom";
 const MainPage = () => {
     const navigate = useNavigate();
-    const { category } = useAtomValue(progressAtom);
     return (
-        <Container>
+        <MainPageBlock>
             <MainBlock>
                 <TextBlock>
-                    {category}에 도착!
+                    Your Ultimate SpeakMate
                 </TextBlock>
-                <TextBlock>
-                    아래 메뉴를 보고, 원하는 메뉴를 주문해보세요.
-                </TextBlock>
-                <MenuBlock>
-                    메뉴 이미지
-                </MenuBlock>
-                <StartButton onClick={() => navigate('/talk')}>시작하기</StartButton>
+                <StartButton onClick={() => navigate('/language')}>
+                    시작하기
+                </StartButton>
+                <ImageBlock>
+                    <img src="src/assets/BG_IMG 1.png" alt="bg" width="100%" height="100%" />
+                </ImageBlock>
             </MainBlock>
-        </Container>
+        </MainPageBlock>
     )
 }
 
+const MainPageBlock = styled.div`
+    position: relative;
+    width: 1440px;
+    height: 900px;
+`
+
 const MainBlock = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 250px;
+    position: absolute;
+    width: 1440px;
+    height: 900px;
+    left: 0px;
+    top: 0px;
+    background: #FFFFFF;
 `
 
 const TextBlock = styled.div`
-    font-size: 1.8rem;
-    font-weight: bold;
-    padding-bottom: 10px;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 96px;
+    line-height: 115px;
+
+    color: #000000;
 `
 
-const MenuBlock = styled.div`
-    width: 700px;
-    height: 350px;
-    background: lightgray;
-    margin: 30px 0;
-    // 이미지 나오면 삭제
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
+const ImageBlock = styled.div`
+    height: 366.943359375px;
+    width: 600px;
+    left: 712px;
+    top: 257px;
+    border-radius: 0px;
 `
 
 const StartButton = styled.button`
-    width: 150px;
-    height: 50px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    background: white;
-    border: 1px solid wheat;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 28px 200px;
+    gap: 10px;
+
+    position: absolute;
+    width: 511px;
+    height: 94px;
+    left: 111px;
+    top: 664px;
+
+    background: #4B8BF6;
+    border-radius: 50px;
 `
+
 export default MainPage;

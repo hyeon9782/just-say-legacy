@@ -16,11 +16,11 @@ const TalkButton = () => {
         {"role":"system", "content": "you're a cafe manager Please answer in English"},
         {"role":"user", "content": "Hello!"},
         {"role":"assistant", "content": "how are you? Can I take your order?"},
-        // {"role":"user", "content": "I'll have a latte"}
+        {"role":"user", "content": "I'll have a latte"}
     ]);
 
     const callGPT = async (messages) => {
-        const res = await axios.post('https://fn93xb2nvl.execute-api.ap-northeast-2.amazonaws.com/default/gpt', messages);
+        const res = await axios.post('http://52.79.149.130:8000/api/v1/gpt', messages);
         console.log(res);
         console.log(res.data.answer);
         let answer = `<speak>${res.data.answer}</speak>`
@@ -35,7 +35,7 @@ const TalkButton = () => {
     }
 
     const callTTS = async (answer) => {
-        const res = await useTextToSpeech({ ssml: answer});
+        const res = await useTextToSpeech({ ssml: answer });
         const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
         const audioUrl = URL.createObjectURL(audioBlob);
         audioRef.current.src = audioUrl;

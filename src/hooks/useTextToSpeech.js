@@ -7,7 +7,7 @@ const useTextToSpeech = async ({
   speaking_rate = 1,
 }) =>
   await axios.post(
-    "https://fn93xb2nvl.execute-api.ap-northeast-2.amazonaws.com/default/tts",
+    "http://52.79.149.130:8000/api/v1/tts",
     {
       ssml,
       lang_code,
@@ -15,7 +15,10 @@ const useTextToSpeech = async ({
       volume,
       speaking_rate,
     },
-    { responseType: "arraybuffer" } // responseType 설정 추가
+    {
+      responseType: "arraybuffer", // responseType 설정 추가
+      'Access-Control-Allow-Origin': "*"
+    }
   );
 
 export default useTextToSpeech;
