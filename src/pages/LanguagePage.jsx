@@ -8,7 +8,20 @@ const LanguagePage = () => {
 
     const navigate = useNavigate();
 
-    const languages = ["언어 선택", "영어", "한국어", "일본어"]
+    const languages = [
+        {
+            name : "언어 선택",
+            value :"en-US",
+        },
+        {
+            name : "영어",
+            value :"en-US",
+        }, 
+        {
+            name : "한국어",
+            value :"ko-KR",
+        }, 
+    ]
 
     const handleChange = (e) => {
         console.log(e.target.value)
@@ -25,7 +38,7 @@ const LanguagePage = () => {
             <TextBlock>어떤 언어로 말하시겠어요?</TextBlock>
             <SelectBlock>
                 <select onChange={handleChange}>
-                    {languages.map((language, index) => <option key={index} value={language}>{language}</option>)}
+                    {languages.map((language, index) => <option key={index} value={language["value"]}>{language["name"]}</option>)}
                 </select>
             </SelectBlock>
         </LanguagePageBlock>

@@ -7,7 +7,7 @@ const useTextToSpeech = async ({
   speaking_rate = 1,
 }) =>
   await axios.post(
-    "http://localhost:8000/api/v1/tts",
+    "https://fn93xb2nvl.execute-api.ap-northeast-2.amazonaws.com/default/tts",
     {
       ssml,
       lang_code,

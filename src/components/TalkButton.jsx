@@ -2,10 +2,15 @@ import styled from "styled-components";
 import axios from 'axios';
 import { useEffect, useRef, useState } from "react";
 import useTextToSpeech from "../hooks/useTextToSpeech";
+import { useAtom } from "jotai";
+import { progressAtom } from "../atom/atom";
 
 const TalkButton = () => {
 
     const audioRef = useRef(null);
+
+    const [progress, setProgress] = useAtom(progressAtom);
+
 
     const [messages, setMessages] = useState([
         {"role":"system", "content": "you're a cafe manager Please answer in English"},
@@ -15,7 +20,7 @@ const TalkButton = () => {
     ]);
 
     const callGPT = async (messages) => {
-        const res = await axios.post('http://localhost:8000/api/v1/chatgpt', messages);
+        const res = await axios.post('https://fn93xb2nvl.execute-api.ap-northeast-2.amazonaws.com/default/gpt', messages);
         console.log(res);
         console.log(res.data.answer);
         let answer = `<speak>${res.data.answer}</speak>`
@@ -46,7 +51,7 @@ const TalkButton = () => {
             recognition = new window.webkitSpeechRecognition();
             recognition.continuous = true;
             // recognition.lang = "en-US";
-            recognition.lang = "ko-KR";
+            recognition.lang = progress;
             recognition.onresult = (event) => {
                 const results = event.results;
                 const contents = []
