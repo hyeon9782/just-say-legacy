@@ -1,55 +1,69 @@
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import Container from "../components/common/Container";
 const MainPage = () => {
     const navigate = useNavigate();
     return (
-        <MainPageBlock>
+        <Container>
             <MainBlock>
                 <TextBlock>
-                    Your Ultimate SpeakMate
+                    <div className="en">
+                        Your <br /> 
+                        Ultimate <br />
+                        SpeakMate
+                    </div>
+                    <div className="ko">
+                        모두가 두려움없이 외국어를 말할 수 있도록. <br />
+                        될 때까지 말해보세요!
+                    </div>
+                    <div>
+                        <StartButton onClick={() => navigate('/language')}>
+                            시작하기
+                        </StartButton>
+                    </div>
                 </TextBlock>
-                <StartButton onClick={() => navigate('/language')}>
-                    시작하기
-                </StartButton>
-                <ImageBlock>
-                    <img src="src/assets/BG_IMG 1.png" alt="bg" width="100%" height="100%" />
-                </ImageBlock>
+                <div className="image-box">
+                    <ImageBlock></ImageBlock>
+                </div>
             </MainBlock>
-        </MainPageBlock>
+        </Container>
     )
 }
 
-const MainPageBlock = styled.div`
-    position: relative;
-    width: 1440px;
-    height: 900px;
-`
-
 const MainBlock = styled.div`
-    position: absolute;
-    width: 1440px;
-    height: 900px;
-    left: 0px;
-    top: 0px;
-    background: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+   
+    .image-box{
+        display: flex;
+        align-items: center;
+    }
 `
 
 const TextBlock = styled.div`
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 96px;
-    line-height: 115px;
+    
+    .en{
+        font-weight: 700;
+        font-size: 96px;
+        line-height: 115px;
+        padding-bottom: 50px;
+    }
 
-    color: #000000;
+    .ko{
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 42px;
+        padding-bottom: 40px;
+    }
+    
+   
 `
 
 const ImageBlock = styled.div`
     height: 366.943359375px;
-    width: 600px;
-    left: 712px;
-    top: 257px;
+    width: 552px;
     border-radius: 0px;
+    background: url("src/assets/BG_IMG 1.png");
 `
 
 const StartButton = styled.button`
@@ -59,14 +73,16 @@ const StartButton = styled.button`
     padding: 28px 200px;
     gap: 10px;
 
-    position: absolute;
-    width: 511px;
-    height: 94px;
-    left: 111px;
-    top: 664px;
-
     background: #4B8BF6;
     border-radius: 50px;
+    border: 0;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+
+    color: #FFFFFF;
 `
 
 export default MainPage;

@@ -10,8 +10,12 @@ const Container = ({ children }) => {
 
 const ContainerBlock = styled.div`
   width: 1280px;
+  display: flex;
+  align-items: center;
   margin: 0 auto;
   padding: 24px 0;
+  height: 100vh;
+  box-sizing: border-box;
   @media screen and (max-width: 1300px){
     width: 960px;
   }
