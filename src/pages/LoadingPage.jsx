@@ -7,7 +7,7 @@ const LoadingPage = () => {
     useEffect(() => {
         setTimeout(() => {
             navigate('/ready')
-        }, 3000)
+        }, 1000)
     },[])
 
     return (
@@ -47,7 +47,7 @@ const ImageBlock = styled.div`
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        animation: spin 6s linear infinite;
+        animation: spin 1s linear infinite;
 
     }
 

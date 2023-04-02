@@ -8,7 +8,7 @@ const Back = () => {
 }
 
 const BackBlock = styled.div`
-    background: url("src/assets/left-arrow 1.png");
+    background: url("./left-arrow 1.png");
     width: 42px;
     height: 42px;
     margin: 0;

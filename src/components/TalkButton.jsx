@@ -16,11 +16,14 @@ const TalkButton = () => {
         {"role":"system", "content": "you're a cafe manager Please answer in English"},
         {"role":"user", "content": "Hello!"},
         {"role":"assistant", "content": "how are you? Can I take your order?"},
-        {"role":"user", "content": "I'll have a latte"}
+        // {"role":"user", "content": "I'll have a latte"}
     ]);
 
     const callGPT = async (messages) => {
-        const res = await axios.post('http://52.79.149.130:8000/api/v1/gpt', messages);
+        const res = await axios.post('http://52.79.149.130:8000/api/v1/gpt', messages, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+        });
         console.log(res);
         console.log(res.data.answer);
         let answer = `<speak>${res.data.answer}</speak>`
@@ -50,13 +53,13 @@ const TalkButton = () => {
         if (isRecording) {
             recognition = new window.webkitSpeechRecognition();
             recognition.continuous = true;
-            // recognition.lang = "en-US";
-            recognition.lang = progress;
+            recognition.lang = "en-US";
+            // recognition.lang = progress;
             recognition.onresult = (event) => {
                 const results = event.results;
                 const contents = []
                 Object.keys(results).forEach(key => contents.push(results[key][0].transcript))
-                content = contents.join(' ')
+                content = contents.join(' ,')
                 console.log(content);
 
             }
@@ -92,7 +95,7 @@ const TalkButton = () => {
             <Help>
                 {isRecording ? '듣는 중이에요' : '탭하여 대화를 시작하세요'}
             </Help>
-            <TalkButtonBlock onMouseDown={handleRecognition} onMouseUp={handleRecognition}>
+            <TalkButtonBlock onMouseDown={handleRecognition} onMouseUp={handleRecognition} >
                 <img src={isRecording ? "./mice2.png" : "./mice.png"} alt="mice" />    
             </TalkButtonBlock>
             

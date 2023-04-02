@@ -19,31 +19,36 @@ const ResultPage = () => {
         
     }
     return (
-        <ResultBlock>
-            <TextBlock>
-                <div className="sub">카페에서 음료와 음식 주문하기</div>
-                <div className="main">주문 성공🎉</div>
-            </TextBlock>
-            <TagBlock>
-                {tags.map((tag, index) => (
-                    <div key={index} className="tag-item" onClick={() => handleClick(tag)}>{tag.name}</div>
-                ))}
-            </TagBlock>
-            <QuestionBlock>
-                <div className="question">대화는 어떠셨나요?</div>
-                <div className="like-block">
-                    <div className="icon-box">
-                        <div className="icon-1"></div>
+        <>
+            <CloseBlock>
+                <div className="close" onClick={() => navitate('/')}></div>
+            </CloseBlock>
+            <ResultBlock>
+                <TextBlock>
+                    <div className="sub">카페에서 음료와 음식 주문하기</div>
+                    <div className="main">주문 성공🎉</div>
+                </TextBlock>
+                <TagBlock>
+                    {tags.map((tag, index) => (
+                        <div key={index} className="tag-item" onClick={() => handleClick(tag)}>{tag.name}</div>
+                    ))}
+                </TagBlock>
+                <QuestionBlock>
+                    <div className="question">대화는 어떠셨나요?</div>
+                    <div className="like-block">
+                        <div className="icon-box">
+                            <div className="icon-1"></div>
+                        </div>
+                        <div className="icon-box">
+                            <div className="icon-2"></div>
+                        </div>
                     </div>
-                    <div className="icon-box">
-                        <div className="icon-2"></div>
+                    <div className="talk-view-block">
+                        <div className="talk-view">전체 대화 보기</div>
                     </div>
-                </div>
-                <div className="talk-view-block">
-                    <div className="talk-view">전체 대화 보기</div>
-                </div>
-            </QuestionBlock>
-        </ResultBlock>
+                </QuestionBlock>
+            </ResultBlock>
+        </>
     )
 }
 
@@ -52,8 +57,20 @@ const ResultBlock = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: calc(100vh - 72px);
 
+`
+
+const CloseBlock = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    .close{
+        width: 22px;
+        height: 22px;
+        background: url("./x.png");
+        margin: 50px 100px 0px 0px;
+    }
 `
 
 const TextBlock = styled.div`
