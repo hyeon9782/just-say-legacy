@@ -8,7 +8,7 @@ const ReadyPage = () => {
             <ReadyBlock>
                 <TextBlock>
                     뉴욕 34st 카페에 도착했어요. <br />
-                    메뉴를 보고, 내가 먹고 싶은 것을 주문해 볼까요?
+                    메뉴를 보고, 내가 먹고 싶은 것을 주문해 볼까요??
                 </TextBlock>
                 <Help>내 스피커와 마이크가 잘 동작하는지 확인해 주세요.</Help>
                 <StartButton onClick={() => navigate('/talk')}>대화 시작</StartButton>
