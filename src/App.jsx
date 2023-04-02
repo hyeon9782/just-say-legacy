@@ -6,6 +6,7 @@ import LoadingPage from './pages/LoadingPage';
 import MainPage from './pages/MainPage';
 import TalkPage from './pages/TalkPage';
 import ResultPage from './pages/ResultPage';
+import ReadyPage from './pages/ReadyPage';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/language" element={<LanguagePage />} />
           <Route path="/city" element={<CityPage />} />
           <Route path="/loading" element={<LoadingPage />} />
+          <Route path="/ready" element={<ReadyPage />} />
           <Route path="/category" element={<CategoryPage />} />
           <Route path="/talk" element={<TalkPage />} />
           <Route path="/result" element={<ResultPage />} />

@@ -6,7 +6,7 @@ const LoadingPage = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            navigate('/talk')
+            navigate('/ready')
         }, 3000)
     },[])
 

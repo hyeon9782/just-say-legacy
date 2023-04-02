@@ -37,7 +37,6 @@ const LanguagePage = () => {
                 <TextBlock>
                     이제부터 여행을 떠나봅시다! <br />
                     내가 말할 언어를 골라주세요.
-                    {/* 언어 선택 */}
                 </TextBlock>
                 <SelectBlock>
                     {languages.map((language, index) => <div className="language-item" onClick={handleChange} key={index}>{language.name}</div>)}
@@ -52,11 +51,12 @@ const LanguageBlock = styled.div`
     width: 1280px;
     margin: 0 auto;
     padding: 24px 14px;
+    height: 100vh;
     .container{
         display: flex;
         flex-direction: column;
         justify-content: center;
-        box-sizing: border-box;
+        /* box-sizing: border-box; */
         height: calc(100vh - 42px);
     }
 `
@@ -65,10 +65,12 @@ const TextBlock = styled.div`
     font-weight: 700;
     font-size: 64px;
     line-height: 76px;
-    padding: 30px 0px 100px 0px;
+    padding: 30px 0px 200px 0px;
+    /* box-sizing: border-box; */
 `
 
 const SelectBlock = styled.div`
+    /* box-sizing: border-box; */
     display: flex;
     justify-content: space-between;
     font-weight: 700;
