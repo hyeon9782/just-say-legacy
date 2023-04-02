@@ -20,7 +20,7 @@ const TalkPage = () => {
             </ImageBlock>
             <MiceBlock>
                 <TalkButton>
-                    <div className="mice"></div>
+                    
                 </TalkButton>
             </MiceBlock>
             <Dialog ref={ref}>
@@ -41,7 +41,7 @@ const TalkBlock = styled.div`
 `
 
 const ImageBlock = styled.div`
-    background: url("src/assets/cafe.png");
+    background: url("./cafe.png");
     width: 100%;
     height: 730px;
     display: flex;
@@ -63,7 +63,7 @@ const MenuBlock = styled.div`
     .document{
         width: 44px;
         height: 44px;
-        background: url("src/assets/document 1.png");
+        background: url("./document 1.png");
     }
 
     .text{
@@ -93,11 +93,7 @@ const MiceBlock = styled.div`
     align-items: center;
     justify-content: center;
     height: calc(100vh - 730px);
-    .mice{
-        background: url("src/assets/mice.png");
-        width: 62px;
-        height: 62px;
-    }
+   
 `
 
 export default TalkPage;

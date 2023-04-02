@@ -20,7 +20,7 @@ const ReadyPage = () => {
 const BackgroundBlock = styled.div`
     height: 100vh;
     width: 100vw;
-    background:url("src/assets/cafe.png");
+    background:url("./cafe.png");
     z-index: 0;
 `
 

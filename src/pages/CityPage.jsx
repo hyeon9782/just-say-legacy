@@ -37,7 +37,7 @@ const CityPage = () => {
                     {citys.map((city, index) => (
                         <div key={index} className="city-item" onClick={() => handleClick(city)}>
                             <div className="name">{city.name}</div>
-                            <img src={`src/assets/${city.name}.png`} alt="dd" width="100%" height="100%"/>
+                            <img src={`./${city.name}.png`} alt="dd" width="100%" height="100%"/>
                         </div>
                     ))}
                 </SelectBlock>

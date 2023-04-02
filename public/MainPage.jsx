@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
-import Container from "../components/common/Container";
+import Container from "../src/components/common/Container";
 const MainPage = () => {
     const navigate = useNavigate();
     return (
@@ -48,6 +48,7 @@ const TextBlock = styled.div`
         line-height: 115px;
         padding-bottom: 50px;
     }
+
     .ko{
         font-weight: 400;
         font-size: 32px;
@@ -71,13 +72,16 @@ const StartButton = styled.button`
     align-items: flex-start;
     padding: 28px 200px;
     gap: 10px;
+
     background: #4B8BF6;
     border-radius: 50px;
     border: 0;
+
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
     line-height: 38px;
+
     color: #FFFFFF;
 `
 

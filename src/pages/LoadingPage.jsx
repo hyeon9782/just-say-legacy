@@ -39,7 +39,7 @@ const ImageBlock = styled.div`
     .plane{
         width: 100px;
         height: 100px;
-        background: url("src/assets/plane.png");
+        background: url("./plane.png");
         
         /* transform: rotate(13deg); */
 
@@ -54,7 +54,7 @@ const ImageBlock = styled.div`
     .earth{
         width: 1400px;
         height: 450px;
-        background: url("src/assets/earth.png");
+        background: url("./earth.png");
     }
 `
 

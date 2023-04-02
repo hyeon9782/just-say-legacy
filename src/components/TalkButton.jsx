@@ -5,7 +5,7 @@ import useTextToSpeech from "../hooks/useTextToSpeech";
 import { useAtom } from "jotai";
 import { progressAtom } from "../atom/atom";
 
-const TalkButton = ({ children }) => {
+const TalkButton = () => {
 
     const audioRef = useRef(null);
 
@@ -93,7 +93,7 @@ const TalkButton = ({ children }) => {
                 {isRecording ? '듣는 중이에요' : '탭하여 대화를 시작하세요'}
             </Help>
             <TalkButtonBlock onMouseDown={handleRecognition} onMouseUp={handleRecognition}>
-                <img src={isRecording ? "src/assets/mice2.png" : "src/assets/mice.png"} alt="mice" />    
+                <img src={isRecording ? "./mice2.png" : "./mice.png"} alt="mice" />    
             </TalkButtonBlock>
             
             <audio controls ref={audioRef} style={{"display": "none"}}></audio>

@@ -111,13 +111,13 @@ const QuestionBlock = styled.div`
             border: 1px solid #EEEEEE;
             border-radius: 20px;
             .icon-1{
-                background: url("src/assets/icon.png");
+                background: url("./icon.png");
                 width: 22.96px;
                 height: 22.96px;
             }
 
             .icon-2{
-                background: url("src/assets/icon1.png");
+                background: url("./icon1.png");
                 width: 22.96px;
                 height: 22.96px;
             }

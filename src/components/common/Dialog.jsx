@@ -30,7 +30,7 @@ const DialogHead = styled.div`
     display: flex;
     justify-content: flex-end;
     .close{
-        background: url("src/assets/x.png");
+        background: url("./x.png");
         width: 20px;
         height: 20px;
     }
