@@ -9,6 +9,10 @@ const CityPage = () => {
     const [info, setInfo] = useAtom(infoAtom);
 
     const citys = [
+        { name: "도쿄", value: "ja-JP"},
+        { name: "오사카", value: "ja-JP"},
+        { name: "고베", value: "ja-JP"},
+        { name: "후쿠오카", value: "ja-JP"},
         { name: "뉴욕", value: "en-US"},
         { name: "런던", value: "en-GB"},
         { name: "시드니", value: "en-AU"},
@@ -34,12 +38,28 @@ const CityPage = () => {
                     <div className="sub">선택한 도시의 억양이 내가 대화할 상대방에게 반영됩니다.</div>
                 </TextBlock>
                 <SelectBlock>
-                    {citys.map((city, index) => (
-                        <div key={index} className="city-item" onClick={() => handleClick(city)}>
-                            <div className="name">{city.name}</div>
-                            <img src={`img/${city.name}.png`} alt="dd" width="100%" height="100%"/>
-                        </div>
-                    ))}
+                    {info.language.value === 'japanese' ? 
+                        citys.map((city, index) => {
+                            if (city.value === 'ja-JP') {
+                                return (
+                                    <div key={index} className="city-item" onClick={() => handleClick(city)}>
+                                        <div className="name">{city.name}</div>
+                                        <img src={`img/${city.name}.png`} alt="dd" width="100%" height="100%"/>
+                                    </div>
+                                )
+                            }
+                        }) : 
+                        citys.map((city, index) => {
+                            if (city.value !== 'ja-JP') {
+                                return (
+                                    <div key={index} className="city-item" onClick={() => handleClick(city)}>
+                                        <div className="name">{city.name}</div>
+                                        <img src={`img/${city.name}.png`} alt="dd" width="100%" height="100%"/>
+                                    </div>
+                                )
+                            }
+                        })
+                    }
                 </SelectBlock>
             </div>
         </CityBlock>
