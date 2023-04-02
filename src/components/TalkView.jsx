@@ -1,8 +1,13 @@
 import styled from "styled-components";
 const TalkView = () => {
     return (
-        <div></div>
+        <TalkBlock>
+            
+        </TalkBlock>
     )
 }
 
+const TalkBlock = styled.div`
+    
+`
 export default TalkView;

@@ -36,7 +36,7 @@ const CityPage = () => {
                 <SelectBlock>
                     {citys.map((city, index) => (
                         <div key={index} className="city-item" onClick={() => handleClick(city)}>
-                            
+                            <div className="name">{city.name}</div>
                             <img src={`src/assets/${city.name}.png`} alt="dd" width="100%" height="100%"/>
                         </div>
                     ))}
@@ -50,6 +50,7 @@ const CityBlock = styled.div`
     width: 1280px;
     margin: 0 auto;
     padding: 24px 14px;
+    
     .container{
         display: flex;
         flex-direction: column;
@@ -77,21 +78,34 @@ const TextBlock = styled.div`
 
 const SelectBlock = styled.div`
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 80px;
+    box-sizing: border-box;
+    
+    
     .city-item{
         width: 552px;
         height: 268px;
         border-radius: 20px;
+        box-sizing: border-box;
 
         font-weight: 700;
         font-size: 56px;
         line-height: 67px;
         text-align: right;
         border: 1px solid #EEEEEE;
+        position: relative;
 
         &:hover{
             border: 5px solid #4B8BF6;
+        }
+
+        .name{
+            position: absolute;
+            color: white;
+            top: 170px;
+            left: 370px;
         }
     }
 `
