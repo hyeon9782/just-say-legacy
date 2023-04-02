@@ -3,13 +3,15 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from "react";
 import useTextToSpeech from "../hooks/useTextToSpeech";
 import { useAtom } from "jotai";
-import { progressAtom } from "../atom/atom";
+import { infoAtom, talkAtom } from "../atom/atom";
 
 const TalkButton = () => {
 
     const audioRef = useRef(null);
 
-    const [progress, setProgress] = useAtom(progressAtom);
+    const [info, setInfo] = useAtom(infoAtom);
+
+    const [talk, setTalk] = useAtom(talkAtom);
 
 
     const [messages, setMessages] = useState([
@@ -20,12 +22,18 @@ const TalkButton = () => {
     ]);
 
     const callGPT = async (messages) => {
+        // 입력 값이 없을 경우 GPT 호출 방지
+        if (messages[messages.length - 1].content === '') return;
         const res = await axios.post('http://52.79.149.130:8000/api/v1/gpt', messages, {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
         });
         console.log(res);
         console.log(res.data.answer);
+        setTalk({
+            role: "gpt",
+            content: res.data.answer
+        })
         let answer = `<speak>${res.data.answer}</speak>`
         callTTS(answer)
         messages.map((item) => {
@@ -54,7 +62,7 @@ const TalkButton = () => {
             recognition = new window.webkitSpeechRecognition();
             recognition.continuous = true;
             recognition.lang = "en-US";
-            // recognition.lang = progress;
+            // recognition.lang = info.city.value;
             recognition.onresult = (event) => {
                 const results = event.results;
                 const contents = []
@@ -79,6 +87,10 @@ const TalkButton = () => {
                         content,
                     })
                     callGPT(newMessages)
+                    setTalk({
+                        role: "user",
+                        content
+                    })
                     console.log(newMessages);
                     return newMessages;
                 })
@@ -96,7 +108,7 @@ const TalkButton = () => {
                 {isRecording ? '듣는 중이에요' : '탭하여 대화를 시작하세요'}
             </Help>
             <TalkButtonBlock onMouseDown={handleRecognition} onMouseUp={handleRecognition} >
-                <img src={isRecording ? "./mice2.png" : "./mice.png"} alt="mice" />    
+                <img src={isRecording ? "img/mice2.png" : "img/mice.png"} alt="mice" />    
             </TalkButtonBlock>
             
             <audio controls ref={audioRef} style={{"display": "none"}}></audio>

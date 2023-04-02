@@ -1,8 +1,12 @@
 import styled from "styled-components"
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
+import { infoAtom } from "../atom/atom";
+import { useAtom } from "jotai";
 const LoadingPage = () => {
     const navigate = useNavigate();
+
+    const [info, setInfo] = useAtom(infoAtom);
 
     useEffect(() => {
         setTimeout(() => {
@@ -12,7 +16,7 @@ const LoadingPage = () => {
 
     return (
         <LoadingBlock>  
-            <TextBlock>{}뉴욕으로 가는 중..</TextBlock>
+            <TextBlock>{info.city.name}으로 가는 중..</TextBlock>
             <ImageBlock>
                 <div className="plane"></div>
                 <div className="earth"></div>
@@ -39,7 +43,7 @@ const ImageBlock = styled.div`
     .plane{
         width: 100px;
         height: 100px;
-        background: url("./plane.png");
+        background: url("img/plane.png");
         
         /* transform: rotate(13deg); */
 
@@ -54,7 +58,7 @@ const ImageBlock = styled.div`
     .earth{
         width: 1400px;
         height: 450px;
-        background: url("./earth.png");
+        background: url("img/earth.png");
     }
 `
 

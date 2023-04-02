@@ -1,31 +1,30 @@
 import styled from "styled-components"
 import { useNavigate } from 'react-router-dom';
 import { useAtom } from "jotai";
-import { progressAtom } from "../atom/atom";
+import { infoAtom } from "../atom/atom";
 import Back from "../components/common/Back";
 import Container from "../components/common/Container";
 
 const LanguagePage = () => {
-    const [progress, setProgress] = useAtom(progressAtom);
+    const [info, setInfo] = useAtom(infoAtom);
 
     const navigate = useNavigate();
 
     const languages = [
         {
             name : "영어",
-            value :"en-US",
+            value :"english",
         }, 
         {
             name : "일본어",
-            value :"ko-KR",
+            value :"japanese",
         }, 
     ]
 
-    const handleChange = (e) => {
-        console.log(e.target.value)
-        setProgress({
-            ...progress,
-            language: e.target.value
+    const handleClick = (language) => {
+        setInfo({
+            ...info,
+            language,
         })
         navigate('/city')
     }
@@ -39,7 +38,7 @@ const LanguagePage = () => {
                     내가 말할 언어를 골라주세요.
                 </TextBlock>
                 <SelectBlock>
-                    {languages.map((language, index) => <div className="language-item" onClick={handleChange} key={index}>{language.name}</div>)}
+                    {languages.map((language, index) => <div className="language-item" onClick={() => handleClick(language)} key={index}>{language.name}</div>)}
                 </SelectBlock>
             </div>
         </LanguageBlock>

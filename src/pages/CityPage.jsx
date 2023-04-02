@@ -2,26 +2,26 @@ import styled from "styled-components"
 import Container from '../components/common/Container'
 import { useNavigate } from 'react-router-dom';
 import { useAtom } from "jotai";
-import { progressAtom } from "../atom/atom";
+import { infoAtom } from "../atom/atom";
 import Back from "../components/common/Back";
 const CityPage = () => {
 
-    const [progress, setProgress] = useAtom(progressAtom);
+    const [info, setInfo] = useAtom(infoAtom);
 
     const citys = [
-        { name: "뉴욕", value: "", url: ""},
-        { name: "런던", value: "", url: ""},
-        { name: "시드니", value: "", url: ""},
-        { name: "더블린", value: "", url: ""},
+        { name: "뉴욕", value: "en-US"},
+        { name: "런던", value: "en-GB"},
+        { name: "시드니", value: "en-AU"},
+        { name: "더블린", value: "en-IN"},
     ]
 
     const navigate = useNavigate();
 
     const handleClick = (city) => {
-        // setProgress({
-        //     ...progress,
-        //     city
-        // })
+        setInfo({
+            ...info,
+            city,
+        })
         navigate('/loading')
     }
     
@@ -37,7 +37,7 @@ const CityPage = () => {
                     {citys.map((city, index) => (
                         <div key={index} className="city-item" onClick={() => handleClick(city)}>
                             <div className="name">{city.name}</div>
-                            <img src={`./${city.name}.png`} alt="dd" width="100%" height="100%"/>
+                            <img src={`img/${city.name}.png`} alt="dd" width="100%" height="100%"/>
                         </div>
                     ))}
                 </SelectBlock>

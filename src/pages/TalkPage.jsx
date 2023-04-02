@@ -41,7 +41,7 @@ const TalkBlock = styled.div`
 `
 
 const ImageBlock = styled.div`
-    background: url("./cafe.png");
+    background: url("img/cafe.png");
     width: 100%;
     height: 730px;
     display: flex;
@@ -63,7 +63,7 @@ const MenuBlock = styled.div`
     .document{
         width: 44px;
         height: 44px;
-        background: url("./document 1.png");
+        background: url("img/document 1.png");
     }
 
     .text{

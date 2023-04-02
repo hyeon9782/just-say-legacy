@@ -62,7 +62,7 @@ const ImageBlock = styled.div`
     height: 366.943359375px;
     width: 552px;
     border-radius: 0px;
-    background: url("./BG_IMG 1.png");
+    background: url("img/BG_IMG 1.png");
 `
 
 const StartButton = styled.button`

@@ -2,18 +2,23 @@ import styled from "styled-components"
 import Container from '../components/common/Container'
 import { useNavigate } from 'react-router-dom';
 import { useAtom } from "jotai";
-import { progressAtom } from "../atom/atom";
+import { infoAtom } from "../atom/atom";
 const CategoryPage = () => {
 
-    const [progress, setProgress] = useAtom(progressAtom);
+    const [info, setInfo] = useAtom(infoAtom);
 
     const navigate = useNavigate();
 
-    const categorys = ["공항", "택시", "식당", "카페"]
+    const categorys = [
+        { name: "카페", value:"cafe"},
+        { name: "택시", value:"cafe"},
+        { name: "식당", value:"cafe"},
+        { name: "공항", value:"cafe"}
+    ]
 
     const handleClick = (category) => {
-        setProgress({
-            ...progress,
+        setInfo({
+            ...info,
             category
         })
         navigate('/main')
@@ -24,7 +29,7 @@ const CategoryPage = () => {
             <CategoryPageBlock>
                 <TextBlock>{progress.city} 도착! 어디로 가볼까요?</TextBlock>
                 <SelectBlock>
-                    {categorys.map((category, index) => <div key={index} className="category-item" onClick={() => handleClick(category)}>{category}</div>)}
+                    {categorys.map((category, index) => <div key={index} className="category-item" onClick={() => handleClick(category)}>{category.name}</div>)}
                 </SelectBlock>
             </CategoryPageBlock>
     </Container>

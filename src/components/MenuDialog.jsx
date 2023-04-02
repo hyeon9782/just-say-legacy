@@ -10,7 +10,7 @@ const MenuDialog = () => {
 const MenuBlock = styled.div`
     width: 500px;
     height: 677.88px;
-    background: url("./menu.png");
+    background: url("img/menu.png");
 `
 
 export default MenuDialog;

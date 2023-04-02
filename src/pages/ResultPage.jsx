@@ -1,7 +1,19 @@
 import styled from "styled-components"
 import { useNavigate } from 'react-router-dom';
+import Dialog from "../components/common/Dialog"
+import TalkDialog from "../components/TalkDialog"
+import { useRef, useState } from "react";
+import { useAtom } from "jotai";
+import { infoAtom } from "../atom/atom";
 const ResultPage = () => {
     const navitate = useNavigate();
+
+    const [isResult, setIsResult] = useState(false);
+
+    const [info, setInfo] = useAtom(infoAtom);
+
+    const talk = useRef(null);
+
     const tags = [
         {name: "언어 바꾸기", value: ""},
         {name: "도시 바꾸기", value: ""},
@@ -11,11 +23,18 @@ const ResultPage = () => {
 
     const handleClick = (value) => {
         switch (value.name) {
-            case "언어 바꾸기" : navitate('/language');
-            case "도시 바꾸기" : navitate('/city');
-            case "같은 직원과 다시 대화하기" : navitate('/talk');
-            case "다른 직원과 다시 대화하기" : navitate('/talk');
+            case "언어 바꾸기" : navitate('/language'); break;
+            case "도시 바꾸기" : navitate('/city'); break;
+            case "같은 직원과 다시 대화하기" : navitate('/talk'); break;
+            case "다른 직원과 다시 대화하기" : navitate('/talk'); break;
         }
+
+        // if (value.name) {
+        //     setInfo({
+        //         ...info,
+        //         language : 
+        //     })
+        // }
         
     }
     return (
@@ -26,7 +45,9 @@ const ResultPage = () => {
             <ResultBlock>
                 <TextBlock>
                     <div className="sub">카페에서 음료와 음식 주문하기</div>
-                    <div className="main">주문 성공🎉</div>
+                    <div className="main">
+                        {isResult ? "주문 성공🎉" : "앗, 다시 말해볼까요?"}
+                    </div>
                 </TextBlock>
                 <TagBlock>
                     {tags.map((tag, index) => (
@@ -44,9 +65,10 @@ const ResultPage = () => {
                         </div>
                     </div>
                     <div className="talk-view-block">
-                        <div className="talk-view">전체 대화 보기</div>
+                        <div className="talk-view" onClick={() => talk.current.showModal()}>전체 대화 보기</div>
                     </div>
                 </QuestionBlock>
+                <TalkDialog ref={talk} head="실시간 대화 내용"></TalkDialog>
             </ResultBlock>
         </>
     )
@@ -68,7 +90,7 @@ const CloseBlock = styled.div`
     .close{
         width: 22px;
         height: 22px;
-        background: url("./x.png");
+        background: url("img/x.png");
         margin: 50px 100px 0px 0px;
     }
 `
@@ -128,13 +150,13 @@ const QuestionBlock = styled.div`
             border: 1px solid #EEEEEE;
             border-radius: 20px;
             .icon-1{
-                background: url("./icon.png");
+                background: url("img/icon.png");
                 width: 22.96px;
                 height: 22.96px;
             }
 
             .icon-2{
-                background: url("./icon1.png");
+                background: url("img/icon1.png");
                 width: 22.96px;
                 height: 22.96px;
             }

@@ -10,6 +10,7 @@ const Dialog = forwardRef((props, ref) => {
                 }}
             >
                 <DialogHead>
+                    <div className="text">{props.head}</div>
                     <div className="close" onClick={() => ref.current?.close()}></div>
                 </DialogHead>
                 <DiaLogContent>
@@ -29,10 +30,15 @@ const DialogBlock = styled.dialog`
 const DialogHead = styled.div`
     display: flex;
     justify-content: flex-end;
+    .text{
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 17px;
+    }
     .close{
-        background: url("./x.png");
-        width: 20px;
-        height: 20px;
+        background: url("img/x.png");
+        width: 22px;
+        height: 22px;
     }
 `
 
