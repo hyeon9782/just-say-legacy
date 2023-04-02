@@ -56,7 +56,13 @@ const LanguageBlock = styled.div`
         flex-direction: column;
         justify-content: center;
         /* box-sizing: border-box; */
-        height: calc(100vh - 42px);
+        height: calc(100vh - 22px);
+    }
+    @media screen and (max-width: 575px){
+        width: 100%;
+        /* display: flex;
+        flex-direction: column;
+        align-items: center; */
     }
 `
 
@@ -66,11 +72,18 @@ const TextBlock = styled.div`
     line-height: 76px;
     padding: 30px 0px 200px 0px;
     /* box-sizing: border-box; */
+
+    @media screen and (max-width: 575px){
+        font-size: 28px;
+        line-height: 42px;
+        text-align: center;
+    }
 `
 
 const SelectBlock = styled.div`
     /* box-sizing: border-box; */
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     font-weight: 700;
     font-size: 36px;
@@ -90,6 +103,20 @@ const SelectBlock = styled.div`
             background: white;
             color: #4B8BF6;
             border: 1px solid #4B8BF6;
+        }
+    }
+
+    @media screen and (max-width: 575px){
+        font-size: 28px;
+        line-height: 42px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .language-item{
+            margin: 25px 0px;
+            width: 309px;
+            height: 54px;
         }
     }
     

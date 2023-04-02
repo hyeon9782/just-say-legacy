@@ -1,14 +1,19 @@
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import Dialog from "../components/common/Dialog"
 import EndDialog from "../components/EndDialog";
-import MenuDialog from "../components/MenuDialog";
+import MenuDialog from "../components/dialog/MenuDialog";
 import TalkButton from "../components/TalkButton"
 const TalkPage = () => {
     const ref = useRef(null);
     const menu = useRef(null);
+    const navigate = useNavigate();
     return (
         <TalkBlock>
+            <CloseBlock onClick={() => navigate("/result")}>
+                <img src="img/x-1.png" alt="x" width="100%" height="100%"/>
+            </CloseBlock>
             <ImageBlock>
                 <div className="gradient">
                     <TextBlock>메뉴를 보고, 카페에서 내가 먹고 싶은 것을 주문해 보세요</TextBlock>
@@ -26,9 +31,9 @@ const TalkPage = () => {
             <Dialog ref={ref}>
                 <EndDialog ref={ref}/>
             </Dialog>
-            <Dialog ref={menu}>
-                <MenuDialog />
-            </Dialog>
+            
+            <MenuDialog ref={menu} />
+            
         </TalkBlock>
     )
 }
@@ -40,6 +45,24 @@ const TalkBlock = styled.div`
     align-items: center;
 `
 
+const CloseBlock = styled.div`
+    position: absolute;
+    top: 30px;
+    right: 100px;
+    width: 32px;
+    height: 32px;
+    
+
+    @media screen and (max-width: 575px){
+        position: absolute;
+        top: 30px;
+        left: 450px;
+        width: 22px;
+        height: 22px;
+        
+    }
+`
+
 const ImageBlock = styled.div`
     background: url("img/cafe.png");
     width: 100%;
@@ -49,11 +72,17 @@ const ImageBlock = styled.div`
     
     .gradient{
         display: flex;
-        
         align-items: flex-end;
         width: 100%;
         height: 198px;
         background: linear-gradient(357.27deg, #000000 33.63%, rgba(217, 217, 217, 0) 98.09%);
+    }
+
+    @media screen and (max-width: 575px){
+        .gradient{
+            display: flex;
+            justify-content: space-around;
+        }
     }
 `
 
@@ -72,6 +101,10 @@ const MenuBlock = styled.div`
         line-height: 19px;
         color: white;
     }
+
+    @media screen and (max-width: 575px){
+        
+    }
 `
 
 const TextBlock = styled.div`
@@ -83,6 +116,14 @@ const TextBlock = styled.div`
     display: flex;
     justify-content: center;
     color: #FFFFFF;
+
+    
+    @media screen and (max-width: 575px){
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 30px;
+        width: 62%;
+    }
 `
 
 

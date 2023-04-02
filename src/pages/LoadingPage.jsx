@@ -18,8 +18,12 @@ const LoadingPage = () => {
         <LoadingBlock>  
             <TextBlock>{info.city.name}으로 가는 중..</TextBlock>
             <ImageBlock>
-                <div className="plane"></div>
-                <div className="earth"></div>
+                <div className="plane">
+                    <img src="img/plane.png" alt="plane" width="100%" height="100%"/>
+                </div>
+                <div className="earth">
+                    <img src="img/earth.png" alt="earth" width="100%" height="100%"/>
+                </div>
             </ImageBlock>
         </LoadingBlock>
     )
@@ -30,6 +34,11 @@ const LoadingBlock = styled.div`
     width: 1280px;
     margin: 0 auto;
     padding: 24px 14px;
+    @media screen and (max-width: 575px){
+        width: 100%;
+        height: 100vh;
+        padding: 0;
+    }
 `
 
 const TextBlock = styled.div`
@@ -37,13 +46,22 @@ const TextBlock = styled.div`
     font-size: 64px;
     line-height: 76px;
     text-align: center;
+
+    @media screen and (max-width: 575px){
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: calc(100vh - 50%);
+    }
 `
 
 const ImageBlock = styled.div`
     .plane{
         width: 100px;
         height: 100px;
-        background: url("img/plane.png");
         
         /* transform: rotate(13deg); */
 
@@ -58,7 +76,12 @@ const ImageBlock = styled.div`
     .earth{
         width: 1400px;
         height: 450px;
-        background: url("img/earth.png");
+    }
+
+    @media screen and (max-width: 575px){
+        .earth{
+            width: 100%;
+        }
     }
 `
 

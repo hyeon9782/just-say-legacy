@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import { useNavigate } from 'react-router-dom';
-import Dialog from "../components/common/Dialog"
-import TalkDialog from "../components/TalkDialog"
+import TalkDialog from "../components/dialog/TalkDialog"
 import { useRef, useState } from "react";
 import { useAtom } from "jotai";
 import { infoAtom } from "../atom/atom";
@@ -81,6 +80,11 @@ const ResultBlock = styled.div`
     justify-content: center;
     height: calc(100vh - 72px);
 
+    @media screen and (max-width: 575px){
+        width: 100%;
+        height: calc(100vh - 72px);
+    }
+
 `
 
 const CloseBlock = styled.div`
@@ -91,8 +95,10 @@ const CloseBlock = styled.div`
         width: 22px;
         height: 22px;
         background: url("img/x.png");
-        margin: 50px 100px 0px 0px;
+        margin: 50px 50px 0px 0px;
     }
+
+    
 `
 
 const TextBlock = styled.div`
@@ -110,6 +116,20 @@ const TextBlock = styled.div`
         line-height: 76px;
         padding: 10px 0 50px 0;
     }
+
+    @media screen and (max-width: 575px){
+        .sub{
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 21px;
+        }
+
+        .main{
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 43px;
+        }
+    }
 `
 
 const TagBlock = styled.div`
@@ -126,6 +146,15 @@ const TagBlock = styled.div`
         border: 1px solid #4B8BF6;
         border-radius: 20px;
         padding: 8px 20px;
+    }
+
+    @media screen and (max-width: 575px){
+        width: 70%;
+        flex-wrap: wrap;
+        gap: 30px;
+        .tag-item{
+            
+        }
     }
 `
 
@@ -176,6 +205,14 @@ const QuestionBlock = styled.div`
             background: #D9EFF7;
             border-radius: 20px;
             text-align: center;
+        }
+    }
+
+    @media screen and (max-width: 575px){
+        .question{
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
         }
     }
 

@@ -3,14 +3,20 @@ import styled from "styled-components";
 const Back = () => {
     const navigate = useNavigate();
     return (
-        <BackBlock onClick={() => navigate(-1)}></BackBlock>
+        <BackBlock onClick={() => navigate(-1)}>
+            <img src="img/left-arrow 1.png" alt="arrow" width="100%" height="100%" />
+        </BackBlock>
     )
 }
 
 const BackBlock = styled.div`
-    background: url("img/left-arrow 1.png");
     width: 42px;
     height: 42px;
     margin: 0;
+
+    @media screen and (max-width: 575px){
+        width: 22px;
+        height: 22px;
+    }
 `
 export default Back;

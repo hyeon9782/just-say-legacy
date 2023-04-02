@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { talkAtom } from "../atom/atom";
+import { talkAtom } from "../../atom/atom";
 import styled from "styled-components";
 import { forwardRef } from "react";
 const TalkDialog = forwardRef((props, ref) => {
@@ -48,7 +48,7 @@ const TalkHead = styled.div`
         line-height: 17px;
     }
     .close{
-        background: url("./x.png");
+        background: url("img/x.png");
         width: 22px;
         height: 22px;
     }

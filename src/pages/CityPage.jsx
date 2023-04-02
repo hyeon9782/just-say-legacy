@@ -70,6 +70,7 @@ const CityBlock = styled.div`
     width: 1280px;
     margin: 0 auto;
     padding: 24px 14px;
+    height: 100vh;
     
     .container{
         display: flex;
@@ -77,6 +78,14 @@ const CityBlock = styled.div`
         justify-content: center;
         box-sizing: border-box;
         height: calc(100vh - 42px);
+    }
+
+    @media screen and (max-width: 575px){
+        width: 100%;
+
+        .container{
+            height: calc(100vh - 22px);
+        }
     }
 `
 
@@ -93,6 +102,19 @@ const TextBlock = styled.div`
         font-size: 32px;
         line-height: 38px;
         padding: 20px 0 60px 0;
+    }
+    @media screen and (max-width: 575px){
+        .main{
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 33px;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .sub{
+            display: none;
+        }
     }
 `
 
@@ -126,6 +148,20 @@ const SelectBlock = styled.div`
             color: white;
             top: 170px;
             left: 370px;
+        }
+    }
+
+    @media screen and (max-width: 575px){
+        gap: 40px;
+        .city-item{
+            width: 100%;
+            height: 220px;
+
+            .name{
+                font-weight: 700;
+                font-size: 28px;
+                line-height: 33px;
+            }
         }
     }
 `

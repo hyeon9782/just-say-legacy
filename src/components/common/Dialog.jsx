@@ -10,7 +10,6 @@ const Dialog = forwardRef((props, ref) => {
                 }}
             >
                 <DialogHead>
-                    <div className="text">{props.head}</div>
                     <div className="close" onClick={() => ref.current?.close()}></div>
                 </DialogHead>
                 <DiaLogContent>
@@ -25,6 +24,10 @@ const DialogBlock = styled.dialog`
     /* padding: 50px; */
     border-radius: 30px;
     border: 0;
+    @media screen and (max-width: 575px){
+        width: 90%;
+        box-sizing: border-box;
+    }
 `
 
 const DialogHead = styled.div`
