@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const useTextToSpeech = async ({
-  ssml = 'This your coffee. Enjoy it! Take your time',
+  ssml = "This your coffee. Enjoy it! Take your time",
   lang_code = "en-US",
   voice_name = "en-GB-Wavenet-A",
-  feeling = "happy",  // normal/sad/angry/happy 중 하나. 기본값은 normal
+  feeling = "normal", // normal/sad/angry/happy 중 하나. 기본값은 normal
   volume = 10.0,
   speaking_rate = 1,
 }) =>
@@ -20,7 +20,7 @@ const useTextToSpeech = async ({
     },
     {
       responseType: "arraybuffer", // responseType 설정 추가
-      'Access-Control-Allow-Origin': "*"
+      "Access-Control-Allow-Origin": "*",
     }
   );
 

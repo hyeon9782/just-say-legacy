@@ -57,7 +57,7 @@ const CloseBlock = styled.div`
 `
 
 const ImageBlock = styled.div`
-    background: url("img/cafe.png");
+    background: url("img/대화_카페.png");
     width: 100%;
     height: 730px;
     display: flex;
@@ -68,11 +68,13 @@ const ImageBlock = styled.div`
         align-items: flex-end;
         width: 100%;
         height: 198px;
-        background: linear-gradient(357.27deg, #000000 33.63%, rgba(217, 217, 217, 0) 98.09%);
+       
     }
 
     @media screen and (max-width: 575px){
         height: 80%;
+        background-repeat : no-repeat;
+        background-size : cover;
         .gradient{
             display: flex;
             justify-content: space-around;

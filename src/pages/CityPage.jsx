@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import Container from '../components/common/Container'
 import { useNavigate } from 'react-router-dom';
 import { useAtom } from "jotai";
 import { infoAtom } from "../atom/atom";
@@ -33,9 +32,7 @@ const CityPage = () => {
     
     return (
         <CityBlock>
-            <div className="back-box">
-                <Back />
-            </div>
+            <Back />
             <div className="container">
                 <TextBlock>
                     <div className="main">어디로 갈까요?</div>
@@ -75,11 +72,7 @@ const CityBlock = styled.div`
     width: 1280px;
     margin: 0 auto;
     padding: 24px 14px;
-    height: 100vh;
-
-    .back-box{
-
-    }
+    min-height: 100vh;
     
     .container{
         display: flex;
@@ -90,18 +83,11 @@ const CityBlock = styled.div`
     }
 
     @media screen and (max-width: 575px){
-        /* margin: 0 auto; */
         width: 100%;
-        /* height: 100vh; */
-        height: 100vh;
         display: flex;
         flex-direction: column;
         .container{
-            height: calc(100vh - 22px);
-        }
-
-        .back-box{
-            height: 22px;
+            height: 100%;
         }
     }
 `
@@ -125,7 +111,7 @@ const TextBlock = styled.div`
             font-size: 28px;
             line-height: 33px;
             text-align: center;
-            padding: 30px 0;
+            padding: 50px 0;
         }
 
         .sub{
@@ -163,15 +149,16 @@ const SelectBlock = styled.div`
         .name{
             position: absolute;
             color: white;
-            top: 170px;
-            left: 370px;
+            bottom: 20px;
+            right: 30px;
         }
     }
 
     @media screen and (max-width: 575px){
         gap: 40px;
+        justify-content: center;
         .city-item{
-            width: 100%;
+            width: 90%;
             height: 220px;
 
             .name{

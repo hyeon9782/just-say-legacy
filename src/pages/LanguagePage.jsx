@@ -55,14 +55,13 @@ const LanguageBlock = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        /* box-sizing: border-box; */
-        height: calc(100vh - 22px);
+        height: 100%;
     }
     @media screen and (max-width: 575px){
         width: 100%;
-        /* display: flex;
-        flex-direction: column;
-        align-items: center; */
+        .container{
+            height: 100%;
+        }
     }
 `
 
@@ -71,12 +70,12 @@ const TextBlock = styled.div`
     font-size: 64px;
     line-height: 76px;
     padding: 30px 0px 200px 0px;
-    /* box-sizing: border-box; */
 
     @media screen and (max-width: 575px){
         font-size: 28px;
         line-height: 42px;
         text-align: center;
+        padding: 30px 0px 150px 0px;
     }
 `
 

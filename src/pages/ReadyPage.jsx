@@ -25,7 +25,7 @@ const ReadyPage = () => {
 const BackgroundBlock = styled.div`
     height: 100vh;
     width: 100vw;
-    background:url("img/cafe.png");
+    background:url("img/준비_카페.png");
     z-index: 0;
 
     @media screen and (max-width: 575px){

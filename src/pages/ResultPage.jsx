@@ -9,6 +9,10 @@ const ResultPage = () => {
 
     const [isResult, setIsResult] = useState(false);
 
+    const [isClick, setClick] = useState(true);
+
+    const [isClick1, setClick1] = useState(true);
+
     const [info, setInfo] = useAtom(infoAtom);
 
     const talk = useRef(null);
@@ -27,14 +31,6 @@ const ResultPage = () => {
             case "같은 직원과 다시 대화하기" : navitate('/talk'); break;
             case "다른 직원과 다시 대화하기" : navitate('/talk'); break;
         }
-
-        // if (value.name) {
-        //     setInfo({
-        //         ...info,
-        //         language : 
-        //     })
-        // }
-        
     }
     return (
         <>
@@ -56,11 +52,15 @@ const ResultPage = () => {
                 <QuestionBlock>
                     <div className="question">대화는 어떠셨나요?</div>
                     <div className="like-block">
-                        <div className="icon-box">
-                            <div className="icon-1"></div>
+                        <div className={isClick ? "icon-box" : "icon-box blue"} onClick={() => setClick(!isClick)}>
+                            <div className="icon-1">
+                                <img src="img/icon.png" alt="icon-1" width="100%" height="100%"/>
+                            </div>
                         </div>
-                        <div className="icon-box">
-                            <div className="icon-2"></div>
+                        <div className={isClick1 ? "icon-box" : "icon-box blue"} onClick={() => setClick1(!isClick1)}>
+                            <div className="icon-2">
+                                <img src="img/icon1.png" alt="icon-2" width="100%" height="100%"/>
+                            </div>
                         </div>
                     </div>
                     <div className="talk-view-block">
@@ -88,18 +88,18 @@ const ResultBlock = styled.div`
 `
 
 const CloseBlock = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+    position: absolute;
+    top: 50px;
+    right: 50px;
     .close{
         width: 22px;
         height: 22px;
         background: url("img/x.png");
-        margin: 50px 50px 0px 0px;
     }
 
     @media screen and (max-width: 575px){
-        
+        top: 30px;
+        right: 30px;
     }
 `
 
@@ -120,6 +120,9 @@ const TextBlock = styled.div`
     }
 
     @media screen and (max-width: 575px){
+        
+        padding: 10px 0;
+
         .sub{
             font-weight: 400;
             font-size: 18px;
@@ -135,6 +138,7 @@ const TextBlock = styled.div`
 `
 
 const TagBlock = styled.div`
+    box-sizing: border-box;
     width: 1100px;
     display: flex;
     justify-content: space-around;
@@ -151,11 +155,15 @@ const TagBlock = styled.div`
     }
 
     @media screen and (max-width: 575px){
-        width: 70%;
+        box-sizing: border-box;
+        width: 60%;
         flex-wrap: wrap;
         gap: 30px;
+        padding: 10px 0 50px 0;
         .tag-item{
-            
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
         }
     }
 `
@@ -181,17 +189,20 @@ const QuestionBlock = styled.div`
             border: 1px solid #EEEEEE;
             border-radius: 20px;
             .icon-1{
-                background: url("img/icon.png");
                 width: 22.96px;
                 height: 22.96px;
             }
 
             .icon-2{
-                background: url("img/icon1.png");
                 width: 22.96px;
                 height: 22.96px;
             }
         }
+    }
+
+    .blue{
+        background: #4B8BF6 !important;
+        border: 1px solid #4B8BF6;
     }
 
     .talk-view-block{
@@ -215,7 +226,36 @@ const QuestionBlock = styled.div`
             font-weight: 400;
             font-size: 16px;
             line-height: 19px;
+            text-align: center;
         }
+
+        .like-block{
+
+            .icon-box{
+                width: 60px;
+                height: 30px;
+                .icon-1{
+                    width: 14px;
+                    height: 14px;
+                }
+        
+                .icon-2{
+                    width: 14px;
+                    height: 14px;
+                }
+            }
+        }
+
+        .talk-view-block{
+        
+            .talk-view{
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 17px;
+            }
+        }
+
+
     }
 
     

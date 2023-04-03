@@ -16,7 +16,4 @@ export const messagesAtom = atom([
   },
 ]);
 
-export const talkAtom = atom([
-  { role: "user", content: "Hello!" },
-  { role: "gpt", content: "Hello!" },
-]);
+export const talkAtom = atom([]);

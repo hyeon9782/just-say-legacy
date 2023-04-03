@@ -5,6 +5,7 @@ import { forwardRef } from "react";
 const TalkDialog = forwardRef((props, ref) => {
 
     const [talk, setTalk] = useAtom(talkAtom);
+    if (!talk) setTalk([]);
 
     return (
         <TalkBlock ref={ref}
