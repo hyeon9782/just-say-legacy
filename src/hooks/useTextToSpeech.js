@@ -7,7 +7,7 @@ const useTextToSpeech = async ({
   speaking_rate = 1,
 }) =>
   await axios.post(
-    "http://52.79.149.130:8000/api/v1/tts",
+    "https://api.just-say.net/api/v1/tts",
     {
       ssml,
       lang_code,
