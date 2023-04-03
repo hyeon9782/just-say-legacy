@@ -1,17 +1,14 @@
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
-import Dialog from "../components/common/Dialog"
-import EndDialog from "../components/EndDialog";
+import EndDialog from "../components/dialog/EndDialog";
 import MenuDialog from "../components/dialog/MenuDialog";
 import TalkButton from "../components/TalkButton"
 const TalkPage = () => {
-    const ref = useRef(null);
+    const end = useRef(null);
     const menu = useRef(null);
-    const navigate = useNavigate();
     return (
         <TalkBlock>
-            <CloseBlock onClick={() => navigate("/result")}>
+            <CloseBlock onClick={() => end.current?.showModal()}>
                 <img src="img/x-1.png" alt="x" width="100%" height="100%"/>
             </CloseBlock>
             <ImageBlock>
@@ -28,12 +25,8 @@ const TalkPage = () => {
                     
                 </TalkButton>
             </MiceBlock>
-            <Dialog ref={ref}>
-                <EndDialog ref={ref}/>
-            </Dialog>
-            
+            <EndDialog ref={end}/>
             <MenuDialog ref={menu} />
-            
         </TalkBlock>
     )
 }

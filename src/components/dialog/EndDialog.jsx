@@ -1,18 +1,21 @@
 import { forwardRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 const EndDialog= forwardRef((props, ref) => {
+    const navigate = useNavigate();
     return (
         <EndBlock>
             <TextBlock>대화를 정말 끝내시겠어요?</TextBlock>
             <div className='btn-box'>
                 <CancleButton onClick={() => ref.current?.close()}>취소하기</CancleButton>
-                <EndButton>대화 끝내기</EndButton>
+                <EndButton onClick={() => navigate("/result")}>대화 끝내기</EndButton>
             </div>
         </EndBlock>
     )
 })
 
-const EndBlock = styled.div`
+const EndBlock = styled.dialog`
+    border: 0;
     padding: 50px;
     .btn-box{
         display: flex;

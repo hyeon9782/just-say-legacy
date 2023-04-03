@@ -31,7 +31,9 @@ const CityPage = () => {
     
     return (
         <CityBlock>
-            <Back />
+            <div className="back-box">
+                <Back />
+            </div>
             <div className="container">
                 <TextBlock>
                     <div className="main">어디로 갈까요?</div>
@@ -66,11 +68,16 @@ const CityPage = () => {
     )
 }
 const CityBlock = styled.div`
+    
     box-sizing: border-box;
     width: 1280px;
     margin: 0 auto;
     padding: 24px 14px;
     height: 100vh;
+
+    .back-box{
+
+    }
     
     .container{
         display: flex;
@@ -81,10 +88,17 @@ const CityBlock = styled.div`
     }
 
     @media screen and (max-width: 575px){
+        /* margin: 0 auto; */
         width: 100%;
-
+        /* height: 100vh; */
+        display: flex;
+        flex-direction: column;
         .container{
-            height: calc(100vh - 22px);
+            /* height: calc(100vh - 22px); */
+        }
+
+        .back-box{
+            /* height: ; */
         }
     }
 `
@@ -94,7 +108,6 @@ const TextBlock = styled.div`
         font-weight: 700;
         font-size: 64px;
         line-height: 76px;
-        font-feature-settings: 'cpsp' on;
         padding: 10px 0;
     }
     .sub{
@@ -124,6 +137,7 @@ const SelectBlock = styled.div`
     flex-wrap: wrap;
     gap: 80px;
     box-sizing: border-box;
+   
     
     
     .city-item{
