@@ -1,9 +1,10 @@
 import axios from "axios";
+
 const useTextToSpeech = async ({
   ssml = 'This your coffee. Enjoy it! Take your time',
   lang_code = "en-US",
   voice_name = "en-GB-Wavenet-A",
-  feeling = "bad",
+  feeling = "happy",  // normal/sad/angry/happy 중 하나. 기본값은 normal
   volume = 10.0,
   speaking_rate = 1,
 }) =>
