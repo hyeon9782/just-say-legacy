@@ -12,6 +12,9 @@ const MainPage = () => {
                         Ultimate <br />
                         SpeakMate
                     </div>
+                    <div className="m-image-box">
+                        <img src="img/BG_IMG 1.png" alt="m-bg" width="100%" height="100%" />
+                    </div>
                     <div className="ko">
                         모두가 두려움없이 외국어를 말할 수 있도록. <br />
                         될 때까지 말해보세요!
@@ -43,7 +46,6 @@ const MainBlock = styled.div`
     .image-box{
         display: flex;
         align-items: center;
-        /* order: 2; */
     }
 
     
@@ -63,7 +65,6 @@ const MainBlock = styled.div`
 `
 
 const TextBlock = styled.div`
-    /* order: 1; */
     .en{
         font-weight: 700;
         font-size: 96px;
@@ -78,16 +79,28 @@ const TextBlock = styled.div`
         padding-bottom: 40px;
     }
 
+    .m-image-box{
+        display: none;
+    }
+
     @media screen and (max-width: 575px){
         .en{
             font-size: 40px;
             line-height: 48px;
             text-align: center;
+            padding-bottom: 0px;
         }
         .ko{
             font-size: 18px;
             line-height: 24px;
             text-align: center;
+        }
+        .m-image-box{
+            display: block;
+            width: 281px;
+            height: 183px;
+            margin: 0 auto;
+            padding: 60px 0;
         }
     }
     
@@ -100,6 +113,7 @@ const ImageBlock = styled.div`
     border-radius: 0px;
 
     @media screen and (max-width: 575px){
+        display: none;
         width: 281px;
         height: 183.47px;
     }

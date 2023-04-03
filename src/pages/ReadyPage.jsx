@@ -7,42 +7,35 @@ const ReadyPage = () => {
     const navigate = useNavigate();
     const info = useAtomValue(infoAtom);
     return (
-        <BackgroundBlock>
-            <ReadyBlock>
-                <TextBlock>
-                    {info.city.name} 34st 카페에 도착했어요. <br />
-                    <div className="sub">
-                        메뉴를 보고, 내가 먹고 싶은 것을 주문해 볼까요??
-                    </div>
-                </TextBlock>
+        <ReadyBlock>
+            <TextBlock>
+                {info.city.name} 34st 카페에 도착했어요. <br />
+                <div className="sub">
+                    메뉴를 보고, 내가 먹고 싶은 것을 주문해 볼까요??
+                </div>
+            </TextBlock>
+            <div className="btn-box">
                 <Help>내 스피커와 마이크가 잘 동작하는지 확인해 주세요.</Help>
                 <StartButton onClick={() => navigate('/talk')}>대화 시작</StartButton>
-            </ReadyBlock>
-        </BackgroundBlock>
+            </div>
+        </ReadyBlock>
     )
 }
 
-const BackgroundBlock = styled.div`
+const ReadyBlock = styled.div`
     height: 100vh;
     width: 100vw;
     background:url("img/준비_카페.png");
-    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 
     @media screen and (max-width: 575px){
         width: 100%;
         height: 100vh;
         padding: 0;
     }
-`
-
-const ReadyBlock = styled.div`
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     
 `
 

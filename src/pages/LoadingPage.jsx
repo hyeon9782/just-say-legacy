@@ -1,34 +1,26 @@
 import styled from "styled-components"
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { infoAtom } from "../atom/atom";
 import { useAtom } from "jotai";
 const LoadingPage = () => {
     const navigate = useNavigate();
 
+    const [planeAngle, setPlaneAngle] = useState(0);
+
     const [info, setInfo] = useAtom(infoAtom);
 
     useEffect(() => {
-        // updatePlanePosition()
         setTimeout(() => {
             navigate('/ready')
         }, 4000)
-    },[])
+        const intervalId = setInterval(() => {
+        setPlaneAngle((angle) => angle + 3);
+        }, 50);
+        return () => clearInterval(intervalId);
+    }, []);
 
-    setInterval(updatePlanePosition, 50);
-
-    function updatePlanePosition() {
-
-        const earthContainer = document.querySelector('.earth-container');
-        const planeImage = document.querySelector('.plane');
-        const earthRect = earthContainer.getBoundingClientRect();
-
-        const radians = Date.now() / 1000;
-        const distance = earthRect.width / 2;
-        const x = Math.cos(radians) * distance + earthRect.left + earthRect.width / 2;
-        const y = Math.sin(radians) * distance + earthRect.top + earthRect.height / 2;
-        planeImage.style.transform = `translate(${x}px, ${y}px)`;
-    }
+    
 
 
     return (
@@ -36,7 +28,15 @@ const LoadingPage = () => {
             <TextBlock>{info.city.name}으로 가는 중..</TextBlock>
             <ImageBlock>
                 <div className="earth-container">
-                    <div className="plane">
+                    <div className="plane"
+                        style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transformOrigin: "0 200px",
+                            transform: `translate(-50%, -100%) rotate(${planeAngle}deg)`,
+                        }}
+                    >
                         <img src="img/비행기.png" alt="plane" width="100%" height="100%"/>
                     </div>
                     <div className="earth">
@@ -91,11 +91,8 @@ const ImageBlock = styled.div`
 
     .plane{
         position: absolute;
-        top: 50px;
-        left: -50px;
         width: 100px;
         height: 100px;
-        animation: rotate 10s infinite linear;
     }
 
     .earth{

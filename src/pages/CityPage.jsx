@@ -86,6 +86,7 @@ const CityBlock = styled.div`
         width: 100%;
         display: flex;
         flex-direction: column;
+        padding: 30px 30px;
         .container{
             height: 100%;
         }

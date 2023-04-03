@@ -59,6 +59,7 @@ const LanguageBlock = styled.div`
     }
     @media screen and (max-width: 575px){
         width: 100%;
+        padding: 30px 30px;
         .container{
             height: 100%;
         }

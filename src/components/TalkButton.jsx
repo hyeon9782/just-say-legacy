@@ -105,9 +105,9 @@ const TalkButton = () => {
     return (
         <>
             <Help>
-                {isRecording ? '듣는 중이에요' : '탭하여 대화를 시작하세요'}
+                {isRecording ? '듣는 중이에요' : '클릭하여 대화를 시작하세요'}
             </Help>
-            <TalkButtonBlock onMouseDown={handleRecognition} onMouseUp={handleRecognition} >
+            <TalkButtonBlock onClick={handleRecognition} >
                 <img src={isRecording ? "img/mice2.png" : "img/mice.png"} alt="mice" />    
             </TalkButtonBlock>
             
