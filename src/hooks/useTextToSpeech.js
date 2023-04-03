@@ -1,8 +1,9 @@
 import axios from "axios";
 const useTextToSpeech = async ({
-  ssml = '<speak> <voice name="en-GB-Wavenet-A">This your <emphasis level="moderate">coffee.</emphasis></voice> <break time="1s"/>Enjoy it! <prosody rate="slow" pitch="-2st">Take your time</prosody> </speak>',
+  ssml = 'This your coffee. Enjoy it! Take your time',
   lang_code = "en-US",
-  pitch = 0,
+  voice_name = "en-GB-Wavenet-A",
+  feeling = "bad",
   volume = 10.0,
   speaking_rate = 1,
 }) =>
@@ -11,7 +12,8 @@ const useTextToSpeech = async ({
     {
       ssml,
       lang_code,
-      pitch,
+      voice_name,
+      feeling,
       volume,
       speaking_rate,
     },

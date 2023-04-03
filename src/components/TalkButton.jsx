@@ -34,7 +34,7 @@ const TalkButton = () => {
             role: "gpt",
             content: res.data.answer
         })
-        let answer = `<speak>${res.data.answer}</speak>`
+        let answer = `${res.data.answer}`
         callTTS(answer)
         messages.map((item) => {
             if (item["role"] === "assistant" && res.data.answer !== undefined) {
