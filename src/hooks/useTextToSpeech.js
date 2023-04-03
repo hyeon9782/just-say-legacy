@@ -1,17 +1,20 @@
 import axios from "axios";
+
 const useTextToSpeech = async ({
-  ssml = '<speak> <voice name="en-GB-Wavenet-A">This your <emphasis level="moderate">coffee.</emphasis></voice> <break time="1s"/>Enjoy it! <prosody rate="slow" pitch="-2st">Take your time</prosody> </speak>',
+  ssml = 'This your coffee. Enjoy it! Take your time',
   lang_code = "en-US",
-  pitch = 0,
+  voice_name = "en-GB-Wavenet-A",
+  feeling = "happy",  // normal/sad/angry/happy 중 하나. 기본값은 normal
   volume = 10.0,
   speaking_rate = 1,
 }) =>
   await axios.post(
-    "http://52.79.149.130:8000/api/v1/tts",
+    "https://api.just-say.net/api/v1/tts",
     {
       ssml,
       lang_code,
-      pitch,
+      voice_name,
+      feeling,
       volume,
       speaking_rate,
     },

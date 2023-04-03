@@ -24,7 +24,7 @@ const TalkButton = () => {
     const callGPT = async (messages) => {
         // 입력 값이 없을 경우 GPT 호출 방지
         if (messages[messages.length - 1].content === '') return;
-        const res = await axios.post('http://52.79.149.130:8000/api/v1/gpt', messages, {
+        const res = await axios.post('https://api.just-say.net/api/v1/gpt', messages, {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
         });
@@ -34,7 +34,7 @@ const TalkButton = () => {
             role: "gpt",
             content: res.data.answer
         })
-        let answer = `<speak>${res.data.answer}</speak>`
+        let answer = `${res.data.answer}`
         callTTS(answer)
         messages.map((item) => {
             if (item["role"] === "assistant" && res.data.answer !== undefined) {
