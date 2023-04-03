@@ -125,6 +125,10 @@ const Help = styled.div`
     font-size: 20px;
     line-height: 24px;
     padding: 30px 0;
+
+    @media screen and (max-width: 575px){
+        padding: 10px 0;
+    }
 `
 
 export default TalkButton;

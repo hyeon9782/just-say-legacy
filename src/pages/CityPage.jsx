@@ -19,6 +19,8 @@ const CityPage = () => {
         { name: "더블린", value: "en-IN"},
     ]
 
+
+
     const navigate = useNavigate();
 
     const handleClick = (city) => {
@@ -91,14 +93,15 @@ const CityBlock = styled.div`
         /* margin: 0 auto; */
         width: 100%;
         /* height: 100vh; */
+        height: 100vh;
         display: flex;
         flex-direction: column;
         .container{
-            /* height: calc(100vh - 22px); */
+            height: calc(100vh - 22px);
         }
 
         .back-box{
-            /* height: ; */
+            height: 22px;
         }
     }
 `

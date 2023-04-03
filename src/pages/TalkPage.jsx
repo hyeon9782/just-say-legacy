@@ -4,30 +4,30 @@ import EndDialog from "../components/dialog/EndDialog";
 import MenuDialog from "../components/dialog/MenuDialog";
 import TalkButton from "../components/TalkButton"
 const TalkPage = () => {
-    const end = useRef(null);
+    const modal = useRef(null);
     const menu = useRef(null);
     return (
-        <TalkBlock>
-            <CloseBlock onClick={() => end.current?.showModal()}>
-                <img src="img/x-1.png" alt="x" width="100%" height="100%"/>
-            </CloseBlock>
-            <ImageBlock>
-                <div className="gradient">
-                    <TextBlock>메뉴를 보고, 카페에서 내가 먹고 싶은 것을 주문해 보세요</TextBlock>
-                    <MenuBlock onClick={() => menu.current?.showModal()}>
-                        <div className="document"></div>
-                        <div className="text">메뉴판</div>
-                    </MenuBlock>
-                </div>
-            </ImageBlock>
-            <MiceBlock>
-                <TalkButton>
-                    
-                </TalkButton>
-            </MiceBlock>
-            <EndDialog ref={end}/>
+        <>
+            <TalkBlock>
+                <ImageBlock>
+                    <CloseBlock onClick={() => modal.current?.showModal()}>
+                        <img src="img/x-1.png" alt="x" width="100%" height="100%"/>
+                    </CloseBlock>
+                    <div className="gradient">
+                        <TextBlock>메뉴를 보고, 카페에서 내가 먹고 싶은 것을 주문해 보세요</TextBlock>
+                        <MenuBlock onClick={() => menu.current?.showModal()}>
+                            <div className="document"></div>
+                            <div className="text">메뉴판</div>
+                        </MenuBlock>
+                    </div>
+                </ImageBlock>
+                <MiceBlock>
+                    <TalkButton></TalkButton>
+                </MiceBlock>
+            </TalkBlock>
+            <EndDialog ref={modal}/>
             <MenuDialog ref={menu} />
-        </TalkBlock>
+        </>
     )
 }
 
@@ -72,6 +72,7 @@ const ImageBlock = styled.div`
     }
 
     @media screen and (max-width: 575px){
+        height: 80%;
         .gradient{
             display: flex;
             justify-content: space-around;
@@ -128,6 +129,9 @@ const MiceBlock = styled.div`
     justify-content: center;
     height: calc(100vh - 730px);
    
+   @media screen and (max-width: 575px){
+        height: 20%;
+    }
 `
 
 export default TalkPage;

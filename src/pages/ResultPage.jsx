@@ -38,10 +38,10 @@ const ResultPage = () => {
     }
     return (
         <>
-            <CloseBlock>
-                <div className="close" onClick={() => navitate('/')}></div>
-            </CloseBlock>
             <ResultBlock>
+                <CloseBlock>
+                    <div className="close" onClick={() => navitate('/')}></div>
+                </CloseBlock>
                 <TextBlock>
                     <div className="sub">카페에서 음료와 음식 주문하기</div>
                     <div className="main">
@@ -82,7 +82,7 @@ const ResultBlock = styled.div`
 
     @media screen and (max-width: 575px){
         width: 100%;
-        height: calc(100vh - 72px);
+        height: 100vh;
     }
 
 `
@@ -98,7 +98,9 @@ const CloseBlock = styled.div`
         margin: 50px 50px 0px 0px;
     }
 
-    
+    @media screen and (max-width: 575px){
+        
+    }
 `
 
 const TextBlock = styled.div`
