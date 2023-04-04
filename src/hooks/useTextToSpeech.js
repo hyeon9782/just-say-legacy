@@ -20,6 +20,7 @@ const useTextToSpeech = async ({
     },
     {
       responseType: "arraybuffer", // responseType 설정 추가
+      'Content-Type': 'application/json',
       "Access-Control-Allow-Origin": "*",
     }
   );
