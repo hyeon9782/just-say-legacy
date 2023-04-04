@@ -51,7 +51,8 @@ const TalkButton = () => {
         const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
         const audioUrl = URL.createObjectURL(audioBlob);
         audioRef.current.src = audioUrl;
-        console.log(" audioUrl : " + audioUrl)
+        console.log(" audioUrl : " + audioUrl, audioRef)
+        console.log("audio src = ", audioRef.current.src);
         await audioRef.current.play();
     }
 
