@@ -29,7 +29,7 @@ const TalkButton = () => {
             'Access-Control-Allow-Origin': '*',
         });
         console.log(res);
-        console.log(res.data.answer);
+        console.log("gpt result = ",res.data.answer);
         setTalk({
             role: "gpt",
             content: res.data.answer
@@ -101,7 +101,7 @@ const TalkButton = () => {
     }, [isRecording]);
 
     const handleRecognition = () => {
-        callTTS("This is a test message");
+        callGPT("I'll have a latte");
         setIsRecording(!isRecording);
     };
 
