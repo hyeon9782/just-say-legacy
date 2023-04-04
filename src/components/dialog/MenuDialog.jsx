@@ -1,11 +1,25 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 const MenuDialog = forwardRef((props, ref) => {
+
+    let first = useRef(true);
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         ref.current?.close()
+    //     }, 2000)
+    // },[])
+
+    const handleClick = (e) => {
+        // if (first) alert("안녕");
+        first = false
+        if (e.target === ref.current) ref.current?.close()
+        
+    }
+
     return (
         <MenuBlock ref={ref}
-            onClick={(e) => {
-                if (e.target === ref.current) ref.current?.close()
-            }}>
+            onClick={handleClick}>
             <Head>
                 <div className="close" onClick={() => ref.current?.close()}></div>
             </Head>

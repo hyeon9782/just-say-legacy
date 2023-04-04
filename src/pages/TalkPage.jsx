@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components"
 import EndDialog from "../components/dialog/EndDialog";
 import MenuDialog from "../components/dialog/MenuDialog";
@@ -6,6 +6,12 @@ import TalkButton from "../components/TalkButton"
 const TalkPage = () => {
     const modal = useRef(null);
     const menu = useRef(null);
+    const bgmRef = useRef(null);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         menu.current?.showModal()
+    //     }, 3000)   
+    // },[])
     return (
         <>
             <TalkBlock>
@@ -21,6 +27,7 @@ const TalkPage = () => {
                         </MenuBlock>
                     </div>
                 </ImageBlock>
+                <audio autoPlay controls src="mp3/카페" style={{ "display" : "none" }} ref={bgmRef}></audio>
                 <MiceBlock>
                     <TalkButton></TalkButton>
                 </MiceBlock>
@@ -32,6 +39,7 @@ const TalkPage = () => {
 }
 
 const TalkBlock = styled.div`
+    overflow: hidden;
     height: 100vh;
     display: flex;
     flex-direction: column;
