@@ -19,7 +19,7 @@ const useTextToSpeech = async ({
       speaking_rate,
     },
     {
-      responseType: "arraybuffer", // responseType 설정 추가
+      // responseType: "arraybuffer", // responseType 설정 추가 테스트를 위해 잠시 삭제
       'Content-Type': 'application/json',
       "Access-Control-Allow-Origin": "*",
     }

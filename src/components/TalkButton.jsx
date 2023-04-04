@@ -101,7 +101,12 @@ const TalkButton = () => {
     }, [isRecording]);
 
     const handleRecognition = () => {
-        callGPT("I'll have a latte");
+        callGPT([
+            {"role":"system", "content": "you're a cafe manager Please answer in English"},
+            {"role":"user", "content": "Hello!"},
+            {"role":"assistant", "content": "how are you? Can I take your order?"},
+            {"role":"user", "content": "I'll have a latte"}
+        ]);
         setIsRecording(!isRecording);
     };
 
