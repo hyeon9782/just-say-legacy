@@ -24,7 +24,7 @@ const TalkButton = () => {
     const callGPT = async (messages) => {
         // 입력 값이 없을 경우 GPT 호출 방지
         if (messages[messages.length - 1].content === '') return;
-        const res = await axios.post('https://api.just-say.net/api/v1/gpt', messages, {
+        const res = await axios.post('https://api.just-say.net/api/v1/gpt', {"messages": messages}, {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
         });
