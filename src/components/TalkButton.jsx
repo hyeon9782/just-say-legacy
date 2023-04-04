@@ -24,12 +24,12 @@ const TalkButton = () => {
     const callGPT = async (messages) => {
         // 입력 값이 없을 경우 GPT 호출 방지
         if (messages[messages.length - 1].content === '') return;
-        const res = await axios.post('https://api.just-say.net/api/v1/gpt', messages, {
+        const res = await axios.post('https://api.just-say.net/api/v1/gpt', {"messages": messages}, {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
         });
         console.log(res);
-        console.log("gpt result = ",res.data.answer);
+        console.log(res.data.answer);
         setTalk({
             role: "gpt",
             content: res.data.answer
@@ -51,8 +51,6 @@ const TalkButton = () => {
         const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
         const audioUrl = URL.createObjectURL(audioBlob);
         audioRef.current.src = audioUrl;
-        console.log(" audioUrl : " + audioUrl, audioRef)
-        console.log("audio src = ", audioRef.current.src);
         await audioRef.current.play();
     }
 
@@ -102,12 +100,7 @@ const TalkButton = () => {
     }, [isRecording]);
 
     const handleRecognition = () => {
-        callGPT([
-            {"role":"system", "content": "you're a cafe manager Please answer in English"},
-            {"role":"user", "content": "Hello!"},
-            {"role":"assistant", "content": "how are you? Can I take your order?"},
-            {"role":"user", "content": "I'll have a latte"}
-        ]);
+        callTTS("This is a test message");
         setIsRecording(!isRecording);
     };
 
