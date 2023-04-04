@@ -46,6 +46,7 @@ const TalkButton = () => {
     }
 
     const callTTS = async (answer) => {
+        console.log(" TTS 요청 : " + answer)
         const res = await useTextToSpeech({ ssml: answer });
         const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
         const audioUrl = URL.createObjectURL(audioBlob);
