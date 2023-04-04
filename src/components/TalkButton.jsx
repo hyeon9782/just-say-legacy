@@ -99,6 +99,7 @@ const TalkButton = () => {
     }, [isRecording]);
 
     const handleRecognition = () => {
+        callGPT("This is a test message");
         setIsRecording(!isRecording);
     };
 
