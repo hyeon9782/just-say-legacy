@@ -132,8 +132,6 @@ const TalkButton = () => {
                 setMessages(prev => {
                     if(content === undefined || content.length < 1){
                         console.log("nothing!!")
-                        const newMessages = [...prev]
-                        callGPT(newMessages)
                     }else{
                         const newMessages = [...prev]
                         newMessages.push({
