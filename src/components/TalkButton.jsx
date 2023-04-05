@@ -30,7 +30,10 @@ const TalkButton = () => {
 
     useEffect(() => {
 
-        if (!isClose) return;
+        if (!isClose) {
+            console.log("useEffect Closed!")
+            return;
+        }
 
         let sex = ["man","woman"][Math.floor(Math.random()*2)]
         setGender(sex)
@@ -38,15 +41,18 @@ const TalkButton = () => {
         setFeeling(feelingnow)
         setLangCode(info.city.value);
         const langdetail = lang_data.language.find(item => item.name === info.language.value);
-        if(!langdetail)
+        if(!langdetail){
+            console.log("RESET Voice 1 !")
             setLangVoice('en-US-Wavenet-A');
-        else {
+        }else {
             const accent = langdetail.accents.find(item => item.name === info.city.value)
-            if(!accent)
+            if(!accent){
+                console.log("RESET Voice 2 !")
                 setLangVoice('en-US-Wavenet-A');
-            else{
-                console.log(accent, sex)
-                setLangVoice(accent[sex].voices[Math.floor(Math.random()*accent[sex].voices.length)]);
+            }else{
+                let voc = accent[sex].voices[Math.floor(Math.random()*accent[sex].voices.length)]
+                console.log(accent, sex, voc)
+                setLangVoice(voc);
             }
         }
 
@@ -77,6 +83,7 @@ const TalkButton = () => {
         define_bot_role += "you do not understand if the customer does not speak in " + info.language.value + "."
         // 포장 여부 혹은 결제 방법 꼭 물어보기 
         define_bot_role += "during the conversation, payment method and for here or to go is important."
+        define_bot_role += "Ask one question at a time. "
         define_bot_role += "do not include 'swipe machine provided' in the conversation."
 
         //  초기 프롬프트 설정
@@ -114,16 +121,19 @@ const TalkButton = () => {
         }else{
             callTTS(answer).then(() => {
                 // GPT가 대화가 끝났다고 판단하면 성공 페이지로 이동
-                if (res.data.answer.includes("@")) navitate(`/result/success`)
+                if (res.data.answer.includes("@")) {
+                    setIsClose(false)
+                    navitate(`/result/success`)
+                }
             });
         }
     }
 
     const callTTS = (answer) => {
         return new Promise( async (resolve, reject) => {
-            console.log(" TTS 요청 : " + answer)
+            console.log(" TTS 요청 : " + answer, feeling, gender, lang_voice, lang_code)
             answer = answer.replace("@", "");   //  점원의 마지막 대사가 전달될 수 있음.
-            const res = await useTextToSpeech({ ssml: answer, feeling: feeling, voice_name: lang_voice, lang_code: lang_code });
+            const res = await useTextToSpeech({ ssml: answer, gender: gender, feeling: feeling, voice_name: lang_voice, lang_code: lang_code });
             setLoading(false);
             const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
             const audioUrl = URL.createObjectURL(audioBlob);

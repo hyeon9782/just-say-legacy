@@ -5,6 +5,7 @@ const useTextToSpeech = async ({
   lang_code = "en-US",
   voice_name = "en-GB-Wavenet-A",
   feeling = "happy", // normal/sad/angry/happy 중 하나. 기본값은 normal
+  gender = 'man',
   volume = 10.0,
   speaking_rate = 1,
 }) =>
@@ -15,6 +16,7 @@ const useTextToSpeech = async ({
       lang_code,
       voice_name,
       feeling,
+      gender,
       volume,
       speaking_rate,
     },
