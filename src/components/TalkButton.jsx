@@ -23,12 +23,32 @@ const TalkButton = () => {
     const [isClose, setIsClose] = useAtom(isCloseAtom)
     const navitate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const [gender, setGender] = useState('woman')
+    const [feeling, setFeeling] = useState('normal')
+    const [lang_code,setLangCode] = useState('en-US')
+    const [lang_voice,setLangVoice] = useState('en-US-Wavenet-A')
 
     useEffect(() => {
 
         if (!isClose) return;
 
-        console.log(lang_data.language[1].accents[0].man.voices[0]);
+        let sex = ["man","woman"][Math.floor(Math.random()*2)]
+        setGender(sex)
+        let feelingnow = ["normal","happy","tired", "busy"][Math.floor(Math.random()*4)]
+        setFeeling(feelingnow)
+        setLangCode(info.city.value);
+        const langdetail = lang_data.language.find(item => item.name === info.language.value);
+        if(!langdetail)
+            setLangVoice('en-US-Wavenet-A');
+        else {
+            const accent = langdetail.accents.find(item => item.name === info.city.value)
+            if(!accent)
+                setLangVoice('en-US-Wavenet-A');
+            else{
+                console.log(accent, sex)
+                setLangVoice(accent[sex].voices[Math.floor(Math.random()*accent[sex].voices.length)]);
+            }
+        }
 
         //  기본 역할 정의
         let define_bot_role = "you are a cafe manager."
@@ -46,15 +66,15 @@ const TalkButton = () => {
           }
         }
         //  매니저 성격 설정. prompt에 영향을 미친다.
-        define_bot_role += "your personality is " + cafe_info.manager_character[Math.floor(Math.random() * cafe_info.manager_character.length)] + ".";
+        define_bot_role += "you are " + feelingnow + " now.";
         //  그 외 기본 세팅
-        define_bot_role += "always say in " + info.city.value +"."
+        define_bot_role += "always say in " + info.language.value +"."
         // 시작할 때 유저가 먼저 말하는게 아니고 chatGPT가 먼저 인사하게 만듭니다.
-        define_bot_role += "Let's start now. You say 'Can I take your order?' in "+ info.city.value + " first."
+        define_bot_role += "Let's start now. You say 'Can I take your order?' in "+ info.language.value + " first."
         // 고객이 이미 카페 안에 있다고 가정합니다 (방문해서 알아보세요라는 대답 방지 )
         define_bot_role += "The customer is currently in the cafe."
         // 외국어로 말하면 잘 모르겠다고(이해를 못하겠다고) 답변
-        define_bot_role += "you do not understand if the customer does not speak in " + info.city.value + "."
+        define_bot_role += "you do not understand if the customer does not speak in " + info.language.value + "."
         // 포장 여부 혹은 결제 방법 꼭 물어보기 
         define_bot_role += "during the conversation, payment method and for here or to go is important."
         define_bot_role += "do not include 'swipe machine provided' in the conversation."
@@ -70,7 +90,6 @@ const TalkButton = () => {
         notice_msg += "The following is the start of conversation with customer and start with 2 sentences."
         msgList.push({"role":"user", "content": notice_msg})     
  
-        console.log("테스트");
         callGPT(msgList)    
         setMessages(msgList);
     }, [isClose])
@@ -84,8 +103,6 @@ const TalkButton = () => {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
         });
-        // GPT가 대화가 끝났다고 판단하면 성공 페이지로 이동
-        if (res.data.answer.includes("@")) navitate(`/result/success`)
         msgs.push({"role":"assistant", "content": res.data.answer})  
         console.log( "SET Message List =", msgs)
         setMessages(msgs);  
@@ -95,23 +112,25 @@ const TalkButton = () => {
             //  예외 발생 
             console.log("ERROR ", answer);
         }else{
-            callTTS(answer)
+            callTTS(answer).then(() => {
+                // GPT가 대화가 끝났다고 판단하면 성공 페이지로 이동
+                if (res.data.answer.includes("@")) navitate(`/result/success`)
+            });
         }
     }
 
-    const callTTS = async (answer) => {
-        var bEnd = false;
-        if(answer.includes("@") === true){
-            bEnd = true;
-            answer = answer.replace("@", "");
-        }
-        console.log(" TTS 요청 : " + answer)
-        const res = await useTextToSpeech({ ssml: answer, voice_name: "", lang_code: info.city.value });
-        setLoading(false);
-        const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
-        const audioUrl = URL.createObjectURL(audioBlob);
-        audioRef.current.src = audioUrl;
-        await audioRef.current.play();
+    const callTTS = (answer) => {
+        return new Promise( async (resolve, reject) => {
+            console.log(" TTS 요청 : " + answer)
+            answer = answer.replace("@", "");   //  점원의 마지막 대사가 전달될 수 있음.
+            const res = await useTextToSpeech({ ssml: answer, feeling: feeling, voice_name: lang_voice, lang_code: lang_code });
+            setLoading(false);
+            const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            audioRef.current.src = audioUrl;
+            await audioRef.current.play();
+            resolve();
+        });
     }
 
     useEffect(() => {
@@ -140,7 +159,9 @@ const TalkButton = () => {
                 recognition.stop();
                 setMessages(prev => {
                     if(content === undefined || content.length < 1){
-                        console.log("nothing!!")
+                        console.log("nothing!!", prev)
+                        setMessages(prev);
+                        return prev;
                     }else{
                         const newMessages = [...prev]
                         newMessages.push({

@@ -45,10 +45,10 @@
             {
                 "name":"en-US", 
                 "man" : {
-                    "voices": ["en-US-Neural2-A","en-US-Neural2-D","en-US-Neural2-I","en-US-Neural2-J"]
+                    "voices": ["en-US-Neural2-A","en-US-Neural2-D","en-US-Neural2-I","en-US-Neural2-J","en-IN-Standard-B", "en-IN-Standard-C", "en-IN-Wavenet-B", "en-IN-Wavenet-C"]
                 },
                 "woman" : {
-                    "voices": ["en-US-Neural2-C", "en-US-Neural2-E","en-US-Neural2-F","en-US-Neural2-G","en-US-Neural2-H"]
+                    "voices": ["en-US-Neural2-C", "en-US-Neural2-E","en-US-Neural2-F","en-US-Neural2-G","en-US-Neural2-H", "en-IN-Standard-A", "en-IN-Standard-D", "en-IN-Wavenet-A", "en-IN-Wavenet-D"]
                 }
             }]
         }
