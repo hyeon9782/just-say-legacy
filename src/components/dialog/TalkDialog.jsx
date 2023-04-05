@@ -1,11 +1,10 @@
-import { useAtom } from "jotai";
-import { talkAtom } from "../../atom/atom";
+import { useAtom, useAtomValue } from "jotai";
+import { messagesAtom } from "../../atom/atom";
 import styled from "styled-components";
 import { forwardRef } from "react";
 const TalkDialog = forwardRef((props, ref) => {
 
-    const [talk, setTalk] = useAtom(talkAtom);
-    if (!Array.isArray(talk)) setTalk([]);
+    const messages = useAtomValue(messagesAtom);
 
     return (
         <TalkBlock ref={ref}
@@ -19,15 +18,19 @@ const TalkDialog = forwardRef((props, ref) => {
                 </div>
             </TalkHead>
             <TalkContent>
-                {talk && talk.map((item, index) => (
-                    <TalkItem key={index}>
-                        <div className={item.role === "gpt" ? "gpt-box" : "user-box"}>
-                            <div className={item.role === "gpt" ? "gpt" : "user"}>
-                                {item.content}
-                            </div>
-                        </div>
-                    </TalkItem>
-                )) }
+                {messages && messages.map((message, index) => {
+                    if (message.role !== "system" && !message.content.includes('@')) {
+                        return (
+                            <TalkItem key={index}>
+                                <div className={message.role === "assistant" ? "gpt-box" : "user-box"}>
+                                    <div className={message.role === "assistant" ? "gpt" : "user"}>
+                                        {message.content}
+                                    </div>
+                                </div>
+                            </TalkItem>
+                        )
+                    }
+                })}
             </TalkContent>
         </TalkBlock>
     )

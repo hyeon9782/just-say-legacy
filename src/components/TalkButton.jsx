@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from "react";
 import useTextToSpeech from "../hooks/useTextToSpeech";
 import { useAtom } from "jotai";
-import { infoAtom, isCloseAtom, talkAtom } from "../atom/atom";
+import { infoAtom, isCloseAtom, messagesAtom, talkAtom } from "../atom/atom";
 import lang_data from "../assets/language.json";
 import cafe_info from "../assets/cafe.json";
 import { useNavigate } from "react-router-dom";
@@ -12,9 +12,10 @@ import Loading from "./common/Loading";
 const TalkButton = () => {
     const audioRef = useRef(null);
     const [info, setInfo] = useAtom(infoAtom);
-    const [talk, setTalk] = useAtom(talkAtom);
     const [content, setContent] = useState("");
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useAtom(messagesAtom)
+
+
     const [isRecording, setIsRecording] = useState(false);
     const [isClose, setIsClose] = useAtom(isCloseAtom)
     const navitate = useNavigate();
@@ -80,13 +81,6 @@ const TalkButton = () => {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
         });
-        setTalk([
-            ...talk,
-            {
-                role: "gpt",
-                content: res.data.answer
-            }
-        ])
         // GPT가 대화가 끝났다고 판단하면 성공 페이지로 이동
         if (res.data.answer.includes("@")) navitate(`/result/success`)
         msgs.push({"role":"assistant", "content": res.data.answer})  
@@ -152,13 +146,6 @@ const TalkButton = () => {
                         })
                         callGPT(newMessages)
                         setMessages(newMessages);
-                        setTalk([
-                            ...talk,
-                            {
-                                role: "user",
-                                content
-                            }
-                        ])
                         console.log(newMessages);
                         return newMessages;
                     }
