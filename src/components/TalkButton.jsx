@@ -158,7 +158,9 @@ const TalkButton = () => {
                 recognition.stop();
                 setMessages(prev => {
                     if(content === undefined || content.length < 1){
-                        console.log("nothing!!")
+                        console.log("nothing!!", prev)
+                        setMessages(prev);
+                        return prev;
                     }else{
                         const newMessages = [...prev]
                         newMessages.push({
