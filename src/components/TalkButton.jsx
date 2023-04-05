@@ -133,12 +133,16 @@ const TalkButton = () => {
         return new Promise( async (resolve, reject) => {
             console.log(" TTS 요청 : " + answer, feeling, gender, lang_voice, lang_code)
             answer = answer.replace("@", "");   //  점원의 마지막 대사가 전달될 수 있음.
-            const res = await useTextToSpeech({ ssml: answer, gender: gender, feeling: feeling, voice_name: lang_voice, lang_code: lang_code });
+            try {
+                const res = await useTextToSpeech({ ssml: answer, gender: gender, feeling: feeling, voice_name: lang_voice, lang_code: lang_code });
+                const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                audioRef.current.src = audioUrl;
+                await audioRef.current.play();
+            } catch (e) {
+                console.log(e);
+            }
             setLoading(false);
-            const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
-            const audioUrl = URL.createObjectURL(audioBlob);
-            audioRef.current.src = audioUrl;
-            await audioRef.current.play();
             resolve();
         });
     }
@@ -180,7 +184,7 @@ const TalkButton = () => {
                         })
                         callGPT(newMessages)
                         setMessages(newMessages);
-                        console.log(newMessages);
+                        console.log("new message = ", newMessages);
                         return newMessages;
                     }
                 })
@@ -189,6 +193,7 @@ const TalkButton = () => {
     }, [isRecording]);
 
     const handleRecognition = () => {
+        console.log("handleRecognition", isRecording)
         setIsRecording(!isRecording);
     };
 
