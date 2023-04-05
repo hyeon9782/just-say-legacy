@@ -7,6 +7,7 @@ import { infoAtom, isCloseAtom, talkAtom } from "../atom/atom";
 import lang_data from "../assets/language.json";
 import cafe_info from "../assets/cafe.json";
 import { useNavigate } from "react-router-dom";
+import Loading from "./common/Loading";
 
 const TalkButton = () => {
     const audioRef = useRef(null);
@@ -17,11 +18,12 @@ const TalkButton = () => {
     const [isRecording, setIsRecording] = useState(false);
     const [isClose, setIsClose] = useAtom(isCloseAtom)
     const navitate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
 
         if (!isClose) return;
-        
+
         console.log(lang_data.language[1].accents[0].man.voices[0]);
 
         //  기본 역할 정의
@@ -72,6 +74,8 @@ const TalkButton = () => {
     const callGPT = async (msgs) => {
         // 입력 값이 없을 경우 GPT 호출 방지
         if (msgs[msgs.length - 1].content === '') return;
+
+        setLoading(true);
         const res = await axios.post('https://api.just-say.net/api/v1/gpt', msgs, {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
@@ -106,6 +110,7 @@ const TalkButton = () => {
         }
         console.log(" TTS 요청 : " + answer)
         const res = await useTextToSpeech({ ssml: answer, voice_name: "", lang_code: info.city.value });
+        setLoading(false);
         const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
         const audioUrl = URL.createObjectURL(audioBlob);
         audioRef.current.src = audioUrl;
@@ -168,13 +173,17 @@ const TalkButton = () => {
 
     return (
         <>
-            <Help>
-                {isRecording ? '듣는 중이에요' : '클릭하여 대화를 시작하세요'}
-            </Help>
-            <TalkButtonBlock onClick={handleRecognition} >
-                <img src={isRecording ? "img/mice2.png" : "img/mice.png"} alt="mice" />    
-            </TalkButtonBlock>
-            
+            {loading ? 
+                <Loading /> :
+                <>
+                    <Help>
+                        {isRecording ? '듣는 중이에요' : '클릭하여 대화를 시작하세요'}
+                    </Help>
+                    <TalkButtonBlock onClick={handleRecognition} >
+                        <img src={isRecording ? "img/mice2.png" : "img/mice.png"} alt="mice" />    
+                    </TalkButtonBlock>
+                </> 
+            }
             <audio controls ref={audioRef} style={{"display": "none"}}></audio>
         </>
     )
