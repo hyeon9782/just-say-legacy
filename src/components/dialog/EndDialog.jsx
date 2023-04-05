@@ -1,13 +1,14 @@
 import { forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import X from '/img/x.png';
 const EndDialog= forwardRef((props, ref) => {
     const navigate = useNavigate();
     return (
         <EndBlock ref={ref}>
             <Head>
                 <div className="close" onClick={() => ref.current?.close()}>
-                    <img src="img/x.png" alt="x" width="100%" height="100%"/>
+                    <img src={X} alt="x" width="100%" height="100%"/>
                 </div>
             </Head>
             <TextBlock>대화를 정말 끝내시겠어요?</TextBlock>

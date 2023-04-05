@@ -4,6 +4,9 @@ import TalkDialog from "../components/dialog/TalkDialog"
 import { useEffect, useRef, useState } from "react";
 import { useAtom } from "jotai";
 import { infoAtom } from "../atom/atom";
+import X from '/img/x.png';
+import Icon1 from '/img/icon.png';
+import Icon2 from '/img/icon1.png';
 const ResultPage = () => {
     const navitate = useNavigate();
 
@@ -61,12 +64,12 @@ const ResultPage = () => {
                     <div className="like-block">
                         <div className={isClick ? "icon-box" : "icon-box blue"} onClick={() => setClick(!isClick)}>
                             <div className="icon-1">
-                                <img src="../img/icon.png" alt="icon-1" width="100%" height="100%"/>
+                                <img src={Icon1} alt="icon-1" width="100%" height="100%"/>
                             </div>
                         </div>
                         <div className={isClick1 ? "icon-box" : "icon-box blue"} onClick={() => setClick1(!isClick1)}>
                             <div className="icon-2">
-                                <img src="../img/icon1.png" alt="icon-2" width="100%" height="100%"/>
+                                <img src={Icon2} alt="icon-2" width="100%" height="100%"/>
                             </div>
                         </div>
                     </div>
@@ -101,7 +104,7 @@ const CloseBlock = styled.div`
     .close{
         width: 22px;
         height: 22px;
-        background: url("../img/x.png");
+        background: url(${X});
     }
 
     @media screen and (max-width: 575px){

@@ -3,6 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { useAtom } from "jotai";
 import { infoAtom } from "../atom/atom";
 import Back from "../components/common/Back";
+import 고베 from '/img/고베.png';
+import 뉴욕 from '/img/뉴욕.png';
+import 더블린 from '/img/더블린.png';
+import 도쿄 from '/img/도쿄.png';
+import 런던 from '/img/런던.png';
+import 시드니 from '/img/시드니.png';
+import 오사카 from '/img/오사카.png';
+import 후쿠오카 from '/img/후쿠오카.png';
 const CityPage = () => {
 
     const [info, setInfo] = useAtom(infoAtom);
@@ -17,6 +25,17 @@ const CityPage = () => {
         { name: "시드니", value: "en-AU"},
         { name: "더블린", value: "en-IN"},
     ]
+
+    function getImage(name) {
+        if (name === "뉴욕") return 뉴욕;
+        else if (name === "런던") return 런던;
+        else if (name === "시드니") return 시드니;
+        else if (name === "더블린") return 더블린;
+        else if (name === "도쿄") return 도쿄;
+        else if (name === "고베") return 고베;
+        else if (name === "오사카") return 오사카;
+        else if (name === "후쿠오카") return 후쿠오카;
+    }
 
 
 
@@ -45,7 +64,7 @@ const CityPage = () => {
                                 return (
                                     <div key={index} className="city-item" onClick={() => handleClick(city)}>
                                         <div className="name">{city.name}</div>
-                                        <img src={`img/${city.name}.png`} alt="dd" width="100%" height="100%"/>
+                                        <img src={getImage(city.name)} alt="dd" width="100%" height="100%"/>
                                     </div>
                                 )
                             }
@@ -55,7 +74,7 @@ const CityPage = () => {
                                 return (
                                     <div key={index} className="city-item" onClick={() => handleClick(city)}>
                                         <div className="name">{city.name}</div>
-                                        <img src={`img/${city.name}.png`} alt="dd" width="100%" height="100%"/>
+                                        <img src={getImage(city.name)} alt="dd" width="100%" height="100%"/>
                                     </div>
                                 )
                             }

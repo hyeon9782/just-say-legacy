@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import Container from "../components/common/Container";
+import BG_IMG from '/img/BG_IMG 1.png';
 const MainPage = () => {
     const navigate = useNavigate();
     return (
@@ -13,7 +14,7 @@ const MainPage = () => {
                         SpeakMate
                     </div>
                     <div className="m-image-box">
-                        <img src="img/BG_IMG 1.png" alt="m-bg" width="100%" height="100%" />
+                        <img src={BG_IMG} alt="m-bg" width="100%" height="100%" />
                     </div>
                     <div className="ko">
                         모두가 두려움없이 외국어를 말할 수 있도록. <br />
@@ -27,7 +28,7 @@ const MainPage = () => {
                 </TextBlock>
                 <div className="image-box">
                     <ImageBlock>
-                        <img src="img/BG_IMG 1.png" alt="dd" width="100%" height="100%" />
+                        <img src={BG_IMG} alt="dd" width="100%" height="100%" />
                     </ImageBlock>
                 </div>
             </MainBlock>

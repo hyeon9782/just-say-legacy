@@ -6,16 +6,6 @@ export const infoAtom = atom({
   category: { name: "카페", value: "cafe" },
 });
 
-export const messagesAtom = atom([
-  { role: "system", content: "you're a cafe manager Please answer in English" },
-  { role: "user", content: "Hello!" },
-  {
-    role: "assistant",
-    content:
-      "how are you? Can I take your order?",
-  },
-]);
-
-export const talkAtom = atom([]);
+export const messagesAtom = atom([]);
 
 export const isCloseAtom = atom(false);
