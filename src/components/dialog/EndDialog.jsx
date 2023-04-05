@@ -13,7 +13,7 @@ const EndDialog= forwardRef((props, ref) => {
             <TextBlock>대화를 정말 끝내시겠어요?</TextBlock>
             <div className='btn-box'>
                 <CancleButton onClick={() => ref.current?.close()}>취소하기</CancleButton>
-                <EndButton onClick={() => navigate("/result")}>대화 끝내기</EndButton>
+                <EndButton onClick={() => navigate(`/result/fail`)}>대화 끝내기</EndButton>
             </div>
         </EndBlock>
     )

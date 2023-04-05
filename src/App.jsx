@@ -21,7 +21,7 @@ function App() {
           <Route path="/ready" element={<ReadyPage />} />
           <Route path="/category" element={<CategoryPage />} />
           <Route path="/talk" element={<TalkPage />} />
-          <Route path="/result" element={<ResultPage />} />
+          <Route path="/result/:bool" element={<ResultPage />} />
         </Routes>
       </BrowserRouter>
     </>

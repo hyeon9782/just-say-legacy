@@ -15,7 +15,7 @@ const TalkDialog = forwardRef((props, ref) => {
             <TalkHead>
                 <div className="text">{props.head}</div>
                 <div className="close" onClick={() => ref.current?.close()}>
-                    <img src="img/x.png" alt="x" width="100%" height="100%"/>
+                    <img src="../img/x.png" alt="x" width="100%" height="100%"/>
                 </div>
             </TalkHead>
             <TalkContent>

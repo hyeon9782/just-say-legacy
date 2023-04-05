@@ -13,7 +13,7 @@ const LoadingPage = () => {
     useEffect(() => {
         setTimeout(() => {
             navigate('/ready')
-        }, 4000)
+        }, 2000)
         const intervalId = setInterval(() => {
         setPlaneAngle((angle) => angle + 3);
         }, 50);

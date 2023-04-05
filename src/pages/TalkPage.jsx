@@ -7,11 +7,9 @@ const TalkPage = () => {
     const modal = useRef(null);
     const menu = useRef(null);
     const bgmRef = useRef(null);
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         menu.current?.showModal()
-    //     }, 3000)   
-    // },[])
+    useEffect(() => {
+        menu.current?.showModal()
+    },[])
     return (
         <>
             <TalkBlock>

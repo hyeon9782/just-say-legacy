@@ -4,10 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import useTextToSpeech from "../hooks/useTextToSpeech";
 import { useAtom } from "jotai";
 import { infoAtom, talkAtom } from "../atom/atom";
+import { useNavigate } from "react-router-dom";
 
 const TalkButton = () => {
 
     const audioRef = useRef(null);
+
+    const navigate = useNavigate();
 
     const [info, setInfo] = useAtom(infoAtom);
 
@@ -18,18 +21,24 @@ const TalkButton = () => {
         {"role":"system", "content": "you're a cafe manager Please answer in English"},
         {"role":"user", "content": "Hello!"},
         {"role":"assistant", "content": "how are you? Can I take your order?"},
-        // {"role":"user", "content": "I'll have a latte"}
     ]);
 
     const callGPT = async (messages) => {
+
         // 입력 값이 없을 경우 GPT 호출 방지
         if (messages[messages.length - 1].content === '') return;
+
         const res = await axios.post('https://api.just-say.net/api/v1/gpt', messages, {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
         });
+
         console.log(res);
         console.log(res.data.answer);
+
+        // GPT가 대화가 끝났다고 판단한다면 결과 페이지로 이동
+        if (res.data.answer.includes('@')) navigate(`/result/success`)
+
         setTalk({
             role: "gpt",
             content: res.data.answer
