@@ -1,4 +1,5 @@
 import axios from "axios";
+import { callTTS1 } from "../api/talk";
 
 const useTextToSpeech = async ({
   ssml = "This your coffee. Enjoy it! Take your time",
@@ -8,23 +9,17 @@ const useTextToSpeech = async ({
   gender = 'man',
   volume = 10.0,
   speaking_rate = 1,
-}) =>
-  await axios.post(
-    "https://api.just-say.net/api/v1/tts",
-    {
-      ssml,
-      lang_code,
-      voice_name,
-      feeling,
-      gender,
-      volume,
-      speaking_rate,
-    },
-    {
-      responseType: "arraybuffer", // responseType 설정 추가
-      'Content-Type': 'application/json',
-      "Access-Control-Allow-Origin": "*",
-    }
-  );
+}) => {
+  console.log("hooks: ", lang_code, voice_name, feeling, gender);
+  return await callTTS1({
+    ssml,
+    lang_code,
+    voice_name,
+    feeling,
+    gender,
+    volume,
+    speaking_rate,
+  });
+}
 
 export default useTextToSpeech;
