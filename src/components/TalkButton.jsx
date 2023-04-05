@@ -3,11 +3,14 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from "react";
 import useTextToSpeech from "../hooks/useTextToSpeech";
 import { useAtom } from "jotai";
-import { infoAtom, isCloseAtom, messagesAtom, talkAtom } from "../atom/atom";
+import { infoAtom, isCloseAtom, messagesAtom } from "../atom/atom";
 import lang_data from "../assets/language.json";
 import cafe_info from "../assets/cafe.json";
 import { useNavigate } from "react-router-dom";
 import Loading from "./common/Loading";
+
+import Mice1 from '/img/mice.png';
+import Mice2 from '/img/mice2.png';
 
 const TalkButton = () => {
     const audioRef = useRef(null);
@@ -167,7 +170,7 @@ const TalkButton = () => {
                         {isRecording ? '듣는 중이에요' : '클릭하여 대화를 시작하세요'}
                     </Help>
                     <TalkButtonBlock onClick={handleRecognition} >
-                        <img src={isRecording ? "img/mice2.png" : "img/mice.png"} alt="mice" />    
+                        <img src={isRecording ? Mice2 : Mice1 } alt="mice" />    
                     </TalkButtonBlock>
                 </> 
             }

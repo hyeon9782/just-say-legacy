@@ -2,6 +2,8 @@ import { useAtom } from "jotai";
 import { forwardRef, useRef, useState } from "react";
 import styled from "styled-components";
 import { isCloseAtom } from "../../atom/atom";
+import Menu from '/img/menu.png';
+import X from '/img/x.png';
 const MenuDialog = forwardRef((props, ref) => {
 
     let first = useRef(true);
@@ -29,7 +31,7 @@ const MenuDialog = forwardRef((props, ref) => {
                     메뉴판을 닫으면 대화가 시작됩니다.
                 </div>
                 <div className="img-box">
-                    <img src="img/menu.png" alt="menu" width="100%" height="100%"/>
+                    <img src={Menu} alt="menu" width="100%" height="100%"/>
                 </div>
             </MenuContent>
             <audio controls ref={audioRef} style={{"display": "none"}}></audio>
@@ -71,7 +73,7 @@ const MenuHead = styled.div`
     .close {
         width: 22px;
         height: 22px;
-        background: url("img/x.png");
+        background: url(${X});
         margin: 10px;
     }
 `

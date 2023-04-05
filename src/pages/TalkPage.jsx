@@ -2,7 +2,11 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components"
 import EndDialog from "../components/dialog/EndDialog";
 import MenuDialog from "../components/dialog/MenuDialog";
-import TalkButton from "../components/TalkButton"
+import TalkButton from "../components/TalkButton";
+import CafeBGM from '/mp3/카페.mp3';
+import CafeBG from '/img/대화_카페.png';
+import Document from '/img/document 1.png';
+import X from '/img/x-1.png';
 const TalkPage = () => {
     const modal = useRef(null);
     const menu = useRef(null);
@@ -15,17 +19,19 @@ const TalkPage = () => {
             <TalkBlock>
                 <ImageBlock>
                     <CloseBlock onClick={() => modal.current?.showModal()}>
-                        <img src="img/x-1.png" alt="x" width="100%" height="100%"/>
+                        <img src={X} alt="x" width="100%" height="100%"/>
                     </CloseBlock>
                     <div className="gradient">
                         <TextBlock>메뉴를 보고, 카페에서 내가 먹고 싶은 것을 주문해 보세요</TextBlock>
                         <MenuBlock onClick={() => menu.current?.showModal()}>
-                            <div className="document"></div>
+                            <div className="document">
+                                <img src={Document} alt="document" width="100%" height="100%" />
+                            </div>
                             <div className="text">메뉴판</div>
                         </MenuBlock>
                     </div>
                 </ImageBlock>
-                <audio autoPlay controls src="mp3/카페" style={{ "display" : "none" }} ref={bgmRef}></audio>
+                <audio controls src={CafeBGM} style={{ "display" : "none" }} ref={bgmRef}></audio>
                 <MiceBlock>
                     <TalkButton></TalkButton>
                 </MiceBlock>
@@ -63,7 +69,7 @@ const CloseBlock = styled.div`
 `
 
 const ImageBlock = styled.div`
-    background: url("img/대화_카페.png");
+    background: url(${CafeBG});
     width: 100%;
     height: 730px;
     display: flex;
@@ -94,7 +100,6 @@ const MenuBlock = styled.div`
     .document{
         width: 44px;
         height: 44px;
-        background: url("img/document 1.png");
     }
 
     .text{

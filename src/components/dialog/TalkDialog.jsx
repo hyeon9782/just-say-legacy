@@ -1,4 +1,4 @@
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue } from "jotai";
 import { messagesAtom } from "../../atom/atom";
 import styled from "styled-components";
 import { forwardRef } from "react";

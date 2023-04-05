@@ -2,6 +2,7 @@ import { useAtomValue } from "jotai";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { infoAtom } from "../atom/atom";
+import ReadyCafe from '/img/준비_카페.png';
 
 const ReadyPage = () => {
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ const ReadyPage = () => {
 const ReadyBlock = styled.div`
     height: 100vh;
     width: 100vw;
-    background:url("img/준비_카페.png");
+    background:url(${ReadyCafe});
     display: flex;
     flex-direction: column;
     align-items: center;
