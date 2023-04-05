@@ -1,42 +1,37 @@
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { useAtom } from "jotai";
+import { forwardRef, useRef, useState } from "react";
 import styled from "styled-components";
-import useTextToSpeech from "../../hooks/useTextToSpeech";
+import { isCloseAtom } from "../../atom/atom";
 const MenuDialog = forwardRef((props, ref) => {
 
     let first = useRef(true);
 
     const audioRef = useRef(null);
 
-    useEffect(() => {
-        callTTS("When you close the menu, the conversation begins")
-    },[])
-
-    const callTTS = async (message) => {
-       const res = await useTextToSpeech({ ssml: message });
-       const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
-       const audioUrl = URL.createObjectURL(audioBlob);
-       audioRef.current.src = audioUrl;
-       await audioRef.current.play();
-    }
+    const [isClose, setIsClose] = useAtom(isCloseAtom)
 
     const handleClick = (e) => {
-        if (e.target === ref.current) ref.current?.close()
         if (first) {
-            alert("안녕");
-            console.log(e.target === ref.current)
-            
+            setIsClose(true)
+            first = false
         }
-        // first = false
-        // if (e.target === ref.current) ref.current?.close()
+        ref.current?.close()
     }
 
     return (
         <MenuBlock ref={ref}
             >
-            {/* <img src="img/menu.png" alt="menu" width="100%" height="100%" /> */}
-            <Head>
+            <MenuHead>
                 <div className="close" onClick={handleClick}></div>
-            </Head>
+            </MenuHead>
+            <MenuContent>
+                <div className="text-box">
+                    메뉴판을 닫으면 대화가 시작됩니다.
+                </div>
+                <div className="img-box">
+                    <img src="img/menu.png" alt="menu" width="100%" height="100%"/>
+                </div>
+            </MenuContent>
             <audio controls ref={audioRef} style={{"display": "none"}}></audio>
         </MenuBlock>
     )
@@ -46,22 +41,31 @@ const MenuBlock = styled.dialog`
     
     width: 500px;
     height: 677.88px;
-    /* position: relative; */
     border: 0;
     padding: 0;
-    background: url("img/menu.png");
+    
     @media screen and (max-width: 575px){
         width: 90%;
-        height: auto;
-
+        height: 500px
     }
 
 `
 
-const Head = styled.div`
-    /* position: absolute;
-    top: 0;
-    left: 0; */
+const MenuContent = styled.div`
+    height: 80%;
+
+    .text-box{
+        text-align: center;
+        padding: 10px;
+    }
+
+    .img-box{
+        width: 100%;
+        height: calc(90%);
+    }
+`
+
+const MenuHead = styled.div`
     display: flex;
     justify-content: flex-end;
     .close {

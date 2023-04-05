@@ -17,3 +17,5 @@ export const messagesAtom = atom([
 ]);
 
 export const talkAtom = atom([]);
+
+export const isCloseAtom = atom(false);
