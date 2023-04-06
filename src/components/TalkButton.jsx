@@ -101,7 +101,7 @@ const TalkButton = () => {
         let notice_msg = "you never say you are a bot but pretend you are a cafe manager."
         notice_msg += "if order was made or payment method was set or for take-out was decided, include '@' at the end of your reply for once."
         notice_msg += "Use "+info.language.value+" only."
-        notice_msg += "The following is the start of conversation with customer and start with 2 sentences."
+        notice_msg += "The following is the start of conversation with customer and start talking 'Welcome!' include another one sentence."
         msgList.push({"role":"user", "content": notice_msg})
         setMessages(messages);
         return msgList;
@@ -159,6 +159,7 @@ const TalkButton = () => {
         }else{
             callTTS(answer, voiceInfo).then(() => {
                 // GPT가 대화가 끝났다고 판단하면 성공 페이지로 이동
+                console.log("callTTS End!!")
                 if (res.data.answer.includes("@")) {
                     setIsClose(false)
                     navitate(`/result/success`)
