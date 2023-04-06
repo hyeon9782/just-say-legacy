@@ -133,7 +133,7 @@ const TextBlock = styled.div`
     
     @media screen and (max-width: 575px){
         font-weight: 700;
-        font-size: 22px;
+        font-size: 18px;
         line-height: 30px;
         width: 62%;
     }
