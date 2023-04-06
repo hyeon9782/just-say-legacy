@@ -54,8 +54,9 @@ const MenuBlock = styled.dialog`
     
     @media screen and (max-width: 575px){
         width: 80vw;
-        height: 70vh
-
+        height: 70vh;
+    }
+    
 `
 
 const MenuContent = styled.div`

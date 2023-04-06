@@ -59,15 +59,18 @@ const TalkBlock = styled.div`
 const CloseBlock = styled.div`
     position: absolute;
     top: 30px;
-    right: 450px;
+    right: 100px;
     width: 32px;
     height: 32px;
     
+    .hidden{
+        display: none;
+    }
 
     @media screen and (max-width: 575px){
         position: absolute;
         top: 30px;
-        left: 450px;
+        right: 450px;
         width: 22px;
         height: 22px;
         
