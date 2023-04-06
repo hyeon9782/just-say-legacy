@@ -159,10 +159,13 @@ const TalkButton = () => {
         }else{
             callTTS(answer, voiceInfo).then(() => {
                 // GPT가 대화가 끝났다고 판단하면 성공 페이지로 이동
-                console.log("callTTS End!!")
                 if (res.data.answer.includes("@")) {
-                    setIsClose(false)
-                    navitate(`/result/success`)
+                    //  음성 데이터는 비동기 형태로 출력되므로 (사운드 버퍼에 순차적으로 기록됨.) 이 시점에 아직 대화가 출력중임.
+                    //  약 3초 후 화면 전환 발생하게 수정하자.
+                    setTimeout(() => {
+                        setIsClose(false)
+                        navitate(`/result/success`)
+                    }, 3000);
                 }
             });
         }
