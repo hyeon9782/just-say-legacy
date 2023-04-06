@@ -16,7 +16,6 @@ const TalkPage = () => {
     const isClose = useAtomValue(isCloseAtom);
     useEffect(() => {
         if(isClose) {
-            console.log("테스트");
             bgmRef.current.volume = 0.2;
             bgmRef.current.play();
         } else menu.current?.showModal()

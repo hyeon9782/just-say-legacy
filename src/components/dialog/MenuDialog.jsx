@@ -40,15 +40,34 @@ const MenuDialog = forwardRef((props, ref) => {
 })
 
 const MenuBlock = styled.dialog`
-    
     width: 500px;
     height: 677.88px;
     border: 0;
     padding: 0;
+    .backdrop{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        max-width: 100vw;
+        max-height: 100vh;
+    }
     
     @media screen and (max-width: 575px){
-        width: 90%;
-        height: 500px
+        width: 100vw;
+        height: 70vh;
+        /* .backdrop{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            max-width: 100vw;
+            max-height: 100vh;
+        } */
     }
 
 `
