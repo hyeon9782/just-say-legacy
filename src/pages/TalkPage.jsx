@@ -41,9 +41,9 @@ const TalkPage = () => {
                 <MiceBlock>
                     <TalkButton></TalkButton>
                 </MiceBlock>
+                <EndDialog ref={modal}/>
+                <MenuDialog ref={menu} />
             </TalkBlock>
-            <EndDialog ref={modal}/>
-            <MenuDialog ref={menu} />
         </>
     )
 }
@@ -59,7 +59,7 @@ const TalkBlock = styled.div`
 const CloseBlock = styled.div`
     position: absolute;
     top: 30px;
-    right: 100px;
+    right: 450px;
     width: 32px;
     height: 32px;
     
