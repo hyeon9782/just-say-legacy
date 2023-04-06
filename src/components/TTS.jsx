@@ -8,7 +8,7 @@ const TTS = () => {
   const callTTS = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.post("http://localhost:8000/api/v1/tts", {
+      const res = await axios.post("https://api.just-say.net/api/v1/tts", {
         ssml:
           '<speak> <voice name="en-GB-Wavenet-A">This your <emphasis level="moderate">coffee.</emphasis></voice> <break time="1s"/>Enjoy it! <prosody rate="slow" pitch="-2st">Take your time</prosody> </speak>',
         lang_code: "en-US",
