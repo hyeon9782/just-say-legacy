@@ -12,7 +12,7 @@ const ReadyPage = () => {
             <TextBlock>
                 {info.city.name} 34st 카페에 도착했어요. <br />
                 <div className="sub">
-                    메뉴를 보고, 내가 먹고 싶은 것을 주문해 볼까요??
+                    메뉴를 보고, 내가 먹고 싶은 것을 주문해 볼까요?
                 </div>
             </TextBlock>
             <div className="btn-box">
