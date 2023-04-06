@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import TalkDialog from "../components/dialog/TalkDialog"
 import { useEffect, useRef, useState } from "react";
 import { useAtom } from "jotai";
-import { infoAtom } from "../atom/atom";
+import { infoAtom, isCloseAtom, isLikeAtom } from "../atom/atom";
 import X from '/img/x.png';
 import Icon1 from '/img/icon.png';
 import Icon2 from '/img/icon1.png';
@@ -14,20 +14,19 @@ const ResultPage = () => {
 
     const [isResult, setIsResult] = useState(true);
 
+    const [isLike, setIsLike] = useAtom(isLikeAtom);
+
     const [isClick, setClick] = useState(true);
 
     const [isClick1, setClick1] = useState(true);
+
+    const [isClose, setIsClose] = useAtom(isCloseAtom);
 
     const [info, setInfo] = useAtom(infoAtom);
 
     const talk = useRef(null);
 
-    const tags = [
-        {name: "언어 바꾸기", value: ""},
-        {name: "도시 바꾸기", value: ""},
-        {name: "같은 직원과 다시 대화하기", value: ""},
-        {name: "다른 직원과 다시 대화하기", value: ""},
-    ]
+    const tags = ["언어 바꾸기", "도시 바꾸기", "같은 직원과 다시 대화하기", "다른 직원과 다시 대화하기"]
 
     useEffect(() => {
         if(bool === "success") setIsResult(true);
@@ -35,18 +34,19 @@ const ResultPage = () => {
     },[])
 
     const handleClick = (value) => {
-        switch (value.name) {
-            case "언어 바꾸기" : navitate('/language'); break;
-            case "도시 바꾸기" : navitate('/city'); break;
-            case "같은 직원과 다시 대화하기" : navitate('/talk'); break;
-            case "다른 직원과 다시 대화하기" : navitate('/talk'); break;
+        switch (value) {
+            case "홈" : navitate('/'); setIsClose(false); break;
+            case "언어 바꾸기" : navitate('/language'); setIsClose(false); break;
+            case "도시 바꾸기" : navitate('/city'); setIsClose(false); break;
+            case "같은 직원과 다시 대화하기" : navitate('/talk'); setIsClose(false); setIsLike(false); break;
+            case "다른 직원과 다시 대화하기" : navitate('/talk'); setIsClose(false); break;
         }
     }
     return (
         <>
             <ResultBlock>
                 <CloseBlock>
-                    <div className="close" onClick={() => navitate('/')}></div>
+                    <div className="close" onClick={() => handleClick("홈")}></div>
                 </CloseBlock>
                 <TextBlock>
                     <div className="sub">카페에서 음료와 음식 주문하기</div>
@@ -56,7 +56,7 @@ const ResultPage = () => {
                 </TextBlock>
                 <TagBlock>
                     {tags.map((tag, index) => (
-                        <div key={index} className="tag-item" onClick={() => handleClick(tag)}>{tag.name}</div>
+                        <div key={index} className="tag-item" onClick={() => handleClick(tag)}>{tag}</div>
                     ))}
                 </TagBlock>
                 <QuestionBlock>

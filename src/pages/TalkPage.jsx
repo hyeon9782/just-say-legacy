@@ -7,13 +7,19 @@ import CafeBGM from '/mp3/카페.mp3';
 import CafeBG from '/img/대화_카페.png';
 import Document from '/img/document 1.png';
 import X from '/img/x-1.png';
+import { useAtomValue } from "jotai";
+import { isCloseAtom } from "../atom/atom";
 const TalkPage = () => {
     const modal = useRef(null);
     const menu = useRef(null);
     const bgmRef = useRef(null);
+    const isClose = useAtomValue(isCloseAtom);
     useEffect(() => {
-        menu.current?.showModal()
-    },[])
+        if(isClose) {
+            bgmRef.current.volume = 0.2;
+            bgmRef.current.play();
+        } else menu.current?.showModal()
+    },[isClose])
     return (
         <>
             <TalkBlock>
@@ -35,9 +41,9 @@ const TalkPage = () => {
                 <MiceBlock>
                     <TalkButton></TalkButton>
                 </MiceBlock>
+                <EndDialog ref={modal}/>
+                <MenuDialog ref={menu} />
             </TalkBlock>
-            <EndDialog ref={modal}/>
-            <MenuDialog ref={menu} />
         </>
     )
 }
@@ -57,11 +63,14 @@ const CloseBlock = styled.div`
     width: 32px;
     height: 32px;
     
+    .hidden{
+        display: none;
+    }
 
     @media screen and (max-width: 575px){
         position: absolute;
         top: 30px;
-        left: 450px;
+        right: 450px;
         width: 22px;
         height: 22px;
         
@@ -127,7 +136,7 @@ const TextBlock = styled.div`
     
     @media screen and (max-width: 575px){
         font-weight: 700;
-        font-size: 22px;
+        font-size: 18px;
         line-height: 30px;
         width: 62%;
     }

@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import axios from 'axios';
 import { useEffect, useRef, useState } from "react";
 import useTextToSpeech from "../hooks/useTextToSpeech";
-import { useAtom } from "jotai";
-import { infoAtom, isCloseAtom, messagesAtom } from "../atom/atom";
+import { useAtom, useAtomValue } from "jotai";
+import { infoAtom, isCloseAtom, isLikeAtom, messagesAtom, voiceInfoAtom } from "../atom/atom";
 import lang_data from "../assets/language.json";
 import cafe_info from "../assets/cafe.json";
 import { useNavigate } from "react-router-dom";
@@ -11,51 +10,59 @@ import Loading from "./common/Loading";
 
 import Mice1 from '/img/mice.png';
 import Mice2 from '/img/mice2.png';
+import { callGPT1 } from "../api/talk";
 
 const TalkButton = () => {
     const audioRef = useRef(null);
     const [info, setInfo] = useAtom(infoAtom);
     const [content, setContent] = useState("");
-    const [messages, setMessages] = useAtom(messagesAtom)
+    const [messages, setMessages] = useAtom(messagesAtom);
+    const isLike = useAtomValue(isLikeAtom);
 
 
     const [isRecording, setIsRecording] = useState(false);
     const [isClose, setIsClose] = useAtom(isCloseAtom)
     const navitate = useNavigate();
     const [loading, setLoading] = useState(false);
-    const [gender, setGender] = useState('woman')
-    const [feeling, setFeeling] = useState('normal')
-    const [lang_code,setLangCode] = useState('en-US')
-    const [lang_voice,setLangVoice] = useState('en-US-Wavenet-A')
 
-    useEffect(() => {
+    const [voiceInfo1, setVoiceInfo] = useAtom(voiceInfoAtom)
 
-        if (!isClose) {
-            console.log("useEffect Closed!")
-            return;
-        }
-
+    const initTTS = () => {
         let sex = ["man","woman"][Math.floor(Math.random()*2)]
-        setGender(sex)
         let feelingnow = ["normal","happy","tired", "busy"][Math.floor(Math.random()*4)]
-        setFeeling(feelingnow)
-        setLangCode(info.city.value);
+        let lang_voice = "";
         const langdetail = lang_data.language.find(item => item.name === info.language.value);
         if(!langdetail){
             console.log("RESET Voice 1 !")
-            setLangVoice('en-US-Wavenet-A');
+            lang_voice = "en-US-Wavenet-A"
         }else {
             const accent = langdetail.accents.find(item => item.name === info.city.value)
             if(!accent){
                 console.log("RESET Voice 2 !")
-                setLangVoice('en-US-Wavenet-A');
+                lang_voice = "en-US-Wavenet-A"
             }else{
-                let voc = accent[sex].voices[Math.floor(Math.random()*accent[sex].voices.length)]
-                console.log(accent, sex, voc)
-                setLangVoice(voc);
+                lang_voice = accent[sex].voices[Math.floor(Math.random()*accent[sex].voices.length)]
+                console.log(accent, sex, lang_voice)
             }
         }
 
+        setVoiceInfo(prev => {
+            let newVoice = {...prev};
+            newVoice = {
+                gender: sex,
+                feeling: feelingnow,
+                lang_code: info.city.value,
+                lang_voice, 
+            }
+            console.log("setVoiceInfo : " , newVoice);
+            setVoiceInfo(newVoice);
+            return newVoice;
+        })
+
+        return { sex, feelingnow, lang_voice }
+    }
+
+    const initGPT = (feelingnow) => {
         //  기본 역할 정의
         let define_bot_role = "you are a cafe manager."
         //  카페 메뉴 설정. 이미지에 있는 메뉴 모두 추가
@@ -95,23 +102,54 @@ const TalkButton = () => {
         notice_msg += "if order was made or payment method was set or for take-out was decided, include '@' at the end of your reply for once."
         notice_msg += "Use "+info.language.value+" only."
         notice_msg += "The following is the start of conversation with customer and start with 2 sentences."
-        msgList.push({"role":"user", "content": notice_msg})     
- 
-        callGPT(msgList)    
-        setMessages(msgList);
-    }, [isClose])
+        msgList.push({"role":"user", "content": notice_msg})
+        setMessages(messages);
+        return msgList;
+    }
 
-    const callGPT = async (msgs) => {
+    // TTS & GPT 초기화 및 호출
+    useEffect(() => {
+
+        if (!isClose) {
+            console.log("useEffect Closed!")
+            return;
+        }
+
+        console.log(isLike);
+
+        if (isLike) {
+
+            const { sex, feelingnow, lang_voice } = initTTS();
+    
+            const voiceInfo = {
+                gender: sex,
+                feeling: feelingnow,
+                lang_code: info.city.value,
+                lang_voice
+            }
+    
+            const messages = initGPT(feelingnow);
+            // 다른 직원
+            callGPT(messages, voiceInfo)
+        } else {
+            console.log(messages, voiceInfo1);
+            // 같은 직원
+            callGPT(messages, voiceInfo1)
+        }
+
+    }, [isClose, isLike])
+
+    const callGPT = async (msgs, voiceInfo) => {
+
         // 입력 값이 없을 경우 GPT 호출 방지
         if (msgs[msgs.length - 1].content === '') return;
-
         setLoading(true);
-        const res = await axios.post('https://api.just-say.net/api/v1/gpt', msgs, {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-        });
+        // GPT API 호출
+        const res = await callGPT1(msgs);
+        // GPT 답변 저장
         msgs.push({"role":"assistant", "content": res.data.answer})  
         console.log( "SET Message List =", msgs)
+        // messages 업데이트
         setMessages(msgs);  
 
         let answer = `${res.data.answer}`
@@ -119,7 +157,7 @@ const TalkButton = () => {
             //  예외 발생 
             console.log("ERROR ", answer);
         }else{
-            callTTS(answer).then(() => {
+            callTTS(answer, voiceInfo).then(() => {
                 // GPT가 대화가 끝났다고 판단하면 성공 페이지로 이동
                 if (res.data.answer.includes("@")) {
                     setIsClose(false)
@@ -129,12 +167,12 @@ const TalkButton = () => {
         }
     }
 
-    const callTTS = (answer) => {
+    const callTTS = (answer, voiceInfo) => {
         return new Promise( async (resolve, reject) => {
-            console.log(" TTS 요청 : " + answer, feeling, gender, lang_voice, lang_code)
+            console.log(" TTS 요청 : " + answer, voiceInfo.gender, voiceInfo.feeling, voiceInfo.lang_code, voiceInfo.lang_voice)
             answer = answer.replace("@", "");   //  점원의 마지막 대사가 전달될 수 있음.
             try {
-                const res = await useTextToSpeech({ ssml: answer, gender: gender, feeling: feeling, voice_name: lang_voice, lang_code: lang_code });
+                const res = await useTextToSpeech({ ssml: answer, gender: voiceInfo.gender, feeling: voiceInfo.feeling, voice_name: voiceInfo.lang_voice, lang_code: voiceInfo.lang_code });
                 const audioBlob = new Blob([res.data], { type: "audio/mpeg" });
                 const audioUrl = URL.createObjectURL(audioBlob);
                 audioRef.current.src = audioUrl;
@@ -182,7 +220,7 @@ const TalkButton = () => {
                             role: "user",
                             content,
                         })
-                        callGPT(newMessages)
+                        callGPT(newMessages, voiceInfo1)
                         setMessages(newMessages);
                         console.log("new message = ", newMessages);
                         return newMessages;
@@ -203,7 +241,7 @@ const TalkButton = () => {
                 <Loading /> :
                 <>
                     <Help>
-                        {isRecording ? '듣는 중이에요' : '클릭하여 대화를 시작하세요'}
+                        {isRecording ? '말이 끝났다면 다시 클릭해주세요.' : '클릭하여 대화를 시작하세요'}
                     </Help>
                     <TalkButtonBlock onClick={handleRecognition} >
                         <img src={isRecording ? Mice2 : Mice1 } alt="mice" />    

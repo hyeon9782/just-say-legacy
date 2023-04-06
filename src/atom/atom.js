@@ -6,6 +6,10 @@ export const infoAtom = atom({
   category: { name: "카페", value: "cafe" },
 });
 
+export const voiceInfoAtom = atom({});
+
 export const messagesAtom = atom([]);
 
 export const isCloseAtom = atom(false);
+
+export const isLikeAtom = atom(true);
