@@ -18,6 +18,7 @@ const TalkButton = () => {
     const [content, setContent] = useState("");
     const [messages, setMessages] = useAtom(messagesAtom);
     const isLike = useAtomValue(isLikeAtom);
+    
 
 
     const [isRecording, setIsRecording] = useState(false);
@@ -132,9 +133,11 @@ const TalkButton = () => {
             // 다른 직원
             callGPT(messages, voiceInfo)
         } else {
-            console.log(messages, voiceInfo1);
+            
+            const newMessages = initGPT(voiceInfo1.feeling);
+            console.log(newMessages, voiceInfo1);
             // 같은 직원
-            callGPT(messages, voiceInfo1)
+            callGPT(newMessages, voiceInfo1)
         }
 
     }, [isClose, isLike])
@@ -192,26 +195,18 @@ const TalkButton = () => {
     useEffect(() => {
         let recognition = null;
         let content = "";
-        const handleResult = (event) => {
+        const handleResult = async (event) => {
             const results = event.results;
             const contents = []
-            Object.keys(results).forEach(key => contents.push(results[key][0].transcript))
+            await Object.keys(results).forEach(key => contents.push(results[key][0].transcript))
             content = contents.join(' ,')
             console.log(content);
             setContent(content); // setContent 호출
+            await requestGPT();
         }
-        if (isRecording) {
-            recognition = new window.webkitSpeechRecognition();
-            recognition.continuous = true;
-            recognition.lang = "en-US";
-            recognition.onresult = handleResult; // 이벤트 핸들러를 변수로 빼서 사용
-            recognition.onerror = (event) => {
-                console.error(event.error);
-            }
-            recognition.start();
-        }
-        return () => {
-            if (recognition) {
+
+        function requestGPT() {
+            if (recognition && content) {
                 recognition.stop();
                 setMessages(prev => {
                     if(content === undefined || content.length < 1){
@@ -231,6 +226,17 @@ const TalkButton = () => {
                     }
                 })
             }
+        }
+
+        if (isRecording) {
+            recognition = new window.webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.lang = "en-US";
+            recognition.onresult = handleResult; // 이벤트 핸들러를 변수로 빼서 사용
+            recognition.onerror = (event) => {
+                console.error(event.error);
+            }
+            recognition.start();
         }
     }, [isRecording]);
 

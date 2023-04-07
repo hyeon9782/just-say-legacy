@@ -180,7 +180,7 @@ const SelectBlock = styled.div`
         justify-content: center;
         .city-item{
             width: 90%;
-            height: 220px;
+            height: auto;
 
             .name{
                 font-weight: 700;

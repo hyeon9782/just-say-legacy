@@ -1,9 +1,9 @@
 import styled from "styled-components"
 import { useNavigate, useParams } from 'react-router-dom';
 import TalkDialog from "../components/dialog/TalkDialog"
-import { useEffect, useRef, useState } from "react";
-import { useAtom } from "jotai";
-import { infoAtom, isCloseAtom, isLikeAtom } from "../atom/atom";
+import { useRef, useState } from "react";
+import { useAtom, useSetAtom } from "jotai";
+import { infoAtom, isCloseAtom, isLikeAtom, voiceInfoAtom } from "../atom/atom";
 import X from '/img/x.png';
 import Icon1 from '/img/icon.png';
 import Icon2 from '/img/icon1.png';
@@ -14,15 +14,13 @@ const ResultPage = () => {
 
     const { bool } = useParams();
 
-    const [isResult, setIsResult] = useState(true);
-
-    const [isLike, setIsLike] = useAtom(isLikeAtom);
+    const setIsLike = useSetAtom(isLikeAtom);
 
     const [isClick, setClick] = useState(true);
 
     const [isClick1, setClick1] = useState(true);
 
-    const [isClose, setIsClose] = useAtom(isCloseAtom);
+    const setIsClose = useSetAtom(isCloseAtom);
 
     const [info, setInfo] = useAtom(infoAtom);
 
@@ -30,20 +28,28 @@ const ResultPage = () => {
 
     const tags = ["언어 바꾸기", "도시 바꾸기", "같은 직원과 다시 대화하기", "다른 직원과 다시 대화하기"]
 
-    useEffect(() => {
-        if(bool === "success") setIsResult(true);
-        else setIsResult(false);        
-    },[])
-
     const handleClick = (value) => {
-        switch (value) {
-            case "홈" : navitate('/'); setIsClose(false); break;
-            case "언어 바꾸기" : navitate('/language'); setIsClose(false); break;
-            case "도시 바꾸기" : navitate('/city'); setIsClose(false); break;
-            case "같은 직원과 다시 대화하기" : navitate('/talk'); setIsClose(false); setIsLike(false); break;
-            case "다른 직원과 다시 대화하기" : navitate('/talk'); setIsClose(false); break;
+        setIsClose(false);
+        if (value === "홈") {
+            setInfo({});
+            navitate('/');
+        } else if (value === "언어 바꾸기") {
+            setInfo({});
+            navitate('/language');
+        } else if (value === "도시 바꾸기") {
+            setInfo({
+                ...info,
+                city: {}
+            });
+            navitate('/city');
+        } else if (value === "같은 직원과 다시 대화하기") {
+            setIsLike(false);
+            navitate('/talk');
+        } else if (value === "다른 직원과 다시 대화하기") {
+            navitate('/talk');
         }
     }
+
     return (
         <>
             <ResultBlock>
@@ -53,7 +59,7 @@ const ResultPage = () => {
                 <TextBlock>
                     <div className="sub">카페에서 음료와 음식 주문하기</div>
                     <div className="main">
-                        {isResult ? "주문 성공🎉" : "앗, 다시 말해볼까요?"}
+                        {bool === "success" ? "주문 성공🎉" : "앗, 다시 말해볼까요?"}
                     </div>
                 </TextBlock>
                 <TagBlock>

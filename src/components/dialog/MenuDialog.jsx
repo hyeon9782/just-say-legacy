@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import { forwardRef, useRef, useState } from "react";
 import styled from "styled-components";
 import { isCloseAtom } from "../../atom/atom";
-import Menu from '/img/menu.png';
+import Menu from '/img/new-menu.png';
 import X from '/img/x.png';
 const MenuDialog = forwardRef((props, ref) => {
 
@@ -44,6 +44,7 @@ const MenuBlock = styled.dialog`
     max-height: 100vh;
     overflow: auto;
     padding: 0;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
     &.backdrop {
         max-width: 100%;
         max-height: 100%;
