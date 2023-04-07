@@ -88,7 +88,7 @@ const SelectBlock = styled.div`
     font-weight: 700;
     font-size: 36px;
     line-height: 43px;
-    color: #FFFFFF;
+    color: #4B8BF6;
     .language-item{
         box-sizing: border-box;
         display: flex;
@@ -98,10 +98,11 @@ const SelectBlock = styled.div`
         width: 463px;
         height: 99px;
         border-radius: 50px;
-        background: #4B8BF6;
+        border: 1px solid #4B8BF6;
+        background: white;
         &:hover{
-            background: white;
-            color: #4B8BF6;
+            background: #4B8BF6;
+            color: #FFFFFF;
             border: 1px solid #4B8BF6;
         }
     }

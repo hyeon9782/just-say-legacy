@@ -1,22 +1,25 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import styled from "styled-components"
 import EndDialog from "../components/dialog/EndDialog";
 import MenuDialog from "../components/dialog/MenuDialog";
 import TalkButton from "../components/TalkButton";
+import ToolTip from "../components/common/tooltip";
 import CafeBGM from '/mp3/카페.mp3';
 import CafeBG from '/img/대화_카페.png';
 import Document from '/img/document 1.png';
 import X from '/img/x-1.png';
 import { useAtomValue } from "jotai";
 import { isCloseAtom } from "../atom/atom";
+
 const TalkPage = () => {
     const modal = useRef(null);
     const menu = useRef(null);
     const bgmRef = useRef(null);
     const isClose = useAtomValue(isCloseAtom);
+
     useEffect(() => {
         if(isClose) {
-            bgmRef.current.volume = 0.2;
+            bgmRef.current.volume = 0.1;
             bgmRef.current.play();
         } else menu.current?.showModal()
     },[isClose])
@@ -36,7 +39,9 @@ const TalkPage = () => {
                             <div className="text">메뉴판</div>
                         </MenuBlock>
                     </div>
+                    <ToolTip />
                 </ImageBlock>
+
                 <audio controls src={CafeBGM} style={{ "display" : "none" }} ref={bgmRef}></audio>
                 <MiceBlock>
                     <TalkButton></TalkButton>
@@ -141,8 +146,6 @@ const TextBlock = styled.div`
         width: 62%;
     }
 `
-
-
 
 const MiceBlock = styled.div`
     display: flex;
