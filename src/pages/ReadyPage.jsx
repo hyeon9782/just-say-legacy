@@ -20,6 +20,14 @@ const ReadyPage = () => {
         SetIsRecording(!isRecording)
     }
 
+    useEffect(() => {
+        if (!isRecording) {
+            return;
+        } else if (text){
+            SetIsRecording(false);
+        }
+    },[text])
+
     return (
         <ReadyBlock>
             <TextBlock>
