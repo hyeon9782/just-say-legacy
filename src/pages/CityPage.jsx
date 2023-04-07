@@ -98,7 +98,7 @@ const CityBlock = styled.div`
         flex-direction: column;
         justify-content: center;
         box-sizing: border-box;
-        height: calc(100vh - 42px);
+        height: calc(100% - 42px);
     }
 
     @media screen and (max-width: 575px){
@@ -107,7 +107,8 @@ const CityBlock = styled.div`
         flex-direction: column;
         padding: 30px 30px;
         .container{
-            height: 100%;
+            /* height: 100%; */
+            height: calc(100% - 22px);
         }
     }
 `

@@ -10,7 +10,7 @@ function ToolTip() {
       const { x, y } = targetElement.getBoundingClientRect();
       setPosition({ x, y });
     }
-    const timeoutId = setTimeout(() => setVisible(false), 5000);
+    const timeoutId = setTimeout(() => setVisible(false), 10000);
     return () => clearTimeout(timeoutId);
   }, []);
 

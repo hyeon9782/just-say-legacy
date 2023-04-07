@@ -7,6 +7,8 @@ import { infoAtom, isCloseAtom, isLikeAtom } from "../atom/atom";
 import X from '/img/x.png';
 import Icon1 from '/img/icon.png';
 import Icon2 from '/img/icon1.png';
+import ChoiceIcon1 from '/img/choice-icon-1.png';
+import ChoiceIcon2 from '/img/choice-icon-2.png';
 const ResultPage = () => {
     const navitate = useNavigate();
 
@@ -64,12 +66,12 @@ const ResultPage = () => {
                     <div className="like-block">
                         <div className={isClick ? "icon-box" : "icon-box blue"} onClick={() => setClick(!isClick)}>
                             <div className="icon-1">
-                                <img src={Icon1} alt="icon-1" width="100%" height="100%"/>
+                                <img src={isClick ? Icon1 : ChoiceIcon1} alt="icon-1" width="100%" height="100%"/>
                             </div>
                         </div>
                         <div className={isClick1 ? "icon-box" : "icon-box blue"} onClick={() => setClick1(!isClick1)}>
                             <div className="icon-2">
-                                <img src={Icon2} alt="icon-2" width="100%" height="100%"/>
+                                <img src={isClick1 ? Icon2 : ChoiceIcon2} alt="icon-2" width="100%" height="100%"/>
                             </div>
                         </div>
                     </div>
