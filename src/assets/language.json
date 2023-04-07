@@ -36,10 +36,10 @@
             {
                 "name":"en-GB",
                 "man" : {
-                    "voices": ["en-GB-Neural2-B", "en-GB-Neural2-D"]
+                    "voices": ["en-GB-Standard-B", "en-GB-Standard-D","en-GB-Wavenet-B", "en-GB-Wavenet-D"]
                 },
                 "woman" : {
-                    "voices": ["en-GB-Neural2-A", "en-GB-Neural2-C","en-GB-Neural2-F"]
+                    "voices": ["en-GB-Standard-A", "en-GB-Standard-C","en-GB-Standard-F", "en-GB-Wavenet-A", "en-GB-Wavenet-C", "en-GB-Wavenet-F"]
                 }
             },
             {
