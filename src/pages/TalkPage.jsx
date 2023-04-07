@@ -10,34 +10,42 @@ import Document from '/img/document 1.png';
 import X from '/img/x-1.png';
 import { useAtomValue } from "jotai";
 import { isCloseAtom } from "../atom/atom";
+import Toast from "../components/common/Toast";
 
 const TalkPage = () => {
     const modal = useRef(null);
     const menu = useRef(null);
     const bgmRef = useRef(null);
     const isClose = useAtomValue(isCloseAtom);
+    const toastRef = useRef(null);
 
     useEffect(() => {
         if(isClose) {
             bgmRef.current.volume = 0.1;
-            bgmRef.current.play();
-        } else menu.current?.showModal()
+            bgmRef.current.play();;
+        } else {
+            toastRef.current.showToast()
+            menu.current?.showModal()
+            
+        }
     },[isClose])
     return (
         <>
             <TalkBlock>
                 <ImageBlock>
-                    <CloseBlock onClick={() => modal.current?.showModal()}>
-                        <img src={X} alt="x" width="100%" height="100%"/>
-                    </CloseBlock>
-                    <div className="gradient">
-                        <TextBlock>메뉴를 보고, 카페에서 내가 먹고 싶은 것을 주문해 보세요</TextBlock>
-                        <MenuBlock onClick={() => menu.current?.showModal()}>
-                            <div className="document">
-                                <img src={Document} alt="document" width="100%" height="100%" />
-                            </div>
-                            <div className="text">메뉴판</div>
-                        </MenuBlock>
+                    <div className="test">
+                        <CloseBlock onClick={() => modal.current?.showModal()}>
+                            <img src={X} alt="x" width="100%" height="100%"/>
+                        </CloseBlock>
+                        <div className="gradient">
+                            <TextBlock>메뉴를 보고, 카페에서 내가 먹고 싶은 것을 주문해 보세요</TextBlock>
+                            <MenuBlock onClick={() => menu.current?.showModal()}>
+                                <div className="document">
+                                    <img src={Document} alt="document" width="100%" height="100%" />
+                                </div>
+                                <div className="text">메뉴판</div>
+                            </MenuBlock>
+                        </div>
                     </div>
                     <ToolTip />
                 </ImageBlock>
@@ -47,8 +55,9 @@ const TalkPage = () => {
                     <TalkButton></TalkButton>
                 </MiceBlock>
                 <EndDialog ref={modal}/>
-                <MenuDialog ref={menu} />
             </TalkBlock>
+            <MenuDialog ref={menu} />
+            <Toast ref={toastRef} location={{"bottom" : "30px", "left" : "45px"}} content="메뉴판을 닫으면 대화가 시작됩니다." background="#4B8BF6" color="#FFFFFF"/>
         </>
     )
 }
@@ -56,6 +65,7 @@ const TalkPage = () => {
 const TalkBlock = styled.div`
     overflow: hidden;
     height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,7 +85,7 @@ const CloseBlock = styled.div`
     @media screen and (max-width: 575px){
         position: absolute;
         top: 30px;
-        right: 450px;
+        right: 50px;
         width: 22px;
         height: 22px;
         
@@ -83,11 +93,10 @@ const CloseBlock = styled.div`
 `
 
 const ImageBlock = styled.div`
-    background: url(${CafeBG});
+    
     width: 100%;
-    height: 730px;
-    display: flex;
-    align-items: flex-end;
+    height: 80%;
+    
     
     .gradient{
         display: flex;
@@ -105,6 +114,16 @@ const ImageBlock = styled.div`
             display: flex;
             justify-content: space-around;
         }
+    }
+
+
+    .test{
+        background: url(${CafeBG}) no-repeat center;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
     }
 `
 
@@ -152,7 +171,7 @@ const MiceBlock = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 730px);
+    height: calc(100% - 730px);
    
    @media screen and (max-width: 575px){
         height: 20%;

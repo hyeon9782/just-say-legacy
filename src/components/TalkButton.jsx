@@ -259,6 +259,7 @@ const TalkButton = () => {
 
 const TalkButtonBlock = styled.div`
     cursor: pointer;
+    
 `
 
 const Help = styled.div`

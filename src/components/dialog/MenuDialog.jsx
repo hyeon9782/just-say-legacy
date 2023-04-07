@@ -27,9 +27,6 @@ const MenuDialog = forwardRef((props, ref) => {
                 <div className="close" onClick={handleClick}></div>
             </MenuHead>
             <MenuContent>
-                <div className="text-box">
-                    메뉴판을 닫으면 대화가 시작됩니다.
-                </div>
                 <div className="img-box">
                     <img src={Menu} alt="menu" width="100%" height="100%"/>
                 </div>
@@ -41,12 +38,12 @@ const MenuDialog = forwardRef((props, ref) => {
 
 const MenuBlock = styled.dialog`
     border: 0;
-    /* padding: 0; */
+    width: 500px;
+    height: 674.53px;
     max-width: 100vw;
     max-height: 100vh;
     overflow: auto;
     padding: 0;
-    /* margin: 0; */
     &.backdrop {
         max-width: 100%;
         max-height: 100%;
@@ -60,13 +57,8 @@ const MenuBlock = styled.dialog`
 `
 
 const MenuContent = styled.div`
-    height: 80%;
-
-    .text-box{
-        text-align: center;
-        padding: 10px;
-    }
-
+    height: 90%;
+    position: relative;
     .img-box{
         width: 100%;
         height: calc(90%);
@@ -74,6 +66,7 @@ const MenuContent = styled.div`
 `
 
 const MenuHead = styled.div`
+    height: 10%;
     display: flex;
     justify-content: flex-end;
     .close {
@@ -81,6 +74,10 @@ const MenuHead = styled.div`
         height: 22px;
         background: url(${X});
         margin: 10px;
+    }
+
+    @media screen and (max-width: 575px){
+        
     }
 `
 
