@@ -34,7 +34,7 @@ const ToastBlock = styled.div`
 
     @media screen and (max-width: 575px){
         top: 10px;
-        left: 35px;
+        left: 20%;
     }
      
 `

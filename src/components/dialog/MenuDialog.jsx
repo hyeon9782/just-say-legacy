@@ -24,11 +24,13 @@ const MenuDialog = forwardRef((props, ref) => {
         <MenuBlock ref={ref}
             >
             <MenuHead>
-                <div className="close" onClick={handleClick}></div>
+                <div className="close" onClick={handleClick}>
+                    <img src={X} alt="x" width="100%" height="100%" />
+                </div>
             </MenuHead>
             <MenuContent>
                 <div className="img-box">
-                    <img src={Menu} alt="menu" width="100%" height="100%"/>
+                    <img src={Menu} alt="menu" width="100%" height="auto"/>
                 </div>
             </MenuContent>
             <audio controls ref={audioRef} style={{"display": "none"}}></audio>
@@ -39,9 +41,9 @@ const MenuDialog = forwardRef((props, ref) => {
 const MenuBlock = styled.dialog`
     border: 0;
     width: 500px;
-    height: 674.53px;
-    max-width: 100vw;
-    max-height: 100vh;
+    height: 730px;
+    max-width: 100%;
+    max-height: 100%;
     overflow: auto;
     padding: 0;
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
@@ -51,34 +53,39 @@ const MenuBlock = styled.dialog`
     }
     
     @media screen and (max-width: 575px){
-        width: 80vw;
-        height: 70vh;
+        width: 80%;
+        height: 470px;
     }
     
 `
 
 const MenuContent = styled.div`
-    height: 90%;
+    height: calc(100% - 42px);
     position: relative;
     .img-box{
         width: 100%;
-        height: calc(90%);
+        height: auto;
     }
+    @media screen and (max-width: 575px){
+        height: calc(100% - 38px);
+    }
+
 `
 
 const MenuHead = styled.div`
-    height: 10%;
     display: flex;
     justify-content: flex-end;
     .close {
         width: 22px;
         height: 22px;
-        background: url(${X});
         margin: 10px;
     }
 
     @media screen and (max-width: 575px){
-        
+        .close{
+            width: 18px;
+            height: 18px;
+        }
     }
 `
 

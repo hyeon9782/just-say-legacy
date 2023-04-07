@@ -55,6 +55,7 @@ const TalkPage = () => {
                                 <div className="text">메뉴판</div>
                             </MenuBlock>
                         </div>
+                        <img src={CafeBG} alt="cafe-bg" width="100%" height="100%" />
                     </div>
                     <ToolTip />
                 </ImageBlock>
@@ -109,9 +110,11 @@ const ImageBlock = styled.div`
     
     .gradient{
         display: flex;
-        align-items: flex-end;
         width: 100%;
-        height: 198px;
+        height: 198px; 
+        position: absolute;
+        bottom: 200px;
+        left: 0px;
        
     }
 
@@ -120,14 +123,14 @@ const ImageBlock = styled.div`
         background-repeat : no-repeat;
         background-size : cover;
         .gradient{
-            display: flex;
+            bottom: 50px;
             justify-content: space-around;
         }
     }
 
 
     .test{
-        background: url(${CafeBG}) no-repeat center;
+        /* background: url(${CafeBG}) no-repeat center; */
         background-size: cover;
         width: 100%;
         height: 100%;
