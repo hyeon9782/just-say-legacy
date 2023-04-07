@@ -50,7 +50,7 @@ const TalkPage = () => {
                     <ToolTip />
                 </ImageBlock>
 
-                <audio controls src={CafeBGM} style={{ "display" : "none" }} ref={bgmRef}></audio>
+                <audio loop controls src={CafeBGM} style={{ "display" : "none" }} ref={bgmRef}></audio>
                 <MiceBlock>
                     <TalkButton></TalkButton>
                 </MiceBlock>
