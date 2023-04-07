@@ -18,10 +18,19 @@ const TalkPage = () => {
     const bgmRef = useRef(null);
     const isClose = useAtomValue(isCloseAtom);
     const toastRef = useRef(null);
+    const userAgent = navigator.userAgent.toLowerCase();
+
 
     useEffect(() => {
         if(isClose) {
-            bgmRef.current.volume = 0.1;
+            if (userAgent.match(/iphone|ipad|ipod|android/)) {
+                console.log("모바일");
+                bgmRef.current.volume = 0.05;    
+            } else {
+                console.log("PC");
+                bgmRef.current.volume = 0.1;
+            }
+            
             bgmRef.current.play();;
         } else {
             toastRef.current.showToast()
