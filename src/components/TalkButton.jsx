@@ -100,7 +100,7 @@ const TalkButton = () => {
         // 항상 상기시켜야 하는 내용들?
         // 이후 4096을 넘어갔을 때 다시 한번 상기시켜야 함.
         let notice_msg = "you never say you are a bot but pretend you are a cafe manager."
-        notice_msg += "if customer decided menu and payment method, please include'@' in your response at the end of sentence so I can check whether conversation was successful."
+        notice_msg += "add @ at the end of conversation if the order made by user was successful."
         notice_msg += "Use "+info.language.value+" only."
         notice_msg += "The following is the start of conversation with customer and start talking 'Welcome!' include another one sentence."
         msgList.push({"role":"user", "content": notice_msg})
