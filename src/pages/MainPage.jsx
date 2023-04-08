@@ -9,15 +9,13 @@ const MainPage = () => {
             <MainBlock>
                 <TextBlock>
                     <div className="en">
-                        Your 
-                        Ultimate <br />
-                        SpeakMate
+                        Just, Say!
                     </div>
                     <div className="m-image-box">
                         <img src={BG_IMG} alt="m-bg" width="100%" height="100%" />
                     </div>
                     <div className="ko">
-                        모두가 두려움없이 외국어를 말할 수 있도록. <br />
+                        두려움없이 외국어를 말할 수 있도록. <br />
                         될 때까지 말해보세요!
                     </div>
                     <div className="btn-box">
@@ -37,11 +35,13 @@ const MainPage = () => {
 }
 
 const MainBlock = styled.div`
+    
+    font-style: normal;
+    text-align: center;
 
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    
     justify-content: space-between;
    
     .image-box{
@@ -68,8 +68,8 @@ const MainBlock = styled.div`
 const TextBlock = styled.div`
     .en{
         font-weight: 700;
-        font-size: 96px;
-        line-height: 115px;
+        font-size: 64px;
+        line-height: 81px;
         padding-bottom: 50px;
     }
 
