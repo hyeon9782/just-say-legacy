@@ -4,7 +4,7 @@ const Toast = forwardRef(({ location, content, color, background }, ref) => {
     const [visible, setVisible] = useState(true);
 
     const showToast = () => {
-        setTimeout(() => setVisible(false), 10000); 
+        setTimeout(() => setVisible(false), 90000); 
     }
 
     useImperativeHandle(ref, () => ({

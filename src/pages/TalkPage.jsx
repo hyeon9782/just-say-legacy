@@ -107,7 +107,6 @@ const ImageBlock = styled.div`
     width: 100%;
     height: 80%;
     
-    
     .gradient{
         display: flex;
         width: 100%;
@@ -120,22 +119,19 @@ const ImageBlock = styled.div`
 
     @media screen and (max-width: 575px){
         height: 80%;
-        background-repeat : no-repeat;
-        background-size : cover;
         .gradient{
-            bottom: 50px;
+            bottom: 100px;
+            height: 100px;
             justify-content: space-around;
         }
     }
 
 
     .test{
-        /* background: url(${CafeBG}) no-repeat center; */
-        background-size: cover;
         width: 100%;
         height: 100%;
         display: flex;
-        align-items: flex-end;
+        /* align-items: flex-end; */
     }
 `
 
@@ -175,6 +171,7 @@ const TextBlock = styled.div`
         font-size: 18px;
         line-height: 30px;
         width: 62%;
+        padding-bottom: 0;
     }
 `
 

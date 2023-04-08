@@ -40,8 +40,11 @@ const MenuDialog = forwardRef((props, ref) => {
 
 const MenuBlock = styled.dialog`
     border: 0;
-    width: 500px;
-    height: 730px;
+    /* width: 500px;
+    height: 700px;
+     */
+    width: 20%;
+    height: 57%;
     max-width: 100%;
     max-height: 100%;
     overflow: auto;
@@ -50,6 +53,11 @@ const MenuBlock = styled.dialog`
     &.backdrop {
         max-width: 100%;
         max-height: 100%;
+    }
+
+    @media screen and (max-width: 1300px){
+        width: 40%;
+        height: 60%;
     }
     
     @media screen and (max-width: 575px){

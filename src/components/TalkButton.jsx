@@ -193,6 +193,7 @@ const TalkButton = () => {
     }
 
     useEffect(() => {
+        // if (!isRecording) return;
         let recognition = null;
         let content = "";
         const handleResult = async (event) => {
@@ -208,6 +209,7 @@ const TalkButton = () => {
         function requestGPT() {
             if (recognition && content) {
                 recognition.stop();
+                setIsRecording(!isRecording);
                 setMessages(prev => {
                     if(content === undefined || content.length < 1){
                         console.log("nothing!!", prev)
