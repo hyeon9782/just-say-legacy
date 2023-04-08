@@ -58,7 +58,7 @@ const Head = styled.div`
 
 const TextBlock = styled.div`
     font-weight: 700;
-    font-size: 48px;
+    font-size: 30px;
     line-height: 57px;
     padding-bottom: 80px;
 

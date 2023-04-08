@@ -125,7 +125,7 @@ const TextBlock = styled.div`
     text-align: center;
     .sub{
         font-weight: 400;
-        font-size: 32px;
+        font-size: 24px;
         line-height: 38px;
         padding: 10px 0;
     }
@@ -190,7 +190,7 @@ const QuestionBlock = styled.div`
 
     .question{
         font-weight: 400;
-        font-size: 28px;
+        font-size: 20px;
         line-height: 33px;
         padding: 10px 0;
     }
