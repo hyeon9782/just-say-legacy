@@ -13,9 +13,8 @@ const LoadingPage = () => {
     useEffect(() => {
         setTimeout(() => {
             navigate('/ready')
-        }, 2000)
+        }, 3000)
         const intervalId = setInterval(() => {
-        setPlaneAngle((angle) => angle + 3);
         }, 50);
         return () => clearInterval(intervalId);
     }, []);
@@ -28,19 +27,11 @@ const LoadingPage = () => {
             <TextBlock>{info.city.name}으로 가는 중..</TextBlock>
             <ImageBlock>
                 <div className="earth-container">
-                    <div className="plane"
-                        style={{
-                            position: "absolute",
-                            top: "50%",
-                            left: "50%",
-                            transformOrigin: "0 200px",
-                            transform: `translate(-50%, -100%) rotate(${planeAngle}deg)`,
-                        }}
-                    >
-                        <img src="img/비행기.png" alt="plane" width="100%" height="100%"/>
-                    </div>
                     <div className="earth">
                         <img src="img/지구.png" alt="earth" width="100%" height="100%"/>
+                    </div>
+                    <div className="plane">
+                        <img src="img/비행기.png" alt="plane" width="100%" height="100%"/>
                     </div>
                 </div>
             </ImageBlock>
@@ -50,7 +41,7 @@ const LoadingPage = () => {
 
 const LoadingBlock = styled.div`
     box-sizing: border-box;
-    width: 1280px;
+    width: 100%;
     height: 100vh;
     margin: 0 auto;
     padding: 24px 14px;
@@ -91,10 +82,15 @@ const ImageBlock = styled.div`
 
     .plane{
         position: absolute;
+        bottom: 0;
+        left: 50%;
         width: 100px;
         height: 100px;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        transform-origin: bottom center;
+        animation: move-arc 2s linear infinite;
     }
-
     .earth{
         width: 100%;
         min-height: 100%;
@@ -106,14 +102,21 @@ const ImageBlock = styled.div`
     @media screen and (max-width: 575px){
         height: 50%;
 
-        .plane{
-            top: -50px;
-            left: -50px;
-        }
         .earth{
             width: 100%;
             height: 100%;
         }
+    }
+    @keyframes move-arc {
+        0% {
+            transform: translateX(-500%) translateY(-80%) rotate(35deg); /* 반원 시작점 */
+          }
+          50% {
+            transform: translateX(0%) translateY(-80%) rotate(35deg); /* 반원 중간점 */
+          }
+          100% {
+            transform: translateX(500%) translateY(-80%) rotate(35deg); /* 반원 끝점 */
+          }
     }
 `
 
