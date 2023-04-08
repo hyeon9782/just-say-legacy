@@ -19,7 +19,7 @@ function ToolTip() {
       style={{
         position: 'absolute',
         top: `${position.y - 40}px`,
-        left: `${position.x - 200}px`,
+        left: `${position.x-150}px`,
         padding: '8px',
         backgroundColor: 'white',
         color: 'black',
