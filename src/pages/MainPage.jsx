@@ -9,7 +9,7 @@ const MainPage = () => {
             <MainBlock>
                 <TextBlock>
                     <div className="en">
-                        Just, Say!
+                        Just Say!
                     </div>
                     <div className="m-image-box">
                         <img src={BG_IMG} alt="m-bg" width="100%" height="100%" />
@@ -67,6 +67,8 @@ const MainBlock = styled.div`
 
 const TextBlock = styled.div`
     .en{
+        font-family: 'Outfit';
+        font-style: normal;
         font-weight: 700;
         font-size: 64px;
         line-height: 81px;
@@ -74,6 +76,8 @@ const TextBlock = styled.div`
     }
 
     .ko{
+        font-family: 'Pretendard';
+        font-style: normal;        
         font-weight: 400;
         font-size: 32px;
         line-height: 42px;
