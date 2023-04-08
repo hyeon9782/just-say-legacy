@@ -47,7 +47,6 @@ const LanguagePage = () => {
 
 const LanguageBlock = styled.div`
     box-sizing: border-box;
-    width: 1280px;
     margin: 0 auto;
     padding: 24px 14px;
     height: 100vh;
@@ -67,9 +66,10 @@ const LanguageBlock = styled.div`
 `
 
 const TextBlock = styled.div`
+    font-family: 'Pretendard';
     font-weight: 700;
-    font-size: 64px;
-    line-height: 76px;
+    font-size: 40px;
+    line-height: 62px;
     padding: 30px 0px 200px 0px;
 
     @media screen and (max-width: 575px){
@@ -84,10 +84,11 @@ const SelectBlock = styled.div`
     /* box-sizing: border-box; */
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    font-family: 'Pretendard';
     font-weight: 700;
-    font-size: 36px;
-    line-height: 43px;
+    font-size: 28px;
+    line-height: 33px;
     color: #4B8BF6;
     .language-item{
         box-sizing: border-box;
@@ -95,8 +96,8 @@ const SelectBlock = styled.div`
         justify-content: center;
         align-items: center;
         gap: 10px;
-        width: 463px;
-        height: 99px;
+        width: 45%;
+        height: 90px;
         border-radius: 50px;
         border: 1px solid #4B8BF6;
         background: white;
@@ -109,14 +110,14 @@ const SelectBlock = styled.div`
 
     @media screen and (max-width: 575px){
         font-size: 28px;
-        line-height: 42px;
+        line-height: 33px;
         display: flex;
         flex-direction: column;
         align-items: center;
 
         .language-item{
             margin: 25px 0px;
-            width: 309px;
+            width: 60%;
             height: 54px;
         }
     }

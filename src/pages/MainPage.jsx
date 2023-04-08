@@ -14,7 +14,7 @@ const MainPage = () => {
                     <div className="m-image-box">
                         <img src={BG_IMG} alt="m-bg" width="100%" height="100%" />
                     </div>
-                    <div className="ko">
+                    <div className="ko" align="left">
                         두려움없이 외국어를 말할 수 있도록. <br />
                         될 때까지 말해보세요!
                     </div>
@@ -79,8 +79,8 @@ const TextBlock = styled.div`
         font-family: 'Pretendard';
         font-style: normal;        
         font-weight: 400;
-        font-size: 32px;
-        line-height: 42px;
+        font-size: 20px;
+        line-height: 36px;
         padding-bottom: 40px;
     }
 
@@ -133,10 +133,11 @@ const StartButton = styled.button`
     background: #4B8BF6;
     border-radius: 50px;
     border: 0;
+    font-family: 'Pretendard';
     font-style: normal;
     font-weight: 700;
-    font-size: 32px;
-    line-height: 38px;
+    font-size: 28px;
+    line-height: 33px;
     color: #FFFFFF;
 
     @media screen and (max-width: 575px){
