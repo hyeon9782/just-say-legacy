@@ -33,7 +33,8 @@ const ReadyPage = () => {
             <TextBlock>
                 {info.city.name} 34st 카페에 도착했어요. <br />
                 <div className="sub">
-                    메뉴를 보고, 내가 먹고 싶은 것을 주문해 볼까요?
+                    메뉴를 보고, <br/>
+                    내가 먹고 싶은 것을 주문해 볼까요?
                 </div>
             </TextBlock>
             <div className="btn-box">
@@ -49,13 +50,13 @@ const ReadyPage = () => {
 }
 
 const ReadyBlock = styled.div`
-    height: 100vh;
     width: 100vw;
     background:url(${ReadyCafe});
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    padding: 20px;
 
     .btn-box{
         display: flex;
@@ -87,7 +88,7 @@ const ReadyBlock = styled.div`
     @media screen and (max-width: 575px){
         width: 100%;
         height: 100vh;
-        padding: 0;
+        padding: 10px;
 
         .text-box{
             width: 70%;
@@ -108,8 +109,8 @@ const TestButton = styled.div`
     border-radius: 50px;
 
     font-weight: 700;
-    font-size: 32px;
-    line-height: 38px;
+    font-size: 28px;
+    line-height: 33px;
     color: #FFFFFF;
 
     @media screen and (max-width: 575px){
@@ -124,8 +125,8 @@ const TestButton = styled.div`
 
 const TextBlock = styled.div`
     font-weight: 700;
-    font-size: 64px;
-    line-height: 100px;
+    font-size: 44px;
+    line-height: 62px;
     text-align: center;
     @media screen and (max-width: 575px){
         font-weight: 700;
@@ -139,8 +140,8 @@ const TextBlock = styled.div`
 
 const Help = styled.div`
     font-weight: 400;
-    font-size: 28px;
-    line-height: 33px;
+    font-size: 24px;
+    line-height: 29px;
     padding: 50px 0;
 
     @media screen and (max-width: 575px){
@@ -160,9 +161,10 @@ const StartButton = styled.div`
     background: #4B8BF6;
     border-radius: 50px;
 
+    font-family: 'Pretendard';
     font-weight: 700;
-    font-size: 32px;
-    line-height: 38px;
+    font-size: 28px;
+    line-height: 33px;
     color: #FFFFFF;
 
     @media screen and (max-width: 575px){

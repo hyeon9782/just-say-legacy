@@ -125,8 +125,8 @@ const TextBlock = styled.div`
     text-align: center;
     .sub{
         font-weight: 400;
-        font-size: 32px;
-        line-height: 38px;
+        font-size: 24px;
+        line-height: 29px;
         padding: 10px 0;
     }
 
@@ -190,8 +190,8 @@ const QuestionBlock = styled.div`
 
     .question{
         font-weight: 400;
-        font-size: 28px;
-        line-height: 33px;
+        font-size: 20px;
+        line-height: 24px;
         padding: 10px 0;
     }
     .like-block{
@@ -230,8 +230,8 @@ const QuestionBlock = styled.div`
             /* box-sizing: border-box; */
             width: 180px;
             font-weight: 400;
-            font-size: 20px;
-            line-height: 24px;
+            font-size: 18px;
+            line-height: 21px;
             padding: 8px 0px;
             background: #D9EFF7;
             border-radius: 20px;
