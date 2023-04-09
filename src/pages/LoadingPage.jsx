@@ -28,10 +28,10 @@ const LoadingPage = () => {
             <ImageBlock>
                 <div className="earth-container">
                     <div className="earth">
-                        <img src="img/지구.png" alt="earth" width="100%" height="100%"/>
+                        <img src="img/earth.png" alt="earth" width="100%" height="100%"/>
                     </div>
                     <div className="plane">
-                        <img src="img/비행기.png" alt="plane" width="100%" height="100%"/>
+                        <img src="img/plane.png" alt="plane" width="100%" height="100%"/>
                     </div>
                 </div>
             </ImageBlock>
