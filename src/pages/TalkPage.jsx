@@ -66,7 +66,7 @@ const TalkPage = () => {
                     <TalkButton></TalkButton>
                 </MiceBlock>
                 <EndDialog ref={modal}/>
-                <Toast ref={toastRef} content="메뉴판을 닫으면 대화가 시작됩니다." background="#4B8BF6" color="#FFFFFF"/>
+                <Toast ref={toastRef} location={{"bottom": "40px", "left" : "50%"}} content="메뉴판을 닫으면 대화가 시작됩니다." background="#4B8BF6" color="#FFFFFF"/>
             </TalkBlock>
             <MenuDialog ref={menu} />
         </>

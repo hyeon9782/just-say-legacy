@@ -42,7 +42,7 @@ const MenuBlock = styled.dialog`
     z-index: -1;
     position: absolute;
     border: 0;
-    width: 500px;
+    width: 400px;
     margin-top: 20px;
     max-width: 100%;
     max-height: 100%;
