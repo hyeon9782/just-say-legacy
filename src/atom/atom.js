@@ -1,7 +1,8 @@
 import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 
-export const infoAtom = atom({
-  language: { name: "영어", value: "english"},
+export const infoAtom = atomWithStorage('info',{
+  language: { name: "영어", value: "english" },
   city: { name: "뉴욕", value: "en-US" },
   category: { name: "카페", value: "cafe" },
 });

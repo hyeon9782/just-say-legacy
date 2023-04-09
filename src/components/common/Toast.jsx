@@ -1,6 +1,11 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
 import styled from "styled-components";
-const Toast = forwardRef(({ location, content, color, background }, ref) => {
+const Toast = forwardRef(({ 
+    location = { "top" : "0px", "left" : "50%", "bottom" : "0px", "right" : "0px"},
+    content = "Defailt Message",
+    color = "white",
+    background = "black" 
+}, ref) => {
     const [visible, setVisible] = useState(true);
 
     const showToast = () => {
@@ -24,29 +29,22 @@ const Toast = forwardRef(({ location, content, color, background }, ref) => {
 
 const ToastBlock = styled.div`
     max-height: 70px;
-    min-width: 300px;
+    min-width: 350px;
     box-sizing: border-box;
     border-radius: 10px;
     padding: 20px 15px;
     text-align: center;
     opacity: 0.7;
-    position: absolute;
     z-index: 9;
-    bottom: 10%;
-    right: 45%;
+    position: fixed;
+    top: ${props => props.location.top};
+    left: ${props => props.location.left};
+    bottom: ${props => props.location.bottom};
+    right: ${props => props.location.right};
+    transform: translateX(-50%);
     justify-content: center;
     background: ${props => props.background};
     color: ${props => props.color};
-
-    @media screen and (max-width: 1300px){
-        bottom: 50%;
-        right: 35%;
-    }
-
-    @media screen and (max-width: 575px){
-        bottom: 10%;
-        right: 20%;
-    }
 `
 
 export default Toast;

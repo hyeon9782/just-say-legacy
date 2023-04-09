@@ -1,9 +1,16 @@
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import Container from "../components/common/Container";
+import Toast from "../components/common/Toast";
 import BG_IMG from '/img/BG_IMG 1.png';
+import { useEffect, useRef } from "react";
+
 const MainPage = () => {
     const navigate = useNavigate();
+    const toastRef = useRef(null);
+    useEffect(() => {
+        setTimeout(() => toastRef.current.hideToast() , 5000)
+    })
     return (
         <Container>
             <MainBlock>
@@ -29,6 +36,7 @@ const MainPage = () => {
                         <img src={BG_IMG} alt="dd" width="100%" height="100%" />
                     </ImageBlock>
                 </div>
+                <Toast ref={toastRef} location={{"top": "40px", "left": "50%"}} content="현재 edge/chrome browser만 지원됩니다." background="black" color="white"/>
             </MainBlock>
         </Container>
     )
@@ -39,7 +47,7 @@ const MainBlock = styled.div`
     font-style: normal;
     text-align: center;
     padding: 0px 5%;
-
+    position: relative;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

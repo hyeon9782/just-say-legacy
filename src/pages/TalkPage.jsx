@@ -8,8 +8,8 @@ import CafeBGM from '/mp3/카페.mp3';
 import CafeBG from '/img/대화_카페.png';
 import Document from '/img/document 1.png';
 import X from '/img/x-1.png';
-import { useAtomValue } from "jotai";
-import { isCloseAtom, userLevel } from "../atom/atom";
+import { useAtom, useAtomValue } from "jotai";
+import { infoAtom, isCloseAtom, userLevel } from "../atom/atom";
 import Toast from "../components/common/Toast";
 
 const TalkPage = () => {
@@ -20,8 +20,10 @@ const TalkPage = () => {
     const level = useAtomValue(userLevel)
     const toastRef = useRef(null);
     const userAgent = navigator.userAgent.toLowerCase();
-
+    const [info, setInfo] = useAtom(infoAtom);
     useEffect(() => {
+
+        console.log(info);
         if(isClose) {
             if (userAgent.match(/iphone|ipad|ipod|android/)) {
                 console.log("모바일");
@@ -31,7 +33,7 @@ const TalkPage = () => {
                 bgmRef.current.volume = 0.1;
             }
             toastRef.current.hideToast()
-            // bgmRef.current.play();
+            bgmRef.current.play();
         } else {
             toastRef.current.showToast()
             menu.current?.showModal()
@@ -64,14 +66,15 @@ const TalkPage = () => {
                     <TalkButton></TalkButton>
                 </MiceBlock>
                 <EndDialog ref={modal}/>
+                <Toast ref={toastRef} location={{"bottom": "40px", "left" : "50%"}} content="메뉴판을 닫으면 대화가 시작됩니다." background="#4B8BF6" color="#FFFFFF"/>
             </TalkBlock>
             <MenuDialog ref={menu} />
-            <Toast ref={toastRef} content="메뉴판을 닫으면 대화가 시작됩니다." background="#4B8BF6" color="#FFFFFF"/>
         </>
     )
 }
 
 const TalkBlock = styled.div`
+    z-index: -1;
     overflow: hidden;
     height: 100vh;
     width: 100vw;
@@ -106,7 +109,8 @@ const ImageBlock = styled.div`
     height: 80%;
     
     .gradient{
-        justify-content: space-around;
+        box-sizing: border-box;
+        padding: 0px 30px;
         display: flex;
         width: 100%;
         height: 100px; 
@@ -119,6 +123,7 @@ const ImageBlock = styled.div`
         height: 80%;
         .gradient{
             height: 100px;
+            padding: 0;
             justify-content: space-around;
         }
     }
@@ -132,7 +137,6 @@ const ImageBlock = styled.div`
 
 const MenuBlock = styled.div`
     width: 60px;
-    padding: 0px 30px 30px 0px;
     .document{
         width: 44px;
         height: 44px;
