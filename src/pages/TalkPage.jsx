@@ -8,8 +8,8 @@ import CafeBGM from '/mp3/카페.mp3';
 import CafeBG from '/img/대화_카페.png';
 import Document from '/img/document 1.png';
 import X from '/img/x-1.png';
-import { useAtomValue } from "jotai";
-import { isCloseAtom, userLevel } from "../atom/atom";
+import { useAtom, useAtomValue } from "jotai";
+import { infoAtom, isCloseAtom, userLevel } from "../atom/atom";
 import Toast from "../components/common/Toast";
 
 const TalkPage = () => {
