@@ -105,7 +105,8 @@ const ImageBlock = styled.div`
     height: 80%;
     
     .gradient{
-        justify-content: space-around;
+        box-sizing: border-box;
+        padding: 0 20px;
         display: flex;
         width: 100%;
         height: 100px; 
@@ -131,7 +132,6 @@ const ImageBlock = styled.div`
 
 const MenuBlock = styled.div`
     width: 60px;
-    padding: 0px 30px 30px 0px;
     .document{
         width: 44px;
         height: 44px;

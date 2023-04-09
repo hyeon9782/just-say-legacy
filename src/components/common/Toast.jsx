@@ -31,7 +31,7 @@ const ToastBlock = styled.div`
     text-align: center;
     opacity: 0.7;
     position: absolute;
-    z-index: 9999;
+    z-index: 9;
     bottom: 22%;
     right: 45%;
     justify-content: center;
@@ -39,8 +39,8 @@ const ToastBlock = styled.div`
     color: ${props => props.color};
 
     @media screen and (max-width: 1300px){
-        bottom: 30%;
-        right: 0;
+        bottom: 50%;
+        right: 35%;
     }
 
     @media screen and (max-width: 575px){

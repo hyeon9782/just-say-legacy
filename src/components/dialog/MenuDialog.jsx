@@ -39,15 +39,11 @@ const MenuDialog = forwardRef((props, ref) => {
 })
 
 const MenuBlock = styled.dialog`
+    z-index: -1;
     position: absolute;
     border: 0;
     width: 500px;
-    /* height: 730px; */
-    
-    /* width: 40%;
-    height: 60%; */
     margin-top: 20px;
-    /* justify-content: center; */
     max-width: 100%;
     max-height: 100%;
     overflow: auto;
@@ -60,12 +56,10 @@ const MenuBlock = styled.dialog`
 
     @media screen and (max-width: 1300px){
         width: 35%;
-        /* height: 75%; */
     }
     
     @media screen and (max-width: 575px){
         width: 70%;
-        /* height: 66%; */
     }
 `
 
