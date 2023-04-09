@@ -100,7 +100,7 @@ const CloseBlock = styled.div`
 `
 
 const ImageBlock = styled.div`
-    
+    position: relative;
     width: 100%;
     height: 80%;
     
@@ -108,27 +108,24 @@ const ImageBlock = styled.div`
         justify-content: space-around;
         display: flex;
         width: 100%;
-        height: 198px; 
+        height: 100px; 
         position: absolute;
-        bottom: 40px;
-        left: 0px;
+        bottom: 0;
+        right: 0;
     }
 
     @media screen and (max-width: 575px){
         height: 80%;
         .gradient{
-            bottom: 190px;
             height: 100px;
             justify-content: space-around;
         }
     }
 
-
     .test{
         width: 100%;
         height: 100%;
         display: flex;
-        /* align-items: flex-end; */
     }
 `
 
