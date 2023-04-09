@@ -51,6 +51,9 @@ const ReadyPage = () => {
 
 const ReadyBlock = styled.div`
     width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
     background:url(${ReadyCafe});
     display: flex;
     flex-direction: column;
