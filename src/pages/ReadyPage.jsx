@@ -86,6 +86,7 @@ const ReadyBlock = styled.div`
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
+        padding: 10px;
     }
 
     @media screen and (max-width: 575px){
@@ -106,8 +107,8 @@ const TestButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 518px;
-    height: 94px;
+    width: 424px;
+    height: 77px;
     background: #4B8BF6;
     border-radius: 50px;
 
@@ -133,7 +134,7 @@ const TextBlock = styled.div`
     text-align: center;
     @media screen and (max-width: 575px){
         font-weight: 700;
-        font-size: 28px;
+        font-size: 24px;
         line-height: 33px;
         /* .sub{
             width: 180px;
@@ -159,8 +160,8 @@ const StartButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 518px;
-    height: 94px;
+    width: 424px;
+    height: 77px;
     background: #4B8BF6;
     border-radius: 50px;
 

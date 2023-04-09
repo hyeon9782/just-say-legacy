@@ -30,7 +30,7 @@ const TalkPage = () => {
                 bgmRef.current.volume = 0.1;
             }
             toastRef.current.hideToast()
-            bgmRef.current.play();
+            // bgmRef.current.play();
         } else {
             toastRef.current.showToast()
             menu.current?.showModal()
@@ -168,6 +168,7 @@ const TextBlock = styled.div`
 `
 
 const MiceBlock = styled.div`
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;

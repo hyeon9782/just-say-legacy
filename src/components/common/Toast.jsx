@@ -32,7 +32,7 @@ const ToastBlock = styled.div`
     opacity: 0.7;
     position: absolute;
     z-index: 9;
-    bottom: 22%;
+    bottom: 10%;
     right: 45%;
     justify-content: center;
     background: ${props => props.background};
