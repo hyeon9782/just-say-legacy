@@ -29,12 +29,11 @@ const TalkPage = () => {
                 console.log("PC");
                 bgmRef.current.volume = 0.1;
             }
-            
+            toastRef.current.hideToast()
             bgmRef.current.play();;
         } else {
             toastRef.current.showToast()
             menu.current?.showModal()
-            
         }
     },[isClose])
     return (
@@ -66,7 +65,7 @@ const TalkPage = () => {
                 <EndDialog ref={modal}/>
             </TalkBlock>
             <MenuDialog ref={menu} />
-            <Toast ref={toastRef} location={{"bottom" : "30px", "left" : "45px"}} content="메뉴판을 닫으면 대화가 시작됩니다." background="#4B8BF6" color="#FFFFFF"/>
+            <Toast ref={toastRef} content="메뉴판을 닫으면 대화가 시작됩니다." background="#4B8BF6" color="#FFFFFF"/>
         </>
     )
 }

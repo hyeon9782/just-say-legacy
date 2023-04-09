@@ -4,11 +4,11 @@ import { useAtom } from "jotai";
 import { infoAtom } from "../atom/atom";
 import Back from "../components/common/Back";
 import 고베 from '/img/고베.png';
-import 뉴욕 from '/img/뉴욕.png';
-import 더블린 from '/img/더블린.png';
+import city_newyork from '/img/city_newyork.png';
+import city_dublin from '/img/city_dublin.png';
 import 도쿄 from '/img/도쿄.png';
-import 런던 from '/img/런던.png';
-import 시드니 from '/img/시드니.png';
+import city_london from '/img/city_london.png';
+import city_sydney from '/img/city_sydney.png';
 import 오사카 from '/img/오사카.png';
 import 후쿠오카 from '/img/후쿠오카.png';
 const CityPage = () => {
@@ -27,10 +27,10 @@ const CityPage = () => {
     ]
 
     function getImage(name) {
-        if (name === "뉴욕") return 뉴욕;
-        else if (name === "런던") return 런던;
-        else if (name === "시드니") return 시드니;
-        else if (name === "더블린") return 더블린;
+        if (name === "뉴욕") return city_newyork;
+        else if (name === "런던") return city_london;
+        else if (name === "시드니") return city_sydney;
+        else if (name === "더블린") return city_dublin;
         else if (name === "도쿄") return 도쿄;
         else if (name === "고베") return 고베;
         else if (name === "오사카") return 오사카;

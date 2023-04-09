@@ -4,11 +4,15 @@ const Toast = forwardRef(({ location, content, color, background }, ref) => {
     const [visible, setVisible] = useState(true);
 
     const showToast = () => {
-        setTimeout(() => setVisible(false), 90000); 
+        setVisible(true)
+    }
+    const hideToast = () => {
+        setVisible(false)
     }
 
     useImperativeHandle(ref, () => ({
-        showToast
+        showToast,
+        hideToast
     }))
 
     return (visible && (
@@ -27,16 +31,15 @@ const ToastBlock = styled.div`
     text-align: center;
     opacity: 0.7;
     position: absolute;
-    top: 10px;
-    left: 40%;
+    z-index: 9999;
+    bottom: 22%;
+    justify-content: center;
     background: ${props => props.background};
     color: ${props => props.color};
 
     @media screen and (max-width: 575px){
-        top: 10px;
-        left: 20%;
+        bottom: 20%;
     }
-     
 `
 
 export default Toast;
