@@ -33,7 +33,7 @@ const TalkPage = () => {
                 bgmRef.current.volume = 0.1;
             }
             toastRef.current.hideToast()
-            // bgmRef.current.play();
+            bgmRef.current.play();
         } else {
             toastRef.current.showToast()
             menu.current?.showModal()
@@ -109,7 +109,8 @@ const ImageBlock = styled.div`
     height: 80%;
     
     .gradient{
-        justify-content: space-around;
+        box-sizing: border-box;
+        padding: 0px 30px;
         display: flex;
         width: 100%;
         height: 100px; 
@@ -122,6 +123,7 @@ const ImageBlock = styled.div`
         height: 80%;
         .gradient{
             height: 100px;
+            padding: 0;
             justify-content: space-around;
         }
     }
@@ -135,7 +137,6 @@ const ImageBlock = styled.div`
 
 const MenuBlock = styled.div`
     width: 60px;
-    padding: 0px 30px 30px 0px;
     .document{
         width: 44px;
         height: 44px;
