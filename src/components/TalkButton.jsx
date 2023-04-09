@@ -108,7 +108,7 @@ const TalkButton = () => {
             notice_msg += "use difficult vocabularies and difficult adjective.";
         }
         notice_msg += "Use "+info.language.value+" only."
-        notice_msg += "add @ at the end of conversation after payment"
+        notice_msg += "add @ at the end of conversation if the order and payment made by user was successful."
         notice_msg += "The following is the start of conversation with customer and start talking 'Welcome!' include another one sentence."
         msgList.push({"role":"user", "content": notice_msg})
         setMessages(messages);
