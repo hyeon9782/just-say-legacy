@@ -30,7 +30,7 @@ const TalkPage = () => {
                 bgmRef.current.volume = 0.1;
             }
             toastRef.current.hideToast()
-            // bgmRef.current.play();;
+            bgmRef.current.play();
         } else {
             toastRef.current.showToast()
             menu.current?.showModal()

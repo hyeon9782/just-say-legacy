@@ -90,7 +90,7 @@ const CityBlock = styled.div`
     box-sizing: border-box;
     width: 1280px;
     margin: 0 auto;
-    padding: 24px 14px;
+    padding: 24px 5%;
     min-height: 100vh;
     
     .container{
