@@ -176,8 +176,8 @@ const MiceBlock = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: calc(100% - 730px);
     padding: 30px;
+    height: 20%;
    
     @media screen and (max-width: 575px){
         height: 20%;
