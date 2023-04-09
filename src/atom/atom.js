@@ -14,3 +14,5 @@ export const messagesAtom = atom([]);
 export const isCloseAtom = atom(false);
 
 export const isLikeAtom = atom(true);
+
+export const userLevel = atom('normal'); // basic, normal, hard
