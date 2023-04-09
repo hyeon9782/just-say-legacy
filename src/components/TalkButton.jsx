@@ -65,13 +65,16 @@ const TalkButton = () => {
     }
 
     const initGPT = (feelingnow) => {
-        //  기본 역할 정의
-        let define_bot_role = "you are a cafe manager."
-        //  카페 메뉴 설정. 이미지에 있는 메뉴 모두 추가
         let menu_num = cafe_info.menu_list.length;
-        define_bot_role += `you have ${menu_num} menus. The menus and price are `;
         const menus = cafe_info.menu_list.map(item => item.menu);
         const prices = cafe_info.menu_list.map(item => item.price);
+
+        //  기본 역할 정의
+        let define_bot_role = cafe_info.prompts.system.join(" ");
+        
+        //  이건 별도로 넣을 수 밖에 없는건가? 아니면 전부 그냥 텍스트로 미리 넣어두는거?
+        //  카페 메뉴 설정. 이미지에 있는 메뉴 모두 추가
+        define_bot_role += `you have ${menu_num} menus. The menus and price are `;
         for (let idx = 0; idx < menu_num; idx++) {
           define_bot_role += `${menus[idx]} and price is ${prices[idx]}`;
           if (idx === menu_num - 1) {
@@ -87,13 +90,13 @@ const TalkButton = () => {
         // 시작할 때 유저가 먼저 말하는게 아니고 chatGPT가 먼저 인사하게 만듭니다.
         define_bot_role += "Let's start now. You say 'Can I take your order?' in "+ info.language.value + " first."
         // 고객이 이미 카페 안에 있다고 가정합니다 (방문해서 알아보세요라는 대답 방지 )
-        define_bot_role += "The customer is currently in the cafe."
+        //define_bot_role += "The customer is currently in the cafe."
         // 외국어로 말하면 잘 모르겠다고(이해를 못하겠다고) 답변
         define_bot_role += "you do not understand if the customer does not speak in " + info.language.value + "."
         // 포장 여부 혹은 결제 방법 꼭 물어보기 
-        define_bot_role += "during the conversation, payment method and for here or to go is important."
-        define_bot_role += "Ask one question at a time. "
-        define_bot_role += "do not include 'swipe machine provided' in the conversation."
+        // define_bot_role += "during the conversation, payment method and for here or to go is important."
+        // define_bot_role += "Ask one question at a time. "
+        // define_bot_role += "do not include 'swipe machine provided' in the conversation."
 
         //  초기 프롬프트 설정
         let msgList = []

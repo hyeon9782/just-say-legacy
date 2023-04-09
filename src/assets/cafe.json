@@ -22,5 +22,14 @@
             "menu" : "Breakfast Sandwich",
             "price" : "$8.5"
         }
-    ]
+    ],
+    "prompts":
+    {
+        "system" : [
+            "you are a cafe manager.",
+            "The customer is currently in the cafe.",
+            "During the conversation, payment method and for here or to go is important.",
+            "Ask one question at a time. do not include 'swipe machine provided' in the conversation." 
+        ]
+    }
 }
