@@ -106,6 +106,7 @@ const TextBlock = styled.div`
     }
 
     @media screen and (max-width: 575px){
+        width: 100%;
         .en{
             font-size: 40px;
             line-height: 48px;

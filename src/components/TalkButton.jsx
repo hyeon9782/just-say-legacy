@@ -260,7 +260,10 @@ const TalkButton = () => {
                 <Loading /> :
                 <>
                     <Help>
-                        {isRecording && userAgent.match(/iphone|ipad|ipod|android/) ? '터치하여 대화를 시작하세요':'클릭하여 대화를 시작하세요'}
+                        {userAgent.match(/iphone|ipad|ipod|android/) ? 
+                            (!isRecording ? '터치하여 대화를 시작하세요':'듣는 중이에요..') :
+                            (!isRecording ? '클릭하여 대화를 시작하세요':'듣는 중이에요..')
+                        }
                     </Help>
                     <TalkButtonBlock onClick={handleRecognition} >
                         <img src={isRecording ? Mice2 : Mice1 } alt="mice" />    

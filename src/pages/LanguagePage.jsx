@@ -75,7 +75,7 @@ const TextBlock = styled.div`
     height: 50%;
 
     @media screen and (max-width: 575px){
-        font-size: 28px;
+        font-size: 24px;
         line-height: 42px;
         text-align: center;
         padding: 30px 0px 150px 0px;
@@ -110,7 +110,7 @@ const SelectBlock = styled.div`
     }
 
     @media screen and (max-width: 575px){
-        font-size: 28px;
+        font-size: 24px;
         line-height: 33px;
         display: flex;
         flex-direction: column;
@@ -119,7 +119,7 @@ const SelectBlock = styled.div`
 
         .language-item{
             margin: 25px 0px;
-            width: 60%;
+            width: 100%;
             height: 54px;
         }
     }

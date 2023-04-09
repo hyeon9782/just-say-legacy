@@ -24,7 +24,7 @@ const LoadingPage = () => {
 
     return (
         <LoadingBlock>  
-            <TextBlock>{info.city.name} 가는 중..</TextBlock>
+            <TextBlock>{info.city.name}가는 중..</TextBlock>
             <ImageBlock>
                 <div className="earth-container">
                     <div className="earth">
