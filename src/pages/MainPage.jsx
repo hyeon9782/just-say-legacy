@@ -35,9 +35,10 @@ const MainPage = () => {
 }
 
 const MainBlock = styled.div`
-    
+    width: 100%;
     font-style: normal;
     text-align: center;
+    padding: 0px 5%;
 
     display: flex;
     justify-content: center;
@@ -45,17 +46,32 @@ const MainBlock = styled.div`
     justify-content: space-between;
    
     .image-box{
+        width: 50%;
         display: flex;
+        justify-content: center;
         align-items: center;
     }
+
+    /* .btn-box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    } */
 
     
 
     @media screen and (max-width: 575px){
-        width: 100%;
         padding: 10px 30px;
         flex-direction: column;
         align-items: center;
+
+        .image-box{
+            display: none;
+        }
+
+        .m-image-box{
+            width: 100%;
+        }
 
         .btn-box{
             display: flex;
@@ -66,22 +82,23 @@ const MainBlock = styled.div`
 `
 
 const TextBlock = styled.div`
+
+    width: 50%;
     .en{
-        font-family: 'Outfit';
         font-style: normal;
         font-weight: 700;
         font-size: 64px;
         line-height: 81px;
         padding-bottom: 50px;
+        text-align: start;
     }
 
     .ko{
-        font-family: 'Pretendard';
         font-style: normal;        
         font-weight: 400;
         font-size: 20px;
         line-height: 36px;
-        padding-bottom: 40px;
+        padding-bottom: 50px;
     }
 
     .m-image-box{
@@ -128,7 +145,7 @@ const StartButton = styled.button`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    padding: 28px 200px;
+    padding: 22px 160px;
     gap: 10px;
     background: #4B8BF6;
     border-radius: 50px;
@@ -139,6 +156,7 @@ const StartButton = styled.button`
     font-size: 28px;
     line-height: 33px;
     color: #FFFFFF;
+
 
     @media screen and (max-width: 575px){
         font-size: 20px;

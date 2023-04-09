@@ -19,7 +19,7 @@ const TalkButton = () => {
     const [messages, setMessages] = useAtom(messagesAtom);
     const isLike = useAtomValue(isLikeAtom);
     
-
+    const userAgent = navigator.userAgent.toLowerCase();
 
     const [isRecording, setIsRecording] = useState(false);
     const [isClose, setIsClose] = useAtom(isCloseAtom)

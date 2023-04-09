@@ -48,8 +48,9 @@ const LanguagePage = () => {
 const LanguageBlock = styled.div`
     box-sizing: border-box;
     margin: 0 auto;
-    padding: 24px 14px;
+    padding: 24px 5%;
     height: 100vh;
+    width: 1280px;
     .container{
         display: flex;
         flex-direction: column;
@@ -66,11 +67,12 @@ const LanguageBlock = styled.div`
 `
 
 const TextBlock = styled.div`
-    font-family: 'Pretendard';
+    box-sizing: border-box;
     font-weight: 700;
     font-size: 40px;
     line-height: 62px;
-    padding: 30px 0px 200px 0px;
+    padding: 100px 0px 0px 0px;
+    height: 50%;
 
     @media screen and (max-width: 575px){
         font-size: 28px;
@@ -81,11 +83,10 @@ const TextBlock = styled.div`
 `
 
 const SelectBlock = styled.div`
-    /* box-sizing: border-box; */
+    height: 50%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    font-family: 'Pretendard';
     font-weight: 700;
     font-size: 28px;
     line-height: 33px;
@@ -96,8 +97,8 @@ const SelectBlock = styled.div`
         justify-content: center;
         align-items: center;
         gap: 10px;
-        width: 45%;
-        height: 90px;
+        width: 417px;
+        height: 77px;
         border-radius: 50px;
         border: 1px solid #4B8BF6;
         background: white;
@@ -114,6 +115,7 @@ const SelectBlock = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: auto;
 
         .language-item{
             margin: 25px 0px;

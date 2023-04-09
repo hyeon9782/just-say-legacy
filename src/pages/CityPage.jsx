@@ -99,7 +99,7 @@ const CityBlock = styled.div`
         justify-content: center;
         box-sizing: border-box;
         height: calc(100% - 42px);
-        padding: 20px;
+        padding: 20px 0px;
     }
 
     @media screen and (max-width: 575px){
@@ -108,19 +108,17 @@ const CityBlock = styled.div`
         flex-direction: column;
         padding: 30px 30px;
         .container{
-            /* height: 100%; */
             height: calc(100% - 22px);
         }
     }
 `
 
 const TextBlock = styled.div`
-    font-family: 'Pretendard';
     .main{
         font-weight: 700;
         font-size: 40px;
         line-height: 48px;
-        padding: 10px 0;
+        padding: 40px 0px 10px 0px;
     }
     .sub{
         font-weight: 400;
@@ -145,23 +143,23 @@ const TextBlock = styled.div`
 
 const SelectBlock = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 5%;
+    gap: 60px;
     box-sizing: border-box;
-    font-family: 'Pretendard';
 
     .city-item{
-        width: 45%;
+        width: 40%;
         border-radius: 20px;
         box-sizing: border-box;
-
+        
         font-weight: 700;
         font-size: 56px;
         line-height: 67px;
         text-align: right;
         border: 1px solid #EEEEEE;
         position: relative;
+        
 
         &:hover{
             border: 5px solid #4B8BF6;
