@@ -13,10 +13,10 @@ const LoadingPage = () => {
     useEffect(() => {
         setTimeout(() => {
             navigate('/ready')
-        }, 3000)
-        const intervalId = setInterval(() => {
-        }, 50);
-        return () => clearInterval(intervalId);
+        }, 2000)
+        // const intervalId = setInterval(() => {
+        // }, 50);
+        // return () => clearInterval(intervalId);
     }, []);
 
     

@@ -85,7 +85,7 @@ const ResultPage = () => {
                         <div className="talk-view" onClick={() => talk.current.showModal()}>전체 대화 보기</div>
                     </div>
                 </QuestionBlock>
-                <TalkDialog ref={talk} head="실시간 대화 내용"></TalkDialog>
+                <TalkDialog ref={talk} head="대화 내용"></TalkDialog>
             </ResultBlock>
         </>
     )

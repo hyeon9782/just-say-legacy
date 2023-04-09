@@ -20,7 +20,6 @@ const TalkPage = () => {
     const toastRef = useRef(null);
     const userAgent = navigator.userAgent.toLowerCase();
 
-
     useEffect(() => {
         if(isClose) {
             if (userAgent.match(/iphone|ipad|ipod|android/)) {
@@ -98,7 +97,6 @@ const CloseBlock = styled.div`
         right: 50px;
         width: 22px;
         height: 22px;
-        
     }
 `
 
@@ -108,19 +106,19 @@ const ImageBlock = styled.div`
     height: 80%;
     
     .gradient{
+        justify-content: space-around;
         display: flex;
         width: 100%;
         height: 198px; 
         position: absolute;
-        bottom: 200px;
+        bottom: 40px;
         left: 0px;
-       
     }
 
     @media screen and (max-width: 575px){
         height: 80%;
         .gradient{
-            bottom: 100px;
+            bottom: 190px;
             height: 100px;
             justify-content: space-around;
         }
@@ -157,14 +155,12 @@ const MenuBlock = styled.div`
 
 const TextBlock = styled.div`
     font-weight: 700;
-    font-size: 48px;
-    line-height: 57px;
+    font-size: 36px;
+    line-height: 43px;
     width: 100%;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     display: flex;
-    justify-content: center;
     color: #FFFFFF;
-
     
     @media screen and (max-width: 575px){
         font-weight: 700;
@@ -181,8 +177,9 @@ const MiceBlock = styled.div`
     align-items: center;
     justify-content: center;
     height: calc(100% - 730px);
+    padding: 30px;
    
-   @media screen and (max-width: 575px){
+    @media screen and (max-width: 575px){
         height: 20%;
     }
 `
