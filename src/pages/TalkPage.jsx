@@ -8,8 +8,8 @@ import CafeBGM from '/mp3/카페.mp3';
 import CafeBG from '/img/대화_카페.png';
 import Document from '/img/document 1.png';
 import X from '/img/x-1.png';
-import { useAtomValue } from "jotai";
-import { isCloseAtom } from "../atom/atom";
+import { useAtom, useAtomValue } from "jotai";
+import { infoAtom, isCloseAtom } from "../atom/atom";
 import Toast from "../components/common/Toast";
 
 const TalkPage = () => {
@@ -19,8 +19,10 @@ const TalkPage = () => {
     const isClose = useAtomValue(isCloseAtom);
     const toastRef = useRef(null);
     const userAgent = navigator.userAgent.toLowerCase();
-
+    const [info, setInfo] = useAtom(infoAtom);
     useEffect(() => {
+
+        console.log(info);
         if(isClose) {
             if (userAgent.match(/iphone|ipad|ipod|android/)) {
                 console.log("모바일");
@@ -63,14 +65,15 @@ const TalkPage = () => {
                     <TalkButton></TalkButton>
                 </MiceBlock>
                 <EndDialog ref={modal}/>
+                <Toast ref={toastRef} content="메뉴판을 닫으면 대화가 시작됩니다." background="#4B8BF6" color="#FFFFFF"/>
             </TalkBlock>
             <MenuDialog ref={menu} />
-            <Toast ref={toastRef} content="메뉴판을 닫으면 대화가 시작됩니다." background="#4B8BF6" color="#FFFFFF"/>
         </>
     )
 }
 
 const TalkBlock = styled.div`
+    z-index: -1;
     overflow: hidden;
     height: 100vh;
     width: 100vw;
