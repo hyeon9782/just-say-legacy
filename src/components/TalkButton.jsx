@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import useTextToSpeech from "../hooks/useTextToSpeech";
 import { useAtom, useAtomValue } from "jotai";
-import { infoAtom, isCloseAtom, isLikeAtom, messagesAtom, voiceInfoAtom } from "../atom/atom";
+import { infoAtom, isCloseAtom, userLevel, isLikeAtom, messagesAtom, voiceInfoAtom } from "../atom/atom";
 import lang_data from "../assets/language.json";
 import cafe_info from "../assets/cafe.json";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,7 @@ import { callGPT1 } from "../api/talk";
 const TalkButton = () => {
     const audioRef = useRef(null);
     const [info, setInfo] = useAtom(infoAtom);
+    const [level, setLevel] = useAtom(userLevel);
     const [content, setContent] = useState("");
     const [messages, setMessages] = useAtom(messagesAtom);
     const isLike = useAtomValue(isLikeAtom);
@@ -100,8 +101,14 @@ const TalkButton = () => {
         // 항상 상기시켜야 하는 내용들?
         // 이후 4096을 넘어갔을 때 다시 한번 상기시켜야 함.
         let notice_msg = "you never say you are a bot but pretend you are a cafe manager."
-        notice_msg += "add @ at the end of conversation if the order made by user was successful."
+        console.log(level)
+        if(level === "begin"){
+            notice_msg += "use easy and simple vocabularies. use less than 3 sentences.";
+        }else if(level === "hard"){
+            notice_msg += "use difficult vocabularies and difficult adjective.";
+        }
         notice_msg += "Use "+info.language.value+" only."
+        notice_msg += "add @ at the end of conversation after payment"
         notice_msg += "The following is the start of conversation with customer and start talking 'Welcome!' include another one sentence."
         msgList.push({"role":"user", "content": notice_msg})
         setMessages(messages);

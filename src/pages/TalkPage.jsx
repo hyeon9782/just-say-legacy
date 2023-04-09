@@ -9,7 +9,7 @@ import CafeBG from '/img/대화_카페.png';
 import Document from '/img/document 1.png';
 import X from '/img/x-1.png';
 import { useAtomValue } from "jotai";
-import { isCloseAtom } from "../atom/atom";
+import { isCloseAtom, userLevel } from "../atom/atom";
 import Toast from "../components/common/Toast";
 
 const TalkPage = () => {
@@ -17,6 +17,7 @@ const TalkPage = () => {
     const menu = useRef(null);
     const bgmRef = useRef(null);
     const isClose = useAtomValue(isCloseAtom);
+    const level = useAtomValue(userLevel)
     const toastRef = useRef(null);
     const userAgent = navigator.userAgent.toLowerCase();
 
@@ -30,7 +31,7 @@ const TalkPage = () => {
                 bgmRef.current.volume = 0.1;
             }
             toastRef.current.hideToast()
-            bgmRef.current.play();
+            bgmRef.current.play();;
         } else {
             toastRef.current.showToast()
             menu.current?.showModal()
@@ -105,8 +106,7 @@ const ImageBlock = styled.div`
     height: 80%;
     
     .gradient{
-        box-sizing: border-box;
-        padding: 0 20px;
+        justify-content: space-around;
         display: flex;
         width: 100%;
         height: 100px; 
@@ -132,6 +132,7 @@ const ImageBlock = styled.div`
 
 const MenuBlock = styled.div`
     width: 60px;
+    padding: 0px 30px 30px 0px;
     .document{
         width: 44px;
         height: 44px;

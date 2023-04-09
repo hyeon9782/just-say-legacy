@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import TalkDialog from "../components/dialog/TalkDialog"
 import { useRef, useState } from "react";
 import { useAtom, useSetAtom } from "jotai";
-import { infoAtom, isCloseAtom, isLikeAtom, voiceInfoAtom } from "../atom/atom";
+import { infoAtom, isCloseAtom, isLikeAtom, userLevel, voiceInfoAtom } from "../atom/atom";
 import X from '/img/x.png';
 import Icon1 from '/img/icon.png';
 import Icon2 from '/img/icon1.png';
@@ -24,9 +24,25 @@ const ResultPage = () => {
 
     const [info, setInfo] = useAtom(infoAtom);
 
+    const [level, setLevel] = useAtom(userLevel);
+
     const talk = useRef(null);
 
     const tags = ["언어 바꾸기", "도시 바꾸기", "같은 직원과 다시 대화하기", "다른 직원과 다시 대화하기"]
+
+    const setThumbUp = () => {
+        if(level === "basic")
+            setLevel("normal")
+        else if(level === "normal")
+            setLevel("hard")
+    }
+
+    const setThumbDown = () => {
+        if(level === "normal")
+            setLevel("basic")
+        else if(level === "hard")
+            setLevel("normal")
+    }
 
     const handleClick = (value) => {
         setIsClose(false);
@@ -71,12 +87,12 @@ const ResultPage = () => {
                     <div className="question">대화는 어떠셨나요?</div>
                     <div className="like-block">
                         <div className={isClick ? "icon-box" : "icon-box blue"} onClick={() => setClick(!isClick)}>
-                            <div className="icon-1">
+                            <div className="icon-1" onClick={() => setThumbUp()}>
                                 <img src={isClick ? Icon1 : ChoiceIcon1} alt="icon-1" width="100%" height="100%"/>
                             </div>
                         </div>
                         <div className={isClick1 ? "icon-box" : "icon-box blue"} onClick={() => setClick1(!isClick1)}>
-                            <div className="icon-2">
+                            <div className="icon-2" onClick={() => setThumbDown()}>
                                 <img src={isClick1 ? Icon2 : ChoiceIcon2} alt="icon-2" width="100%" height="100%"/>
                             </div>
                         </div>
