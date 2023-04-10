@@ -153,7 +153,6 @@ const TalkButton = () => {
     }, [isClose, isLike])
 
     const callGPT = async (msgs, voiceInfo) => {
-
         // 입력 값이 없을 경우 GPT 호출 방지
         if (msgs[msgs.length - 1].content === '') return;
         setLoading(true);
@@ -161,7 +160,7 @@ const TalkButton = () => {
         const res = await callGPTAPI(msgs, cafe_info.place);
         // GPT 답변 저장
         msgs.push({"role":"assistant", "content": res.data.answer})  
-        console.log( "SET Message List =", msgs)
+        console.log( "SET Message List =", msgs, res)
         // messages 업데이트
         setMessages(msgs);  
 
