@@ -10,7 +10,7 @@ import Loading from "./common/Loading";
 
 import Mice1 from '/img/mice.png';
 import Mice2 from '/img/mice2.png';
-import { callGPT1 } from "../api/talk";
+import { callGPTAPI } from "../api/talk";
 
 const TalkButton = () => {
     const audioRef = useRef(null);
@@ -158,7 +158,7 @@ const TalkButton = () => {
         if (msgs[msgs.length - 1].content === '') return;
         setLoading(true);
         // GPT API 호출
-        const res = await callGPT1(msgs);
+        const res = await callGPTAPI(msgs, cafe_info.place);
         // GPT 답변 저장
         msgs.push({"role":"assistant", "content": res.data.answer})  
         console.log( "SET Message List =", msgs)
@@ -172,7 +172,7 @@ const TalkButton = () => {
         }else{
             callTTS(answer, voiceInfo).then(() => {
                 // GPT가 대화가 끝났다고 판단하면 성공 페이지로 이동
-                if (res.data.answer.includes("@")) {
+                if (answer.includes("@")) {
                     //  음성 데이터는 비동기 형태로 출력되므로 (사운드 버퍼에 순차적으로 기록됨.) 이 시점에 아직 대화가 출력중임.
                     //  약 5초 후 화면 전환 발생하게 수정하자.
                     setTimeout(() => {
