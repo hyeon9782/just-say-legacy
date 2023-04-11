@@ -56,7 +56,6 @@ const TalkButton = () => {
                 lang_code: info.city.value,
                 lang_voice, 
             }
-            console.log("setVoiceInfo : " , newVoice);
             setVoiceInfo(newVoice);
             return newVoice;
         })
@@ -126,8 +125,6 @@ const TalkButton = () => {
             return;
         }
 
-        console.log(isLike);
-
         if (isLike) {
 
             const { sex, feelingnow, lang_voice } = initTTS();
@@ -145,7 +142,6 @@ const TalkButton = () => {
         } else {
             
             const newMessages = initGPT(voiceInfo1.feeling);
-            console.log(newMessages, voiceInfo1);
             // 같은 직원
             callGPT(newMessages, voiceInfo1)
         }
@@ -160,7 +156,6 @@ const TalkButton = () => {
         const res = await callGPTAPI(msgs, cafe_info.place);
         // GPT 답변 저장
         msgs.push({"role":"assistant", "content": res.data.answer})  
-        console.log( "SET Message List =", msgs, res)
         // messages 업데이트
         setMessages(msgs);  
 
@@ -185,7 +180,7 @@ const TalkButton = () => {
 
     const callTTS = (answer, voiceInfo) => {
         return new Promise( async (resolve, reject) => {
-            console.log(" TTS 요청 : " + answer, voiceInfo.gender, voiceInfo.feeling, voiceInfo.lang_code, voiceInfo.lang_voice)
+            // console.log(" TTS 요청 : " + answer, voiceInfo.gender, voiceInfo.feeling, voiceInfo.lang_code, voiceInfo.lang_voice)
             answer = answer.replace("@", "");   //  점원의 마지막 대사가 전달될 수 있음.
             try {
                 const res = await useTextToSpeech({ ssml: answer, gender: voiceInfo.gender, feeling: voiceInfo.feeling, voice_name: voiceInfo.lang_voice, lang_code: voiceInfo.lang_code });
@@ -210,7 +205,6 @@ const TalkButton = () => {
             const contents = []
             await Object.keys(results).forEach(key => contents.push(results[key][0].transcript))
             content = contents.join(' ,')
-            console.log(content);
             setContent(content); // setContent 호출
             await requestGPT();
         }
@@ -252,7 +246,6 @@ const TalkButton = () => {
     }, [isRecording]);
 
     const handleRecognition = () => {
-        console.log("handleRecognition", isRecording)
         setIsRecording(!isRecording);
     };
 

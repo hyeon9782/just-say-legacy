@@ -1,7 +1,7 @@
 import { instance } from ".";
 
 const callGPTAPI = (payload, place) => {
-    console.log(payload, place)
+    console.log("callGPTAPI >>>>>>>>>> ", payload, place)
     var last_payload = {
       'message' : payload,
       'place' : place
@@ -13,6 +13,7 @@ const callGPTAPI = (payload, place) => {
 }
 
 const callTTSAPI = (payload) => {
+  console.log("callTTSAPI >>>>>>>>>> ", payload)
     return instance.post(`api/v1/tts`, payload, {
       responseType: "arraybuffer", // responseType 설정 추가
       "Content-Type": "application/json",
