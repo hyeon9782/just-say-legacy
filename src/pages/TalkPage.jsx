@@ -11,7 +11,7 @@ import X from '/img/x-1.png';
 import { useAtom, useAtomValue } from "jotai";
 import { infoAtom, isCloseAtom, userLevel } from "../atom/atom";
 import Toast from "../components/common/Toast";
-
+import SuggestedAnswersPanel from "../components/common/SuggestedAnswersPanel"
 const TalkPage = () => {
     const modal = useRef(null);
     const menu = useRef(null);
@@ -21,6 +21,7 @@ const TalkPage = () => {
     const toastRef = useRef(null);
     const userAgent = navigator.userAgent.toLowerCase();
     const [info, setInfo] = useAtom(infoAtom);
+    const [advisedAnswers, setAdviseAnswers] = useState([])
     useEffect(() => {
 
         console.log(info);
@@ -39,6 +40,18 @@ const TalkPage = () => {
             menu.current?.showModal()
         }
     },[isClose])
+
+    const handlerSuggestedAnswers = (answers) => {
+        const regex = /"([^"]*)"/g; // 정규표현식 패턴
+        let sa_list = []
+        let match = []
+        while((match = regex.exec(answers)) !== null){
+            console.log(match)
+            sa_list.push(match[1])        
+        }
+        setAdviseAnswers(sa_list)
+    }
+
     return (
         <>
             <TalkBlock>
@@ -63,12 +76,13 @@ const TalkPage = () => {
 
                 <audio loop controls src={CafeBGM} style={{ "display" : "none" }} ref={bgmRef}></audio>
                 <MiceBlock>
-                    <TalkButton></TalkButton>
+                    <TalkButton onUpdateSuggestedAnswers={handlerSuggestedAnswers}></TalkButton>
                 </MiceBlock>
                 <EndDialog ref={modal}/>
                 <Toast ref={toastRef} location={{"bottom": "40px", "left" : "50%"}} content="메뉴판을 닫으면 대화가 시작됩니다." background="#4B8BF6" color="#FFFFFF"/>
             </TalkBlock>
             <MenuDialog ref={menu} />
+            <SuggestedAnswersPanel answers={advisedAnswers}/>
         </>
     )
 }

@@ -12,7 +12,7 @@ import Mice1 from '/img/mice.png';
 import Mice2 from '/img/mice2.png';
 import { callGPTAPI } from "../api/talk";
 
-const TalkButton = () => {
+const TalkButton = (props) => {
     const audioRef = useRef(null);
     const [info, setInfo] = useAtom(infoAtom);
     const [level, setLevel] = useAtom(userLevel);
@@ -99,11 +99,9 @@ const TalkButton = () => {
 
         //  초기 프롬프트 설정
         let msgList = []
-        msgList.push({"role":"system", "content": define_bot_role})
         // 항상 상기시켜야 하는 내용들?
         // 이후 4096을 넘어갔을 때 다시 한번 상기시켜야 함.
         let notice_msg = "you never say you are a bot but pretend you are a cafe manager."
-        console.log(level)
         if(level === "begin"){
             notice_msg += "use easy and simple vocabularies. use less than 3 sentences.";
         }else if(level === "hard"){
@@ -112,23 +110,22 @@ const TalkButton = () => {
         notice_msg += "Use "+info.language.value+" only."
         notice_msg += "add @ at the end of conversation if the order and payment made by user was successful."
         notice_msg += "The following is the start of conversation with customer and start talking 'Welcome!' include another one sentence."
-        msgList.push({"role":"user", "content": notice_msg})
+        define_bot_role += notice_msg
+        msgList.push({"role":"system", "content": define_bot_role})
+        msgList.push({"role":"user", "content": "Hello!"})
         setMessages(messages);
         return msgList;
     }
 
     // TTS & GPT 초기화 및 호출
     useEffect(() => {
-
         if (!isClose) {
             console.log("useEffect Closed!")
             return;
         }
 
         if (isLike) {
-
             const { sex, feelingnow, lang_voice } = initTTS();
-    
             const voiceInfo = {
                 gender: sex,
                 feeling: feelingnow,
@@ -140,12 +137,10 @@ const TalkButton = () => {
             // 다른 직원
             callGPT(messages, voiceInfo)
         } else {
-            
             const newMessages = initGPT(voiceInfo1.feeling);
             // 같은 직원
             callGPT(newMessages, voiceInfo1)
         }
-
     }, [isClose, isLike])
 
     const callGPT = async (msgs, voiceInfo) => {
@@ -158,7 +153,7 @@ const TalkButton = () => {
         msgs.push({"role":"assistant", "content": res.data.answer})  
         // messages 업데이트
         setMessages(msgs);  
-
+        console.log(res.data, msgs )
         let answer = `${res.data.answer}`
         if(answer === undefined || answer.length < 1){
             //  예외 발생 
@@ -168,11 +163,16 @@ const TalkButton = () => {
                 // GPT가 대화가 끝났다고 판단하면 성공 페이지로 이동
                 if (answer.includes("@")) {
                     //  음성 데이터는 비동기 형태로 출력되므로 (사운드 버퍼에 순차적으로 기록됨.) 이 시점에 아직 대화가 출력중임.
-                    //  약 5초 후 화면 전환 발생하게 수정하자.
+                    //  문자의 길이로 남은 대기 시간을 정해라.
+                    //  철자 개수 ? 단어 수?
                     setTimeout(() => {
                         setIsClose(false)
                         navitate(`/result/success`)
-                    }, 5000);
+                    }, 7000);
+                }else{
+                    if(res.data.referenceAnswers.length > "empty".length){
+                        props.onUpdateSuggestedAnswers(res.data.referenceAnswers)
+                    }
                 }
             });
         }
