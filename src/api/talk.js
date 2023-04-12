@@ -1,13 +1,19 @@
 import { instance } from ".";
 
-const callGPT1 = (payload) => {
-    return instance.post(`api/v1/gpt`, payload, {
+const callGPTAPI = (payload, place) => {
+    console.log("callGPTAPI >>>>>>>>>> ", payload, place)
+    var last_payload = {
+      'message' : payload,
+      'place' : place
+    }
+    return instance.post(`api/v1/gpt`, last_payload, {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
     });
 }
 
-const callTTS1 = (payload) => {
+const callTTSAPI = (payload) => {
+  console.log("callTTSAPI >>>>>>>>>> ", payload)
     return instance.post(`api/v1/tts`, payload, {
       responseType: "arraybuffer", // responseType 설정 추가
       "Content-Type": "application/json",
@@ -15,4 +21,4 @@ const callTTS1 = (payload) => {
     });
 };
 
-export { callGPT1, callTTS1 };
+export { callGPTAPI, callTTSAPI };

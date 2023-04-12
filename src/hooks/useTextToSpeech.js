@@ -1,5 +1,5 @@
 import axios from "axios";
-import { callTTS1 } from "../api/talk";
+import { callTTSAPI } from "../api/talk";
 
 const useTextToSpeech = async ({
   ssml = "This your coffee. Enjoy it! Take your time",
@@ -11,7 +11,7 @@ const useTextToSpeech = async ({
   speaking_rate = 1,
 }) => {
   console.log("hooks: ", lang_code, voice_name, feeling, gender);
-  return await callTTS1({
+  return await callTTSAPI({
     ssml,
     lang_code,
     voice_name,
