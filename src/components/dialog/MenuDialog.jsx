@@ -8,7 +8,7 @@ const MenuDialog = forwardRef((props, ref) => {
 
     let first = useRef(true);
 
-    const audioRef = useRef(null);
+    // const audioRef = useRef(null);
 
     const [isClose, setIsClose] = useAtom(isCloseAtom)
 
@@ -33,7 +33,7 @@ const MenuDialog = forwardRef((props, ref) => {
                     <img src={Menu} alt="menu" width="100%" height="auto"/>
                 </div>
             </MenuContent>
-            <audio controls ref={audioRef} style={{"display": "none"}}></audio>
+            {/* <audio controls ref={audioRef} style={{"display": "none"}}></audio> */}
         </MenuBlock>
     )
 })

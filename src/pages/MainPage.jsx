@@ -10,10 +10,10 @@ const MainPage = () => {
     const toastRef = useRef(null);
     useEffect(() => {
         const timeout = setTimeout(() => toastRef.current.hideToast() , 5000)
-        return () => {
-            timeout.clearTimeout();
-            toastRef.current.hideToast()
-        }
+        // return () => {
+        //     timeout.clearTimeout();
+        //     toastRef.current.hideToast()
+        // }
 
     })
     return (
