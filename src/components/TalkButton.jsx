@@ -15,7 +15,6 @@ import { callGPT1 } from "../api/talk";
 const TalkButton = () => {
     const audioRef = useRef(null);
     const [info, setInfo] = useAtom(infoAtom);
-    const [level, setLevel] = useAtom(userLevel);
     const [content, setContent] = useState("");
     const [messages, setMessages] = useAtom(messagesAtom);
     const isLike = useAtomValue(isLikeAtom);

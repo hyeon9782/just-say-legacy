@@ -14,9 +14,6 @@ const LoadingPage = () => {
         setTimeout(() => {
             navigate('/ready')
         }, 2000)
-        // const intervalId = setInterval(() => {
-        // }, 50);
-        // return () => clearInterval(intervalId);
     }, []);
 
     

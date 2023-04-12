@@ -9,7 +9,12 @@ const MainPage = () => {
     const navigate = useNavigate();
     const toastRef = useRef(null);
     useEffect(() => {
-        setTimeout(() => toastRef.current.hideToast() , 5000)
+        const timeout = setTimeout(() => toastRef.current.hideToast() , 5000)
+        return () => {
+            timeout.clearTimeout();
+            toastRef.current.hideToast()
+        }
+
     })
     return (
         <Container>
