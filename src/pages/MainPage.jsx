@@ -28,7 +28,7 @@ const MainPage = () => {
                     </div>
                     <div className="ko" align="left">
                         두려움없이 외국어를 말할 수 있도록. <br />
-                        될 때까지 말해보세요!
+                        될 때까지 말해보세요!!
                     </div>
                     <div className="btn-box">
                         <StartButton onClick={() => navigate('/language')}>
