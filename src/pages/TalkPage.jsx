@@ -74,7 +74,6 @@ const TalkPage = () => {
                     <ToolTip />
                 </ImageBlock>
 
-                <audio loop controls src={CafeBGM} style={{ "display" : "none" }} ref={bgmRef}></audio>
                 <MiceBlock>
                     <TalkButton onUpdateSuggestedAnswers={handlerSuggestedAnswers}></TalkButton>
                 </MiceBlock>
@@ -201,3 +200,7 @@ const MiceBlock = styled.div`
 `
 
 export default TalkPage;
+
+
+// 배경음이 말하기를 방해함. 사용자 음성 구분 가능할 때 (MS 서비스에 있음. ) 다시 추가!
+// <audio loop controls src={CafeBGM} style={{ "display" : "none" }} ref={bgmRef}></audio>
