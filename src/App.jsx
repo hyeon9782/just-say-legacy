@@ -1,7 +1,6 @@
 import { BrowserRouter ,Routes, Route } from 'react-router-dom';
 import LanguagePage from "./pages/LanguagePage"
 import CityPage from './pages/CityPage';
-import CategoryPage from './pages/CategoryPage';
 import LoadingPage from './pages/LoadingPage';
 import MainPage from './pages/MainPage';
 import TalkPage from './pages/TalkPage';
@@ -19,7 +18,6 @@ function App() {
           <Route path="/city" element={<CityPage />} />
           <Route path="/loading" element={<LoadingPage />} />
           <Route path="/ready" element={<ReadyPage />} />
-          <Route path="/category" element={<CategoryPage />} />
           <Route path="/talk" element={<TalkPage />} />
           <Route path="/result/:bool" element={<ResultPage />} />
         </Routes>

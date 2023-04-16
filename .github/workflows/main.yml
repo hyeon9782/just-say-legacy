@@ -4,7 +4,7 @@ name: deploy_client
 on:
   push:
     branches:
-      - main    # main 브랜치에서 push 이벤트가 일어났을 때 실행
+      - master    # master 브랜치에서 push 이벤트가 일어났을 때 실행
   
   # 이부분은 위의 trigger가 없어도 수동으로 동작 할 수 있게끔 해주는 역할을 합니다.
   workflow_dispatch:

@@ -2,7 +2,7 @@ import { forwardRef, useImperativeHandle, useState } from "react";
 import styled from "styled-components";
 const Toast = forwardRef(({ 
     location = { "top" : "0px", "left" : "50%", "bottom" : "0px", "right" : "0px"},
-    content = "Defailt Message",
+    content = "Default Message",
     color = "white",
     background = "black" 
 }, ref) => {
