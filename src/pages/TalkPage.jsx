@@ -26,15 +26,15 @@ const TalkPage = () => {
 
         console.log(info);
         if(isClose) {
-            if (userAgent.match(/iphone|ipad|ipod|android/)) {
-                console.log("모바일");
-                bgmRef.current.volume = 0.05;    
-            } else {
-                console.log("PC");
-                bgmRef.current.volume = 0.1;
-            }
+            // if (userAgent.match(/iphone|ipad|ipod|android/)) {
+            //     console.log("모바일");
+            //     bgmRef.current.volume = 0.05;    
+            // } else {
+            //     console.log("PC");
+            //     bgmRef.current.volume = 0.1;
+            // }
             toastRef.current.hideToast()
-            bgmRef.current.play();
+            // bgmRef.current.play();
         } else {
             toastRef.current.showToast()
             menu.current?.showModal()
@@ -73,7 +73,7 @@ const TalkPage = () => {
                     </div>
                     <ToolTip />
                 </ImageBlock>
-
+                {/* <audio loop controls src={CafeBGM} style={{ "display" : "none" }} ref={bgmRef}></audio> */}
                 <MiceBlock>
                     <TalkButton onUpdateSuggestedAnswers={handlerSuggestedAnswers}></TalkButton>
                 </MiceBlock>
@@ -203,4 +203,4 @@ export default TalkPage;
 
 
 // 배경음이 말하기를 방해함. 사용자 음성 구분 가능할 때 (MS 서비스에 있음. ) 다시 추가!
-// <audio loop controls src={CafeBGM} style={{ "display" : "none" }} ref={bgmRef}></audio>
+

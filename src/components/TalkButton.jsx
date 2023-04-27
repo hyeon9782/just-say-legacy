@@ -149,6 +149,7 @@ const TalkButton = (props) => {
         setLoading(true);
         // GPT API 호출
         const res = await callGPTAPI(msgs, cafe_info.place);
+        console.log(res);
         // GPT 답변 저장
         msgs.push({"role":"assistant", "content": res.data.answer})  
         // messages 업데이트
