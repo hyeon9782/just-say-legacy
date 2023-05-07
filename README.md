@@ -1,12 +1,4 @@
-# client
-client project of justsay
+# Just say
+AI와 대화하며 회화 연습을 하는 웹입니다.
 
-ToDo List
-- [ ] Suggested responses for situations
-- [ ] Simple goals and time limits for conversations
-- [ ] Organizing data structures to implement different conversation practice situations
-- [ ] Applying Whisper and llElevenLabs services
-- [ ] Support for Japanese
-- [ ] Add a place
-- [ ] Support for Safari and others
-- [ ] Mobile app services
+
