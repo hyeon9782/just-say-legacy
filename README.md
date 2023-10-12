@@ -1,5 +1,7 @@
 # Just say
 
+# 새로운 기술 스택으로 리팩토링 & 마이그레이션 진행 중입니다. (<a href="https://github.com/hyeon9782/just-say">링크</a>)
+
 ## Project Description
 - AI와 대화하며 회화 연습을 하는 웹입니다.
 
